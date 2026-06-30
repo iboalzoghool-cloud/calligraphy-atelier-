@@ -8,7 +8,7 @@ import {
   useSpring,
 } from "framer-motion";
 import type { ConfiguratorState } from "@/lib/configurator/types";
-import { getBackground, PLACEHOLDER_NAME } from "@/lib/configurator/options";
+import { getBackground, heartSrcFor, PLACEHOLDER_NAME } from "@/lib/configurator/options";
 import { drawArtwork } from "@/lib/configurator/render";
 import { resolveDrawInput, ensureFontsLoaded } from "@/lib/configurator/compose";
 import { loadImage } from "@/lib/configurator/image-cache";
@@ -29,6 +29,7 @@ export function PreviewCanvas({
 }: PreviewCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
+  const heartImgRef = useRef<HTMLImageElement | null>(null);
   const [imgTick, setImgTick] = useState(0);
   const [fontsReady, setFontsReady] = useState(false);
 
@@ -74,6 +75,31 @@ export function PreviewCanvas({
     };
   }, [state.backgroundId]);
 
+  // Freigestelltes Herz-Motiv (falls Form = Herz und Farbwelt eines hat).
+  useEffect(() => {
+    let cancelled = false;
+    const src = state.shape === "heart" ? heartSrcFor(state.backgroundId) : undefined;
+    if (src) {
+      loadImage(src)
+        .then((img) => {
+          if (cancelled) return;
+          heartImgRef.current = img;
+          setImgTick((t) => t + 1);
+        })
+        .catch(() => {
+          if (cancelled) return;
+          heartImgRef.current = null;
+          setImgTick((t) => t + 1);
+        });
+    } else {
+      heartImgRef.current = null;
+      setImgTick((t) => t + 1);
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [state.shape, state.backgroundId]);
+
   // Zeichnen bei jeder Änderung.
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -85,7 +111,10 @@ export function PreviewCanvas({
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const displayName = state.name.trim() || PLACEHOLDER_NAME;
-    drawArtwork(ctx, resolveDrawInput(state, LOGICAL, imgRef.current, displayName));
+    drawArtwork(
+      ctx,
+      resolveDrawInput(state, LOGICAL, imgRef.current, displayName, heartImgRef.current),
+    );
   }, [state, fontsReady, imgTick]);
 
   function handleMove(e: React.PointerEvent) {

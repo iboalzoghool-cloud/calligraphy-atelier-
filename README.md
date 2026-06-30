@@ -68,12 +68,18 @@ src/
 
 Alle Platzhalter sind klar markiert:
 
-- **`src/lib/content.ts`** – die wichtigste Datei: Markenname, Kontakt, Ort,
-  **Preise** (`PRICING.base.heart` / `.square`, plus Veredelungen `gold`,
-  `saying`, `gift`, `card`, `express`, `largeFormat`), **Bearbeitungszeit**
-  (`PROCESSING_TIME`), **Verknappung** (`SCARCITY`), FAQ, Anlässe, Disclaimer.
-- **Veredelungen/Upsells**: Katalog in `src/lib/configurator/options.ts`
-  (`ADDONS`). Preise in `content.ts`.
+- **`src/lib/content.ts`** – Markenname, Kontakt, Ort, **Veredelungs-Preise**
+  (`PRICING`: `saying`, `gold`, `gift`, `card`, `express`, `date`),
+  **Bearbeitungszeit** (`PROCESSING_TIME`), **Verknappung** (`SCARCITY`), FAQ,
+  Anlässe, Disclaimer.
+- **Größen & Grundpreise**: `SIZES` in `src/lib/configurator/options.ts`
+  (Herz Ø 29; Quadrat 20/30/30×40/40 cm – Preis & Vorschau-Proportion hängen an
+  der Größe).
+- **Veredelungen/Upsells**: Katalog `ADDONS` in `options.ts`; für Geschenk-/
+  Grußkarten-Vorschau optional `image:"/veredeln/…"` setzen (Foto in
+  `public/veredeln/` ablegen).
+- **Kalligrafie-Schriften**: `src/lib/fonts.ts` (`CALLIGRAPHY_FONTS`) – Aref
+  Ruqaa Ink, Aref Ruqaa, Amiri, Reem Kufi, Gulzar.
 - **Statement-Block** (Werte/Solidarität): `src/components/landing/ValuesStatement.tsx`
   – standardmäßig **aus** (`SHOW_STATEMENT = false`). Bewusst selbst aktivieren.
 - **Atelier-Story**: `src/app/atelier/page.tsx` (starke Entwürfe + `[PLATZHALTER]`

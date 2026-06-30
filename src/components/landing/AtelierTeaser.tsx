@@ -40,8 +40,8 @@ export function AtelierTeaser() {
           <Reveal delay={0.1} className="order-1 lg:order-2">
             <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[1.75rem] border border-line">
               <Image
-                src="/gallery/quds-staffelei.jpg"
-                alt="Ein entstehendes Werk auf der Staffelei im Atelier"
+                src="/atelier/makkah.jpg"
+                alt="Ein handgemaltes Werk auf der Staffelei im Atelier"
                 fill
                 sizes="(max-width: 1024px) 90vw, 28rem"
                 className="object-cover"

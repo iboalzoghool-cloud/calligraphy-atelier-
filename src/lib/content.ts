@@ -22,18 +22,17 @@ export const BRAND = {
   tiktok: "[@deinhandle]",
 };
 
-/* Preise in Cent – zentral, leicht änderbar. */
+/* Preise in Cent – zentral, leicht änderbar.
+   Grundpreis kommt aus der Größe (siehe SIZES in options.ts). */
 export const PRICING = {
   currency: "EUR" as const,
-  // Grundpreis je Form (Handarbeit, Unikat) – PLATZHALTER: nach Bedarf anpassen
-  base: { square: 3900, heart: 4400 } as const,
   // Veredelungen (Upsells) – „kostet mich wenig, fühlt sich für Kund:innen wertvoll an"
   saying: 500, // persönliche Widmung / Spruch
-  gold: 500, // handgesetzte Goldakzente
+  gold: 500, // verstärkte Goldakzente („Mehr Gold")
   gift: 700, // Premium-Geschenkverpackung
   card: 400, // handgeschriebene Grußkarte
   express: 900, // Express-Anfertigung
-  largeFormat: 1200, // Großformat 40 × 40 cm
+  date: 300, // Datum / Jahr ergänzen
   // PLATZHALTER: Versandkosten – aktuell informativ, in v1 nicht berechnet
   shippingHint: "Versand innerhalb Deutschlands – Kosten werden bei der Auftragsbestätigung mitgeteilt.",
 };

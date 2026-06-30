@@ -1,5 +1,5 @@
 import type { ConfiguratorState } from "./types";
-import { getBackground, getSaying } from "./options";
+import { getBackground, getSaying, getSize, heartSrcFor } from "./options";
 import { CALLIGRAPHY_FONTS, getCalligraphyFont } from "@/lib/fonts";
 import { drawArtwork, type DrawInput } from "./render";
 import { loadImage } from "./image-cache";
@@ -10,15 +10,20 @@ export function resolveDrawInput(
   size: number,
   bgImage: HTMLImageElement | null,
   displayName: string,
+  shapeImage: HTMLImageElement | null = null,
 ): DrawInput {
   const background = getBackground(state.backgroundId);
   const font = getCalligraphyFont(state.fontId);
   const saying = getSaying(state.sayingId);
+  const dim = getSize(state.sizeId);
 
   return {
     shape: state.shape,
+    widthCm: dim.w,
+    heightCm: dim.h,
     background,
     bgImage,
+    shapeImage,
     name: displayName,
     fontFamily: font.family,
     fontWeight: font.weight,
@@ -39,19 +44,21 @@ const FONT_SAMPLE = "سلوى عيد مبارك أمي الحبيبة Abc";
 /** Stellt sicher, dass alle Kalligrafie-Fonts (inkl. Arabisch) geladen sind. */
 export async function ensureFontsLoaded(): Promise<void> {
   if (typeof document === "undefined" || !("fonts" in document)) return;
+  // allSettled: ein fehlschlagender Load darf die anderen NICHT blockieren
+  // (sonst werden arabische Glyphen mit dem Fallback gerendert).
+  await Promise.allSettled(
+    CALLIGRAPHY_FONTS.flatMap((f) => {
+      const fam = primaryFamily(f.family);
+      return [
+        document.fonts.load(`${f.weight} 72px ${fam}`, FONT_SAMPLE),
+        document.fonts.load(`400 72px ${fam}`, FONT_SAMPLE),
+      ];
+    }),
+  );
   try {
-    await Promise.all(
-      CALLIGRAPHY_FONTS.flatMap((f) => {
-        const fam = primaryFamily(f.family);
-        return [
-          document.fonts.load(`${f.weight} 64px ${fam}`, FONT_SAMPLE),
-          document.fonts.load(`400 64px ${fam}`, FONT_SAMPLE),
-        ];
-      }),
-    );
     await document.fonts.ready;
   } catch {
-    // Fallback-Fonts greifen automatisch – kein harter Fehler.
+    // ignorieren
   }
 }
 
@@ -72,6 +79,18 @@ export async function exportMockup(
       img = null;
     }
   }
+
+  // Freigestelltes Herz-Motiv (falls vorhanden & Form = Herz)
+  let shapeImg: HTMLImageElement | null = null;
+  const heartSrc = state.shape === "heart" ? heartSrcFor(state.backgroundId) : undefined;
+  if (heartSrc) {
+    try {
+      shapeImg = await loadImage(heartSrc);
+    } catch {
+      shapeImg = null;
+    }
+  }
+
   await ensureFontsLoaded();
 
   const canvas = document.createElement("canvas");
@@ -80,6 +99,6 @@ export async function exportMockup(
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas-Kontext nicht verfügbar.");
 
-  drawArtwork(ctx, resolveDrawInput(state, size, img, state.name.trim()));
+  drawArtwork(ctx, resolveDrawInput(state, size, img, state.name.trim(), shapeImg));
   return canvas.toDataURL("image/png");
 }

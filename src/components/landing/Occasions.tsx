@@ -11,6 +11,7 @@ export function Occasions() {
           eyebrow="Anlässe"
           title="Für die Momente, die zählen"
           intro="Ob Fest, Familie oder großer Tag – ein Name in Tinte sagt mehr als ein gekauftes Geschenk."
+          stroke
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

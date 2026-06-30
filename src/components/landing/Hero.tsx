@@ -8,13 +8,14 @@ import { PRODUCT } from "@/lib/content";
 // Demo-Konfiguration für den Hero (sanft drehende Live-Vorschau).
 const HERO_DEMO: ConfiguratorState = {
   shape: "heart",
+  sizeId: "heart-29",
   backgroundId: "magenta-gold",
   name: "سلوى",
-  fontId: "aref",
+  fontId: "arefInk",
   sayingId: "eid",
   sayingPosition: "bottom",
   gold: true,
-  addons: { gift: false, card: false, express: false, largeFormat: false },
+  addons: { gift: false, card: false, express: false, date: false },
 };
 
 export function Hero() {

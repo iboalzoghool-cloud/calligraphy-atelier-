@@ -8,12 +8,14 @@ export interface AddonsState {
   gift: boolean; // Premium-Geschenkverpackung
   card: boolean; // handgeschriebene Grußkarte
   express: boolean; // Express-Anfertigung
-  largeFormat: boolean; // Großformat 40 × 40 cm
+  date: boolean; // Datum / Jahr ergänzen (z. B. Hochzeitsdatum)
 }
 
 /** Gesamter Konfigurator-Zustand (zentral, im React-State gehalten). */
 export interface ConfiguratorState {
   shape: ShapeId;
+  /** Leinwandgröße (bestimmt Proportionen & Grundpreis). */
+  sizeId: string;
   backgroundId: string;
   name: string;
   fontId: CalligraphyFontId;

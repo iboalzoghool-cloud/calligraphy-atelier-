@@ -28,6 +28,7 @@ export function HowItWorks() {
           eyebrow="So funktioniert's"
           title="In drei Schritten zum Unikat"
           center
+          stroke
         />
         <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-3">
           {STEPS.map((s, i) => (

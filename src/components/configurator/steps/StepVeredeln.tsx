@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { useConfigurator } from "@/lib/configurator/context";
 import { ADDONS } from "@/lib/configurator/options";
 import type { AddonsState } from "@/lib/configurator/types";
@@ -10,7 +11,7 @@ import { formatPrice } from "@/lib/format";
 function ToggleCard({
   on,
   onToggle,
-  icon,
+  media,
   label,
   desc,
   price,
@@ -18,7 +19,7 @@ function ToggleCard({
 }: {
   on: boolean;
   onToggle: () => void;
-  icon: ReactNode;
+  media: ReactNode;
   label: string;
   desc: string;
   price: number;
@@ -38,12 +39,7 @@ function ToggleCard({
           : "border-line hover:border-line-strong"
       }`}
     >
-      <span
-        className={`mt-0.5 shrink-0 ${gold ? "text-gold" : "text-ink-soft"}`}
-        aria-hidden
-      >
-        {icon}
-      </span>
+      <span className="mt-0.5 shrink-0">{media}</span>
       <span className="min-w-0 flex-1">
         <span className="flex flex-wrap items-center gap-2">
           <span className="font-medium text-ink">{label}</span>
@@ -91,18 +87,35 @@ const ICONS: Record<keyof AddonsState | "gold", ReactNode> = {
       <path d="M3.5 6.5 12 13l8.5-6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
+  date: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
   express: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
       <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   ),
-  largeFormat: (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M9 9h6v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
 };
+
+/** Vorschau-Kachel: echtes Foto, sonst Platzhalter mit Icon. */
+function AddonThumb({ image, icon }: { image?: string; icon: ReactNode }) {
+  if (image) {
+    return (
+      <span className="relative block h-14 w-14 overflow-hidden rounded-xl border border-line">
+        <Image src={image} alt="" fill sizes="56px" className="object-cover" />
+      </span>
+    );
+  }
+  return (
+    <span className="flex h-14 w-14 flex-col items-center justify-center gap-0.5 rounded-xl border border-dashed border-line-strong bg-canvas text-ink-faint">
+      {icon}
+      <span className="text-[8px] uppercase tracking-wide">Foto folgt</span>
+    </span>
+  );
+}
 
 export function StepVeredeln() {
   const { state, update } = useConfigurator();
@@ -117,22 +130,31 @@ export function StepVeredeln() {
         gold
         on={state.gold}
         onToggle={() => update({ gold: !state.gold })}
-        icon={ICONS.gold}
-        label="Goldakzente"
-        desc="Ein zarter, von Hand gesetzter Gold-Schimmer – ideal für Eid, Hochzeit oder besondere Geschenke."
+        media={<span className="text-gold">{ICONS.gold}</span>}
+        label="Mehr Gold"
+        desc="Gold gehört zum Look – hier wird es verstärkt: extra Schimmer & von Hand gesetzte Akzente. Ideal für Eid, Hochzeit oder besondere Geschenke."
         price={PRICING.gold}
       />
-      {ADDONS.map((a) => (
-        <ToggleCard
-          key={a.id}
-          on={state.addons[a.id]}
-          onToggle={() => toggleAddon(a.id)}
-          icon={ICONS[a.id]}
-          label={a.label}
-          desc={a.desc}
-          price={a.price}
-        />
-      ))}
+      {ADDONS.map((a) => {
+        const withThumb = a.id === "gift" || a.id === "card";
+        return (
+          <ToggleCard
+            key={a.id}
+            on={state.addons[a.id]}
+            onToggle={() => toggleAddon(a.id)}
+            media={
+              withThumb ? (
+                <AddonThumb image={a.image} icon={ICONS[a.id]} />
+              ) : (
+                <span className="text-ink-soft">{ICONS[a.id]}</span>
+              )
+            }
+            label={a.label}
+            desc={a.desc}
+            price={a.price}
+          />
+        );
+      })}
     </div>
   );
 }
