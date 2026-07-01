@@ -52,10 +52,11 @@ const HEART_PATH =
 
 type Slot = "center" | "left" | "right";
 
+// Aktives Herz deutlich nach vorn (größer, aufrecht), Seitenherzen zurück.
 const SLOTS: Record<Slot, { transform: string; z: number; opacity: number; name: number }> = {
-  center: { transform: "rotate(0deg) translateY(-16px) scale(1.06)", z: 30, opacity: 1, name: 1 },
-  left: { transform: "rotate(-22deg) translateX(-14%) scale(.9)", z: 12, opacity: 0.82, name: 0 },
-  right: { transform: "rotate(22deg) translateX(14%) scale(.9)", z: 12, opacity: 0.82, name: 0 },
+  center: { transform: "rotate(0deg) translateY(-20px) scale(1.16)", z: 30, opacity: 1, name: 1 },
+  left: { transform: "rotate(-23deg) translateX(-12%) scale(.82)", z: 12, opacity: 0.7, name: 0 },
+  right: { transform: "rotate(23deg) translateX(12%) scale(.82)", z: 12, opacity: 0.7, name: 0 },
 };
 
 interface HeartFanProps {
@@ -63,19 +64,21 @@ interface HeartFanProps {
   onSelect: (key: string) => void;
   name: string;
   sizeLabel: string;
+  /** Name lateinisch statt arabisch anzeigen. */
+  latin?: boolean;
 }
 
-export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
+export function HeartFan({ active, onSelect, name, sizeLabel, latin = false }: HeartFanProps) {
   const activeSet = HEART_SETS.find((s) => s.key === active) ?? HEART_SETS[0];
   const others = HEART_SETS.filter((s) => s.key !== active);
   const slotFor = (key: string): Slot =>
     key === active ? "center" : others[0]?.key === key ? "left" : "right";
 
   return (
-    <div className="mx-auto w-full max-w-lg">
+    <div className="mx-auto w-full max-w-xl">
       <div
         className="animate-heartfloat relative"
-        style={{ height: "min(90vw, 500px)" }}
+        style={{ height: "min(96vw, 560px)" }}
       >
         {/* driftende Farbkleckser + Glow der aktiven Welt */}
         <div
@@ -143,10 +146,10 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
               aria-pressed={set.key === active}
               style={{
                 position: "absolute",
-                bottom: "5%",
+                bottom: "4%",
                 left: "50%",
-                marginLeft: "-36%",
-                width: "min(340px, 72%)",
+                marginLeft: "-39%",
+                width: "min(390px, 78%)",
                 transformOrigin: "50% 96%",
                 transform: slot.transform,
                 zIndex: slot.z,
@@ -209,13 +212,14 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                 }}
               >
                 <span
-                  dir="rtl"
-                  lang="ar"
+                  dir={latin ? "ltr" : "rtl"}
+                  lang={latin ? undefined : "ar"}
                   style={{
                     // Kalligrafie immer in Schwarz (wie auf dem echten Werk).
-                    fontFamily: "var(--font-aref)",
+                    fontFamily: latin ? "var(--font-display)" : "var(--font-aref)",
+                    fontStyle: latin ? "italic" : "normal",
                     color: "#1b1714",
-                    fontSize: "clamp(34px, 8vw, 58px)",
+                    fontSize: latin ? "clamp(28px, 6.5vw, 50px)" : "clamp(34px, 8vw, 58px)",
                     lineHeight: 1,
                     textShadow: "0 1px 10px rgba(255,255,255,0.35)",
                   }}

@@ -13,16 +13,19 @@ export function Hero() {
   const { update } = useConfigurator();
   const [name, setName] = useState("");
   const [active, setActive] = useState("Rosé");
+  const [script, setScript] = useState<"ar" | "lat">("ar");
 
-  // Latein → arabische Kalligrafie („Miriam" → „مريم"). Leeres Feld zeigt einen
-  // schönen arabischen Beispielnamen (Arabisch sofort präsent).
+  // Latein → arabische Kalligrafie („Miriam" → „مريم"). Nutzer kann direkt
+  // Arabisch tippen (exakt) oder die lateinische Schrift wählen.
   const translit = toArabicName(name);
-  const previewName = translit.arabic ?? (name.trim() || "سلوى");
+  const arabicName = translit.arabic ?? (name.trim() || "سلوى");
+  const latinName = name.trim() || "Salwa";
+  const previewName = script === "ar" ? arabicName : latinName;
 
   function handleContinue() {
-    // Name (arabische Form) + gewählte Farbwelt in den Konfigurator tragen.
+    // Name (in gewählter Schrift) + Farbwelt in den Konfigurator tragen.
     update({
-      name: translit.arabic ?? name.trim(),
+      name: script === "ar" ? translit.arabic ?? name.trim() : name.trim(),
       shape: "heart",
       sizeId: "heart-29",
       backgroundId: bgIdForWorld(active),
@@ -41,6 +44,7 @@ export function Hero() {
             onSelect={setActive}
             name={previewName}
             sizeLabel="29 × 29 cm"
+            latin={script === "lat"}
           />
         </Reveal>
 
@@ -83,6 +87,26 @@ export function Hero() {
             }}
             className="mt-6 max-w-md"
           >
+            {/* Schriftwahl: Arabisch (empfohlen) oder Lateinisch */}
+            <div className="mb-3 inline-flex rounded-full border border-line-strong bg-surface p-1 text-sm">
+              <button
+                type="button"
+                onClick={() => setScript("ar")}
+                aria-pressed={script === "ar"}
+                className={`rounded-full px-3.5 py-1.5 transition ${script === "ar" ? "bg-ink text-canvas" : "text-ink-soft hover:text-ink"}`}
+              >
+                <span className="font-arabic text-base">عربي</span> Arabisch
+              </button>
+              <button
+                type="button"
+                onClick={() => setScript("lat")}
+                aria-pressed={script === "lat"}
+                className={`rounded-full px-3.5 py-1.5 transition ${script === "lat" ? "bg-ink text-canvas" : "text-ink-soft hover:text-ink"}`}
+              >
+                Latein
+              </button>
+            </div>
+
             <div className="relative flex items-center">
               <input
                 id="hero-name"
@@ -91,7 +115,9 @@ export function Hero() {
                 dir="auto"
                 autoComplete="off"
                 aria-label="Dein Name für die Live-Vorschau"
-                placeholder="Schreib deinen Namen…"
+                placeholder={
+                  script === "ar" ? "Name – arabisch oder lateinisch…" : "Dein Name…"
+                }
                 className="w-full rounded-full border border-line-strong bg-surface py-3.5 pl-5 pr-16 text-base text-ink shadow-soft outline-none transition placeholder:text-ink-faint focus:border-ink"
               />
               <button
@@ -110,23 +136,43 @@ export function Hero() {
                 </svg>
               </button>
             </div>
-            {translit.source === "mapped" || translit.source === "translit" ? (
+            {script === "lat" ? (
+              <p className="mt-2 pl-1 text-sm text-ink-soft">
+                Dein Name in lateinischer Schrift – im Atelier von Hand
+                geschrieben. Für arabische Kalligrafie oben auf Arabisch
+                umschalten.
+              </p>
+            ) : translit.source === "typed-arabic" ? (
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 pl-1 text-sm text-ink-soft">
+                <span dir="rtl" className="font-arabic text-xl leading-none text-ink">
+                  {translit.arabic}
+                </span>
+                <span className="text-ink-faint">· exakt, direkt auf Arabisch ✓</span>
+              </p>
+            ) : translit.source === "mapped" ? (
               <p className="mt-2 flex flex-wrap items-center gap-x-2 pl-1 text-sm text-ink-soft">
                 <span className="text-ink-faint">{name.trim()}</span>
                 <span className="text-gold">→</span>
                 <span dir="rtl" className="font-arabic text-xl leading-none text-ink">
                   {translit.arabic}
                 </span>
-                <span className="text-ink-faint">
-                  {translit.source === "mapped"
-                    ? "· in arabischer Kalligrafie"
-                    : "· ungefähr – tippe Arabisch für die exakte Schreibweise"}
+                <span className="text-ink-faint">· in arabischer Kalligrafie</span>
+              </p>
+            ) : translit.source === "translit" ? (
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 pl-1 text-sm text-ink-soft">
+                <span className="text-ink-faint">{name.trim()}</span>
+                <span className="text-gold">→</span>
+                <span dir="rtl" className="font-arabic text-xl leading-none text-ink">
+                  {translit.arabic}
+                </span>
+                <span className="text-rose-deep">
+                  · ungefähr – tippe direkt auf Arabisch für die exakte Schreibweise
                 </span>
               </p>
             ) : (
               <p className="mt-2 pl-1 text-sm text-ink-soft">
-                Arabisch oder lateinisch · live auf dem Herz · ab 29 €,
-                unverbindlich.
+                Tipp: Tippe deinen Namen direkt auf Arabisch für die exakte
+                Kalligrafie – oder lateinisch, wir schreiben ihn von Hand.
               </p>
             )}
           </form>
