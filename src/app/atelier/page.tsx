@@ -18,15 +18,17 @@ interface Work {
   h: number;
   title: string;
   note: string;
+  /** Signaturfarbe des Werks – blutet als Pastell in die Karte. */
+  accent: string;
 }
 
 // Echte Werke des Künstlers (Instagram). TODO (Founder): nach Belieben tauschen.
 const WORKS: Work[] = [
-  { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold" },
-  { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, title: "Liebe & Barmherzigkeit", note: "Quran 30:21 · für das Brautpaar" },
-  { src: "/atelier/makkah.jpg", w: 1125, h: 1500, title: "Wo immer du bist", note: "Quran 57:4 · Makka-Szene" },
-  { src: "/atelier/relief.jpg", w: 1500, h: 1174, title: "Nach jeder Härte – Erleichterung", note: "Quran 94 · Thuluth" },
-  { src: "/atelier/blue-easel.jpg", w: 1500, h: 1109, title: "Gedenke", note: "Kalligrafie in Weiß auf Tinte" },
+  { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, accent: "#2f8f96", title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold" },
+  { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, accent: "#8a5f77", title: "Liebe & Barmherzigkeit", note: "Quran 30:21 · für das Brautpaar" },
+  { src: "/atelier/makkah.jpg", w: 1125, h: 1500, accent: "#b0863f", title: "Wo immer du bist", note: "Quran 57:4 · Makka-Szene" },
+  { src: "/atelier/relief.jpg", w: 1500, h: 1174, accent: "#a9744f", title: "Nach jeder Härte – Erleichterung", note: "Quran 94 · Thuluth" },
+  { src: "/atelier/blue-easel.jpg", w: 1500, h: 1109, accent: "#3f6b7f", title: "Gedenke", note: "Kalligrafie in Weiß auf Tinte" },
 ];
 
 const STYLE_POINTS = [
@@ -66,7 +68,7 @@ export default function AtelierPage() {
       <section className="py-16 md:py-24">
         <div className="container-page">
           <Reveal>
-            <p className="eyebrow">Der Stil</p>
+            <p className="eyebrow eyebrow-rule">Der Stil</p>
             <h2 className="mt-3 max-w-2xl text-balance text-3xl leading-tight md:text-[2.4rem]">
               Wo Wasserfarbe auf Schrift trifft
             </h2>
@@ -89,7 +91,7 @@ export default function AtelierPage() {
       <section className="border-y border-line bg-surface py-16 md:py-24">
         <div className="container-page">
           <Reveal>
-            <p className="eyebrow">Werke</p>
+            <p className="eyebrow eyebrow-rule">Werke</p>
             <h2 className="mt-3 text-balance text-3xl leading-tight md:text-[2.4rem]">
               Aus dem Atelier
             </h2>
@@ -102,7 +104,13 @@ export default function AtelierPage() {
           <div className="mt-10 gap-5 [column-fill:_balance] sm:columns-2 lg:columns-3">
             {WORKS.map((work, i) => (
               <Reveal key={work.src} delay={(i % 3) * 0.06}>
-                <figure className="mb-5 break-inside-avoid overflow-hidden rounded-2xl border border-line bg-canvas">
+                <figure
+                  className="mb-5 break-inside-avoid overflow-hidden rounded-2xl border"
+                  style={{
+                    background: `linear-gradient(180deg, color-mix(in srgb, ${work.accent} 14%, #fbf7ee), #fbf7ee)`,
+                    borderColor: `color-mix(in srgb, ${work.accent} 22%, var(--color-line))`,
+                  }}
+                >
                   <Image
                     src={work.src}
                     alt={work.title}
@@ -139,7 +147,7 @@ export default function AtelierPage() {
         <div className="container-page">
           <div className="mx-auto max-w-[46rem]">
             <Reveal>
-              <p className="eyebrow">Die Geschichte</p>
+              <p className="eyebrow eyebrow-rule">Die Geschichte</p>
               <h2 className="mt-3 text-balance text-3xl leading-tight md:text-[2.4rem]">
                 Der Mensch hinter der Tinte
               </h2>

@@ -3,8 +3,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { OCCASIONS } from "@/lib/content";
 
-// Wechselnde Akzente aus der erweiterten Farbwelt (Rosé · Teal · Gold · Terra).
-const ACCENTS = ["text-rose-deep", "text-teal", "text-gold", "text-terra"] as const;
+// Jede Anlass-Karte trägt eine eigene Farbwelt (Rosé · Teal · Gold · Terra) –
+// als Textakzent UND als entsättigte Pastell-Fläche (Farb-Bindung).
+const ACCENTS = [
+  { text: "text-rose-deep", hex: "#b25e77" },
+  { text: "text-teal", hex: "#3f6b6e" },
+  { text: "text-gold", hex: "#a9823b" },
+  { text: "text-terra", hex: "#b67a56" },
+] as const;
 
 export function Occasions() {
   return (
@@ -18,15 +24,21 @@ export function Occasions() {
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {OCCASIONS.map((o, i) => (
+          {OCCASIONS.map((o, i) => {
+            const a = ACCENTS[i % ACCENTS.length];
+            return (
             <Reveal key={o.title} delay={i * 0.06}>
               <Link
                 href="/gestalten"
-                className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-lift"
+                className="group flex h-full flex-col justify-between rounded-2xl border p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lift"
+                style={{
+                  background: `linear-gradient(180deg, color-mix(in srgb, ${a.hex} 12%, #fbf7ee), #fbf7ee)`,
+                  borderColor: `color-mix(in srgb, ${a.hex} 22%, var(--color-line))`,
+                }}
               >
                 <div>
                   <div
-                    className={`font-arabic text-2xl leading-none ${ACCENTS[i % ACCENTS.length]}`}
+                    className={`font-arabic text-2xl leading-none ${a.text}`}
                     dir="rtl"
                     lang="ar"
                   >
@@ -37,7 +49,7 @@ export function Occasions() {
                     {o.text}
                   </p>
                 </div>
-                <span className={`mt-6 inline-flex items-center gap-1.5 text-sm font-medium ${ACCENTS[i % ACCENTS.length]}`}>
+                <span className={`mt-6 inline-flex items-center gap-1.5 text-sm font-medium ${a.text}`}>
                   Gestalten
                   <svg
                     width="15"
@@ -52,7 +64,8 @@ export function Occasions() {
                 </span>
               </Link>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
