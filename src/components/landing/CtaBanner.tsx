@@ -27,10 +27,12 @@ export function CtaBanner() {
               اسمٌ في حبر
             </p>
             <h2 className="relative mx-auto mt-5 max-w-2xl text-balance text-3xl text-paper-2 md:text-[2.7rem] md:leading-[1.1]">
-              Mach den ersten Strich – wir malen den Rest.
+              Verschenke einen Namen, der bleibt.
             </h2>
-            <p className="relative mx-auto mt-4 max-w-md text-pretty text-paper-2/70">
-              In zwei Minuten zu deinem Entwurf. Unverbindlich und ohne Anmeldung.
+            <p className="relative mx-auto mt-4 max-w-lg text-pretty text-paper-2/75">
+              Ein von Hand gemaltes Unikat für die Menschen, die du liebst – zu
+              Eid, zur Hochzeit oder einfach aus Liebe. In zwei Minuten
+              gestaltet, unverbindlich.
             </p>
             <div className="relative mt-8">
               <Link

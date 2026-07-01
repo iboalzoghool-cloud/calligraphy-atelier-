@@ -9,6 +9,7 @@ import { Voices } from "@/components/landing/Voices";
 import { ValuesStatement } from "@/components/landing/ValuesStatement";
 import { Faq } from "@/components/landing/Faq";
 import { CtaBanner } from "@/components/landing/CtaBanner";
+import { StickyCta } from "@/components/landing/StickyCta";
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
       <ValuesStatement />
       <Faq />
       <CtaBanner />
+      <StickyCta />
     </>
   );
 }
