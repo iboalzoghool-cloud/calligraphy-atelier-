@@ -110,19 +110,18 @@ export function Hero() {
                 </svg>
               </button>
             </div>
-            {translit.source === "mapped" ? (
+            {translit.source === "mapped" || translit.source === "translit" ? (
               <p className="mt-2 flex flex-wrap items-center gap-x-2 pl-1 text-sm text-ink-soft">
                 <span className="text-ink-faint">{name.trim()}</span>
                 <span className="text-gold">→</span>
                 <span dir="rtl" className="font-arabic text-xl leading-none text-ink">
                   {translit.arabic}
                 </span>
-                <span className="text-ink-faint">· in arabischer Kalligrafie</span>
-              </p>
-            ) : translit.source === "none" && name.trim() ? (
-              <p className="mt-2 pl-1 text-sm text-ink-soft">
-                Auf Arabisch eintippen für echte Kalligrafie – oder wir schreiben
-                deinen Namen im Atelier von Hand.
+                <span className="text-ink-faint">
+                  {translit.source === "mapped"
+                    ? "· in arabischer Kalligrafie"
+                    : "· ungefähr – tippe Arabisch für die exakte Schreibweise"}
+                </span>
               </p>
             ) : (
               <p className="mt-2 pl-1 text-sm text-ink-soft">

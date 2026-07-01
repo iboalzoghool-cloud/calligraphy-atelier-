@@ -37,13 +37,15 @@ export function StepName() {
           </p>
         </div>
 
-        {translit.source === "mapped" ? (
+        {translit.source === "mapped" || translit.source === "translit" ? (
           <button
             type="button"
             onClick={() => update({ name: translit.arabic ?? state.name })}
             className="mt-3 inline-flex items-center gap-2 rounded-full border border-gold-soft bg-rose-soft/40 px-3.5 py-1.5 text-sm text-ink transition hover:border-gold"
           >
-            In arabischer Kalligrafie schreiben:
+            {translit.source === "mapped"
+              ? "In arabischer Kalligrafie:"
+              : "In Arabisch (ungefähr):"}
             <span dir="rtl" className="font-arabic text-lg leading-none">
               {translit.arabic}
             </span>
