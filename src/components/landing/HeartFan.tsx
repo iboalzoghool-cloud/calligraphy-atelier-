@@ -1,20 +1,18 @@
 "use client";
 
-import type { CSSProperties } from "react";
-
 /*
   Herz-Fächer: das handgemalte Herz als Hauptprodukt, drei Farbwelten
   aufgefächert wie Karten. Das aktive Herz steht aufrecht vorn, die anderen
   fächern nach links/rechts. Weiche, langsame Tinten-Übergänge – nichts blinkt.
 
-  Hinweis: gebaut mit den echten Ink-Welt-Texturen, per CSS-Maske in Herzform.
-  Sobald freigestellte heart-<welt>.png in /public liegen, einfach `tex` → `src`
-  tauschen (Datenmodell bleibt gleich).
+  Robust: die Herzform kommt aus einem inline-SVG `clipPath` (kein CSS-mask,
+  der auf mobilem Safari kippen und ein Rechteck zeigen kann). Echte Ink-Welt-
+  Texturen; sobald freigestellte heart-<welt>.png in /public liegen, einfach
+  das <image href> tauschen.
 */
 
 export interface HeartSet {
   key: string;
-  /** echte Ink-Textur der Farbwelt (in Herzform maskiert). */
   tex: string;
   /** passende Konfigurator-Farbwelt (wird beim „Weiter" übernommen). */
   bgId: string;
@@ -51,23 +49,15 @@ export function bgIdForWorld(key: string): string {
   return (HEART_SETS.find((s) => s.key === key) ?? HEART_SETS[0]).bgId;
 }
 
+const HEART_PATH =
+  "M50 88 C 20 66 4 46 4 28 C 4 14 15 5 27 5 C 37 5 45 11 50 21 C 55 11 63 5 73 5 C 85 5 96 14 96 28 C 96 46 80 66 50 88 Z";
+
 type Slot = "center" | "left" | "right";
 
 const SLOTS: Record<Slot, { transform: string; z: number; opacity: number; name: number }> = {
   center: { transform: "rotate(0deg) translateY(-16px) scale(1.06)", z: 30, opacity: 1, name: 1 },
   left: { transform: "rotate(-22deg) translateX(-14%) scale(.9)", z: 12, opacity: 0.82, name: 0 },
   right: { transform: "rotate(22deg) translateX(14%) scale(.9)", z: 12, opacity: 0.82, name: 0 },
-};
-
-const maskStyle: CSSProperties = {
-  WebkitMaskImage: "url(/heart-mask.svg)",
-  maskImage: "url(/heart-mask.svg)",
-  WebkitMaskRepeat: "no-repeat",
-  maskRepeat: "no-repeat",
-  WebkitMaskPosition: "center",
-  maskPosition: "center",
-  WebkitMaskSize: "contain",
-  maskSize: "contain",
 };
 
 interface HeartFanProps {
@@ -106,8 +96,9 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
           }}
         />
 
-        {HEART_SETS.map((set) => {
+        {HEART_SETS.map((set, idx) => {
           const slot = SLOTS[slotFor(set.key)];
+          const clipId = `heartclip-${idx}`;
           return (
             <button
               key={set.key}
@@ -133,19 +124,32 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                 cursor: "pointer",
               }}
             >
-              {/* Herz = echte Ink-Textur, in Herzform maskiert */}
-              <div
+              {/* Herz = echte Ink-Textur, sauber per SVG-clipPath in Herzform */}
+              <svg
+                viewBox="0 0 100 92"
                 style={{
-                  position: "relative",
+                  display: "block",
                   width: "100%",
-                  aspectRatio: "100 / 92",
-                  backgroundImage: `url(${set.tex})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  height: "auto",
                   filter: "drop-shadow(0 16px 24px rgba(45,22,30,.30))",
-                  ...maskStyle,
                 }}
-              />
+                aria-hidden
+              >
+                <defs>
+                  <clipPath id={clipId}>
+                    <path d={HEART_PATH} />
+                  </clipPath>
+                </defs>
+                <image
+                  href={set.tex}
+                  x="0"
+                  y="0"
+                  width="100"
+                  height="92"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath={`url(#${clipId})`}
+                />
+              </svg>
               {/* Name-Overlay (arabische Kalligrafie) – nur auf dem vorderen Herz */}
               <div
                 aria-hidden
@@ -155,7 +159,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  paddingTop: "6%",
+                  paddingTop: "4%",
                   opacity: slot.name,
                   transition: "opacity .8s ease",
                   pointerEvents: "none",
