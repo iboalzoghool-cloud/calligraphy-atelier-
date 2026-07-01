@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { InkSplashes } from "@/components/ui/InkSplashes";
 import { OCCASIONS } from "@/lib/content";
 
 // Jede Anlass-Karte trägt eine eigene Farbwelt (Rosé · Teal · Gold · Terra) –
@@ -14,7 +15,8 @@ const ACCENTS = [
 
 export function Occasions() {
   return (
-    <section id="anlaesse" className="scroll-mt-24 py-16 md:py-24">
+    <section id="anlaesse" className="relative scroll-mt-24 overflow-hidden py-16 md:py-24">
+      <InkSplashes />
       <div className="container-page">
         <SectionHeading
           eyebrow="Anlässe"

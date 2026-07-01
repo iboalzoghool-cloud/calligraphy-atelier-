@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
 import { VideoLoop } from "@/components/ui/VideoLoop";
+import { InkSplashes } from "@/components/ui/InkSplashes";
 
 /**
  * „Dein Name in Tinte" – echtes Werk als Hochformat-Clip (handyfreundlich),
@@ -9,7 +10,8 @@ import { VideoLoop } from "@/components/ui/VideoLoop";
  */
 export function NameShowcase() {
   return (
-    <section className="scroll-mt-24 py-16 md:py-24">
+    <section className="relative scroll-mt-24 overflow-hidden py-16 md:py-24">
+      <InkSplashes />
       <div className="container-page">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal className="order-2 lg:order-1">
@@ -36,12 +38,12 @@ export function NameShowcase() {
                 {
                   src: "/videos/name-liebe.mp4",
                   poster: "/videos/name-liebe.jpg",
-                  offset: "",
+                  offset: "-rotate-2",
                 },
                 {
                   src: "/videos/name-lavendel.mp4",
                   poster: "/videos/name-lavendel.jpg",
-                  offset: "sm:mt-10",
+                  offset: "rotate-2 sm:mt-10",
                 },
               ].map((v) => (
                 <FloatingFrame

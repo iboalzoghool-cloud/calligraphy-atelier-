@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { InkSplashes } from "@/components/ui/InkSplashes";
 
 interface GalleryItem {
   src: string;
@@ -35,7 +36,8 @@ const ITEMS: GalleryItem[] = [
 
 export function Gallery() {
   return (
-    <section id="galerie" className="scroll-mt-24 py-16 md:py-24">
+    <section id="galerie" className="relative scroll-mt-24 overflow-hidden py-16 md:py-24">
+      <InkSplashes />
       <div className="container-page">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <SectionHeading
