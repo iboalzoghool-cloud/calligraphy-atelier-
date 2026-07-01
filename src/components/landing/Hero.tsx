@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { PreviewCanvas } from "@/components/configurator/PreviewCanvas";
 import { Reveal } from "@/components/ui/Reveal";
 import { useConfigurator } from "@/lib/configurator/context";
+import { toArabicName } from "@/lib/configurator/translit";
 import type { ConfiguratorState } from "@/lib/configurator/types";
 
 // Schöner Ausgangs-Look für die Live-Vorschau (Name wird interaktiv gesetzt).
@@ -25,14 +26,16 @@ export function Hero() {
   const { update } = useConfigurator();
   const [name, setName] = useState("");
 
-  // Leeres Feld → ein schöner arabischer Beispielname (Arabisch sofort präsent).
-  const displayName = name.trim() || "سلوى";
-  const previewState: ConfiguratorState = { ...HERO_LOOK, name: displayName };
+  // Latein → arabische Kalligrafie („Miriam" → „مريم"). Leeres Feld zeigt einen
+  // schönen arabischen Beispielnamen (Arabisch sofort präsent).
+  const translit = toArabicName(name);
+  const previewName = translit.arabic ?? (name.trim() || "سلوى");
+  const previewState: ConfiguratorState = { ...HERO_LOOK, name: previewName };
 
   function handleContinue() {
-    // Namen (und den schönen Herz-Look) in den Konfigurator tragen.
+    // Arabische Form (falls vorhanden) + schönen Herz-Look in den Konfigurator tragen.
     update({
-      name: name.trim(),
+      name: translit.arabic ?? name.trim(),
       shape: "heart",
       sizeId: "heart-29",
       backgroundId: "magenta-gold",
@@ -148,10 +151,26 @@ export function Hero() {
                 </svg>
               </button>
             </div>
-            <p className="mt-2 pl-1 text-sm text-ink-soft">
-              Arabisch oder lateinisch · live in der Vorschau · ab 29 €,
-              unverbindlich.
-            </p>
+            {translit.source === "mapped" ? (
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 pl-1 text-sm text-ink-soft">
+                <span className="text-ink-faint">{name.trim()}</span>
+                <span className="text-gold">→</span>
+                <span dir="rtl" className="font-arabic text-xl leading-none text-ink">
+                  {translit.arabic}
+                </span>
+                <span className="text-ink-faint">· in arabischer Kalligrafie</span>
+              </p>
+            ) : translit.source === "none" && name.trim() ? (
+              <p className="mt-2 pl-1 text-sm text-ink-soft">
+                Auf Arabisch eintippen für echte Kalligrafie – oder wir schreiben
+                deinen Namen im Atelier von Hand.
+              </p>
+            ) : (
+              <p className="mt-2 pl-1 text-sm text-ink-soft">
+                Arabisch oder lateinisch · live in der Vorschau · ab 29 €,
+                unverbindlich.
+              </p>
+            )}
           </form>
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">

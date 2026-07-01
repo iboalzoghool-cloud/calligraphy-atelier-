@@ -2,6 +2,7 @@
 
 import { useConfigurator } from "@/lib/configurator/context";
 import { PLACEHOLDER_NAME } from "@/lib/configurator/options";
+import { toArabicName } from "@/lib/configurator/translit";
 import { CALLIGRAPHY_FONTS } from "@/lib/fonts";
 
 const MAX = 18;
@@ -9,6 +10,7 @@ const MAX = 18;
 export function StepName() {
   const { state, update } = useConfigurator();
   const preview = state.name.trim() || PLACEHOLDER_NAME;
+  const translit = toArabicName(state.name);
 
   return (
     <div className="space-y-6">
@@ -34,6 +36,19 @@ export function StepName() {
             {state.name.length}/{MAX}
           </p>
         </div>
+
+        {translit.source === "mapped" ? (
+          <button
+            type="button"
+            onClick={() => update({ name: translit.arabic ?? state.name })}
+            className="mt-3 inline-flex items-center gap-2 rounded-full border border-gold-soft bg-rose-soft/40 px-3.5 py-1.5 text-sm text-ink transition hover:border-gold"
+          >
+            In arabischer Kalligrafie schreiben:
+            <span dir="rtl" className="font-arabic text-lg leading-none">
+              {translit.arabic}
+            </span>
+          </button>
+        ) : null}
       </div>
 
       <div>
