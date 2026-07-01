@@ -3,6 +3,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { OCCASIONS } from "@/lib/content";
 
+// Wechselnde Akzente aus der erweiterten Farbwelt (Rosé · Teal · Gold · Terra).
+const ACCENTS = ["text-rose-deep", "text-teal", "text-gold", "text-terra"] as const;
+
 export function Occasions() {
   return (
     <section id="anlaesse" className="scroll-mt-24 py-16 md:py-24">
@@ -27,7 +30,7 @@ export function Occasions() {
                     {o.text}
                   </p>
                 </div>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-rose-deep">
+                <span className={`mt-6 inline-flex items-center gap-1.5 text-sm font-medium ${ACCENTS[i % ACCENTS.length]}`}>
                   Gestalten
                   <svg
                     width="15"

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { PreviewCanvas } from "@/components/configurator/PreviewCanvas";
 import { Reveal } from "@/components/ui/Reveal";
-import { InkStroke } from "@/components/ui/InkStroke";
 import type { ConfiguratorState } from "@/lib/configurator/types";
 import { PRODUCT } from "@/lib/content";
 
@@ -23,18 +22,30 @@ export function Hero() {
     <section className="bg-paper">
       <div className="container-page grid items-center gap-10 pb-12 pt-10 md:gap-14 md:pb-20 md:pt-16 lg:grid-cols-2">
         <Reveal>
-          <p className="eyebrow">Handgemalte Kalligrafie · Unikate</p>
-          <h1 className="mt-4 text-balance text-[2.6rem] leading-[1.05] sm:text-5xl md:text-[3.4rem]">
+          <p className="eyebrow eyebrow-rule">Handgemalte Kalligrafie · Unikate</p>
+          <h1 className="mt-5 text-balance text-[2.6rem] leading-[1.02] sm:text-5xl md:text-[3.4rem]">
             Dein Name,
             <br />
-            in Tinte verewigt.
+            <span className="italic">in Tinte</span>{" "}
+            <span className="relative inline-block">
+              verewigt.
+              <svg
+                viewBox="0 0 300 26"
+                aria-hidden
+                className="absolute -bottom-3 left-0 h-auto w-[104%]"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M4 16 C 66 5, 118 23, 176 13 S 262 5, 296 15"
+                  fill="none"
+                  stroke="var(--color-gold)"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                  className="swash-draw"
+                />
+              </svg>
+            </span>
           </h1>
-          <InkStroke
-            variant="underline"
-            className="mt-4 h-4 w-44"
-            color="var(--color-gold)"
-            width={2.5}
-          />
           <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-ink-soft">
             Jedes Stück wird von Hand gemalt – kein Druck, keine Kopie. Gestalte
             Form, Farbwelt und Schrift in der Live-Vorschau und halte ein
@@ -50,25 +61,30 @@ export function Hero() {
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-faint">
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
             <span className="inline-flex items-center gap-2">
-              <Dot /> 100 % von Hand gemalt
+              <Dot className="bg-rose" /> 100 % von Hand gemalt
             </span>
             <span className="inline-flex items-center gap-2">
-              <Dot /> {PRODUCT.sizeLabel}
+              <Dot className="bg-teal" /> {PRODUCT.sizeLabel}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Dot /> Jedes Stück ein Unikat
+              <Dot className="bg-gold" /> Jedes Stück ein Unikat
             </span>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
           <div className="relative mx-auto w-full max-w-md">
-            {/* weicher Lichtschein hinter der Vorschau */}
+            {/* sanft driftender Rosé-Gold-Lichtschein hinter der Vorschau */}
             <div
-              className="absolute inset-0 -z-10 translate-y-6 scale-90 rounded-full bg-rose-soft/70 blur-3xl"
+              className="animate-drift pointer-events-none absolute inset-0 -z-10 scale-110"
               aria-hidden
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(178,94,119,0.20), rgba(169,130,59,0.10) 55%, transparent 72%)",
+                filter: "blur(6px)",
+              }}
             />
             <PreviewCanvas state={HERO_DEMO} interactive={false} />
             <p className="mt-3 text-center text-xs uppercase tracking-[0.18em] text-ink-faint">
@@ -81,6 +97,6 @@ export function Hero() {
   );
 }
 
-function Dot() {
-  return <span className="h-1.5 w-1.5 rounded-full bg-rose" aria-hidden />;
+function Dot({ className = "bg-rose" }: { className?: string }) {
+  return <span className={`h-1.5 w-1.5 rounded-full ${className}`} aria-hidden />;
 }

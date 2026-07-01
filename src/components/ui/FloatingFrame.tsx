@@ -31,6 +31,10 @@ interface FloatingFrameProps {
   interactive?: boolean;
   /** Mitwandernder Glanz-Layer (nur bei `interactive`). Default: an. */
   glare?: boolean;
+  /** Permanentes, sanftes Schweben. Default: an. Bei `false` nur Hover-Tilt. */
+  float?: boolean;
+  /** Mitwandernder Drop-Shadow. Aus, wenn das Kind einen eigenen Schatten trägt. */
+  shadow?: boolean;
   /** Maximaler Kippwinkel zum Cursor, in Grad. */
   maxTilt?: number;
   /** Schwebe-Amplitude in px. */
@@ -43,6 +47,8 @@ export function FloatingFrame({
   children,
   interactive = true,
   glare = true,
+  float = true,
+  shadow = true,
   maxTilt = 14,
   floatDistance = 10,
   className = "",
@@ -94,24 +100,28 @@ export function FloatingFrame({
   }
 
   // Sanftes Schweben; passiv zusätzlich langsames Eigen-Drehen.
-  const floatAnim = reduce
-    ? undefined
-    : interactive
-      ? { y: [0, -floatDistance, 0] }
-      : { y: [0, -floatDistance, 0], rotateY: [-9, 9, -9] };
+  const floatAnim =
+    reduce || !float
+      ? undefined
+      : interactive
+        ? { y: [0, -floatDistance, 0] }
+        : { y: [0, -floatDistance, 0], rotateY: [-9, 9, -9] };
+
+  const baseShadow = `drop-shadow(0 26px 38px ${SHADOW_COLOR})`;
+  const filter = !shadow ? "none" : reduce ? baseShadow : dropShadow;
 
   return (
     <div className={className} style={{ perspective: 1200, ...style }}>
       <motion.div
         animate={floatAnim}
         transition={
-          reduce
-            ? undefined
-            : {
+          floatAnim
+            ? {
                 duration: interactive ? 6 : 11,
                 repeat: Infinity,
                 ease: "easeInOut",
               }
+            : undefined
         }
         style={{ transformStyle: "preserve-3d" }}
       >
@@ -124,7 +134,7 @@ export function FloatingFrame({
             rotateY: interactive ? rotateY : undefined,
             transformStyle: "preserve-3d",
             transformPerspective: 1200,
-            filter: reduce ? `drop-shadow(0 26px 38px ${SHADOW_COLOR})` : dropShadow,
+            filter,
           }}
         >
           {children}

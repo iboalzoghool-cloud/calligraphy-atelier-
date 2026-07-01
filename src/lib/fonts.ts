@@ -1,6 +1,6 @@
 import {
   Cormorant_Garamond,
-  Inter,
+  Hanken_Grotesk,
   Aref_Ruqaa,
   Aref_Ruqaa_Ink,
   Amiri,
@@ -18,10 +18,11 @@ export const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-// Klare Sans für Fließtext / UI
-export const inter = Inter({
+// Warme, charaktervolle Grotesk für Fließtext / UI (Design-Vorlage)
+export const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-hanken",
   display: "swap",
 });
 
@@ -68,7 +69,7 @@ export const gulzar = Gulzar({
 /** Alle Font-CSS-Variablen für <body className>. */
 export const fontVariables = [
   cormorant.variable,
-  inter.variable,
+  hanken.variable,
   arefRuqaaInk.variable,
   arefRuqaa.variable,
   amiri.variable,

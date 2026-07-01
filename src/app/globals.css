@@ -9,27 +9,34 @@
 */
 
 @theme {
-  /* Farbwelt – warmes Papier, Tinte, Rosé-Akzent, Gold-Detail */
-  --color-canvas: #faf6f1; /* Seitenhintergrund (warmes Papier) */
-  --color-surface: #fffdfb; /* Karten / erhöhte Flächen */
-  --color-ink: #1b1714; /* Primärtext (warmes Fast-Schwarz) */
-  --color-ink-soft: #6c605a; /* Sekundärtext */
-  --color-ink-faint: #9a8d85; /* tertiär / Captions */
-  --color-line: #ebe2d9; /* Hairlines / Rahmen */
-  --color-line-strong: #ddd1c6;
+  /* ── Farbwelt (Atelier-Vorlage) – warmes Pergament, Tinte, Rosé/Gold ──
+     Wärmer & satter als zuvor: Papier #F3ECDC, Tinte #241D15. Dazu ein
+     erweitertes Akzent-Set (Teal & Terracotta) für Anlässe/Motive. */
+  --color-canvas: #f3ecdc; /* Seitenhintergrund (warmes Pergament) */
+  --color-surface: #fbf7ee; /* Karten / erhöhte Flächen */
+  --color-paper-2: #fbf6ea; /* helle Fläche / Text auf Dunkel */
+  --color-ink: #241d15; /* Primärtext (warmes Braun-Schwarz) */
+  --color-ink-soft: #6a6053; /* Sekundärtext */
+  --color-ink-faint: #9a8d7d; /* tertiär / Captions */
+  --color-line: #ded6c6; /* Hairlines / Rahmen */
+  --color-line-strong: #cfc4b0;
 
-  --color-rose: #be5277; /* Akzent (sparsam) */
-  --color-rose-deep: #9d3d61; /* Text/Hover auf Hell */
-  --color-rose-soft: #f6e6ec; /* zarte Fläche */
+  --color-rose: #b25e77; /* Akzent (sparsam) */
+  --color-rose-deep: #984861; /* Text/Hover auf Hell */
+  --color-rose-soft: #f2e2e7; /* zarte Fläche */
 
-  --color-gold: #b08a39; /* Gold-Detail */
-  --color-gold-soft: #e9d6a8;
+  --color-gold: #a9823b; /* Gold-Detail (Eyebrows, Swash) */
+  --color-gold-soft: #c6a25a;
 
+  --color-teal: #3f6b6e; /* Sekundär-Akzent (Petrol) */
+  --color-terra: #b67a56; /* Sekundär-Akzent (Terracotta) */
   --color-plum: #5d3f57; /* Sekundärton */
 
   /* Typografie */
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-arabic: var(--font-aref), serif;
+  --font-arabic-soft: var(--font-amiri), serif;
 
   /* Radius */
   --radius-xs: 6px;
@@ -64,6 +71,12 @@
 
   body {
     background-color: var(--color-canvas);
+    /* dezente, fixierte Wärme (Rosé oben rechts, Gold links) – Atelier-Licht */
+    background-image:
+      radial-gradient(120% 80% at 88% -6%, rgba(178, 94, 119, 0.1), transparent 42%),
+      radial-gradient(90% 70% at -8% 20%, rgba(169, 130, 59, 0.07), transparent 46%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -163,14 +176,26 @@
     color: var(--color-ink);
   }
 
-  /* ——— Eyebrow / Kapitälchen-Label ——— */
+  /* ——— Eyebrow / Kapitälchen-Label (Gold, wie in der Vorlage) ——— */
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-rose-deep);
+    color: var(--color-gold);
+  }
+  /* Eyebrow mit Gold-Hairline davor (── Label) */
+  .eyebrow-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .eyebrow-rule::before {
+    content: "";
+    height: 1px;
+    width: 2.25rem;
+    background: var(--color-gold);
   }
 
   /* ——— Hairline-Divider mit Gold-Schimmer ——— */
@@ -311,5 +336,88 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* ——— Atelier-Motion (Vorlage) ——— */
+  .animate-drift {
+    animation: blushDrift 11s ease-in-out infinite;
+  }
+  .animate-floaty {
+    animation: floatY 8s ease-in-out infinite;
+  }
+  .ink-in {
+    animation: inkIn 1.1s ease both;
+  }
+  .fade-up {
+    animation: fadeUp 0.9s ease both;
+  }
+  /* Selbstzeichnender Kalligrafie-Schwung (Hero) */
+  .swash-draw {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: drawSwash 1.5s cubic-bezier(0.3, 0.7, 0.3, 1) 0.5s forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-drift,
+    .animate-floaty,
+    .ink-in,
+    .fade-up,
+    .swash-draw {
+      animation: none;
+    }
+    .swash-draw {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+/* ——— Keyframes (Atelier-Vorlage) ——— */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.2deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1.2deg);
+  }
+}
+@keyframes drawSwash {
+  from {
+    stroke-dashoffset: 340;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes inkIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes blushDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, -3%) scale(1.12);
   }
 }
