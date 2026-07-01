@@ -152,9 +152,15 @@ export interface Saying {
 export const SAYINGS: Saying[] = [
   { id: "mother", label: "Liebste Mutter", ar: "أمي الحبيبة" },
   { id: "father", label: "Bester Vater", ar: "أبي الحبيب" },
+  { id: "sister", label: "Liebste Schwester", ar: "أختي الحبيبة" },
+  { id: "brother", label: "Bester Bruder", ar: "أخي الحبيب" },
   { id: "darling", label: "Mein Schatz", ar: "حبيبتي" },
+  { id: "myheart", label: "Mein Herz", ar: "قلبي" },
   { id: "iloveyou", label: "Ich liebe dich", ar: "أحبك" },
+  { id: "forever", label: "Für immer", ar: "إلى الأبد" },
   { id: "eid", label: "Eid Mubarak", ar: "عيد مبارك" },
+  { id: "ramadan", label: "Ramadan Kareem", ar: "رمضان كريم" },
+  { id: "mabrook", label: "Herzlichen Glückwunsch", ar: "مبروك" },
   { id: "welcome", label: "Willkommen", ar: "أهلاً وسهلاً" },
 ];
 

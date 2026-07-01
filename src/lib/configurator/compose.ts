@@ -14,8 +14,13 @@ export function resolveDrawInput(
 ): DrawInput {
   const background = getBackground(state.backgroundId);
   const font = getCalligraphyFont(state.fontId);
-  const saying = getSaying(state.sayingId);
   const dim = getSize(state.sizeId);
+
+  // Spruch: Freitext (custom) hat Vorrang, sonst ein Eintrag aus SAYINGS.
+  const sayingAr =
+    state.sayingId === "custom"
+      ? (state.sayingText ?? "").trim() || null
+      : (getSaying(state.sayingId)?.ar ?? null);
 
   return {
     shape: state.shape,
@@ -27,7 +32,7 @@ export function resolveDrawInput(
     name: displayName,
     fontFamily: font.family,
     fontWeight: font.weight,
-    saying: saying ? { ar: saying.ar, position: state.sayingPosition } : null,
+    saying: sayingAr ? { ar: sayingAr, position: state.sayingPosition } : null,
     sayingFamily: font.family,
     gold: state.gold,
     size,

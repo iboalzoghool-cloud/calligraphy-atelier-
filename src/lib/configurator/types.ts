@@ -19,7 +19,10 @@ export interface ConfiguratorState {
   backgroundId: string;
   name: string;
   fontId: CalligraphyFontId;
+  /** Spruch-Id aus SAYINGS, `"custom"` für Freitext, oder null. */
   sayingId: string | null;
+  /** Freitext-Spruch (nur wenn sayingId === "custom"). */
+  sayingText?: string;
   sayingPosition: SayingPosition;
   gold: boolean;
   addons: AddonsState;

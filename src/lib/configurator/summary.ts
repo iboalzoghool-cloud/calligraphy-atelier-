@@ -14,7 +14,11 @@ import { formatPrice } from "@/lib/format";
 /** Gesamtpreis (Cent) für einen Zustand. */
 export function priceForState(s: ConfiguratorState): number {
   let p = getSize(s.sizeId).price;
-  if (s.sayingId) p += PRICING.saying;
+  const hasSaying =
+    s.sayingId === "custom"
+      ? Boolean((s.sayingText ?? "").trim())
+      : Boolean(s.sayingId);
+  if (hasSaying) p += PRICING.saying;
   if (s.gold) p += PRICING.gold;
   if (s.addons.gift) p += PRICING.gift;
   if (s.addons.card) p += PRICING.card;
@@ -44,7 +48,16 @@ export function buildSummary(s: ConfiguratorState): SummaryItem[] {
   const size = getSize(s.sizeId);
   const bg = getBackground(s.backgroundId);
   const font = getCalligraphyFont(s.fontId);
+
+  // Spruch: Freitext (custom) oder Eintrag aus SAYINGS.
+  const customText = s.sayingId === "custom" ? (s.sayingText ?? "").trim() : "";
   const saying = getSaying(s.sayingId);
+  const hasSaying = Boolean(customText) || Boolean(saying);
+  const sayingValue = customText
+    ? `Eigener Text · ${customText} (+ ${formatPrice(PRICING.saying)})`
+    : saying
+      ? `${saying.label} · ${saying.ar} (+ ${formatPrice(PRICING.saying)})`
+      : "Ohne";
 
   const items: SummaryItem[] = [
     { label: "Form", value: shape.label },
@@ -52,14 +65,9 @@ export function buildSummary(s: ConfiguratorState): SummaryItem[] {
     { label: "Farbwelt", value: bg.label },
     { label: "Name", value: s.name.trim() || "—" },
     { label: "Schrift", value: font.label },
-    {
-      label: "Spruch",
-      value: saying
-        ? `${saying.label} · ${saying.ar} (+ ${formatPrice(PRICING.saying)})`
-        : "Ohne",
-    },
+    { label: "Spruch", value: sayingValue },
   ];
-  if (saying) {
+  if (hasSaying) {
     items.push({
       label: "Position Spruch",
       value: s.sayingPosition === "top" ? "Oben" : "Unten",
