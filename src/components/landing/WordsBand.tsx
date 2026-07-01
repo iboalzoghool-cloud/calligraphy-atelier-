@@ -1,12 +1,13 @@
 import { WritingWord } from "@/components/ui/WritingWord";
 import { InkStroke } from "@/components/ui/InkStroke";
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 
 export function WordsBand() {
   return (
     <section className="overflow-hidden bg-canvas py-20 md:py-28">
       <div className="container-page text-center">
-        <Reveal>
+        <Parallax amount={28}>
           <div
             className="font-arabic text-6xl leading-none text-gold/35 sm:text-7xl md:text-8xl"
             dir="rtl"
@@ -15,6 +16,8 @@ export function WordsBand() {
           >
             مَوَدَّة
           </div>
+        </Parallax>
+        <Reveal>
           <p className="eyebrow mt-6 justify-center">In jeder Sprache</p>
           <div className="mt-6 text-5xl text-ink sm:text-6xl md:text-7xl">
             <WritingWord />

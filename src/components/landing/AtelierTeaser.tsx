@@ -3,6 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { InkStroke } from "@/components/ui/InkStroke";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
 import { VideoLoop } from "@/components/ui/VideoLoop";
+import { Parallax } from "@/components/ui/Parallax";
 import { AtelierAmbience } from "@/components/landing/AtelierAmbience";
 
 export function AtelierTeaser() {
@@ -51,6 +52,7 @@ export function AtelierTeaser() {
           </Reveal>
 
           <Reveal delay={0.1} className="order-1 lg:order-2">
+            <Parallax amount={34}>
             <div className="relative mx-auto w-full max-w-md">
               <FloatingFrame interactive glare float={false} shadow={false} maxTilt={7}>
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-line shadow-lift">
@@ -75,6 +77,7 @@ export function AtelierTeaser() {
                 </div>
               </div>
             </div>
+            </Parallax>
           </Reveal>
         </div>
       </div>
