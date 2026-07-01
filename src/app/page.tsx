@@ -1,6 +1,7 @@
 import { Hero } from "@/components/landing/Hero";
 import { NameShowcase } from "@/components/landing/NameShowcase";
 import { Gallery } from "@/components/landing/Gallery";
+import { OnRequest } from "@/components/landing/OnRequest";
 import { WordsBand } from "@/components/landing/WordsBand";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Occasions } from "@/components/landing/Occasions";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Hero />
       <NameShowcase />
       <Gallery />
+      <OnRequest />
       <WordsBand />
       <HowItWorks />
       <Occasions />
