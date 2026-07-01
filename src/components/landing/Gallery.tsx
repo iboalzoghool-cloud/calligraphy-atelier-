@@ -14,6 +14,9 @@ interface GalleryItem {
   note: string;
   /** Signaturfarbe des Werks (aus dem Bild gezogen) – Charakter in der UI. */
   accent: string;
+  /** Optional: erkannter Koranvers, sichtbar im Werk eingebettet. */
+  verse?: string;
+  verseRef?: string;
 }
 
 // Echte handgemalte Stücke in ihren echten Proportionen (kein Beschnitt).
@@ -28,7 +31,7 @@ const ITEMS: GalleryItem[] = [
   { src: "/gallery/salwa-quadrat.jpg", w: 1400, h: 1126, accent: "#cf5f97", title: "Namens-Quadrat", note: "Name in Rosé & Flieder", alt: "Quadratisches Stück mit arabischem Namen in Rosé" },
   { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, accent: "#8a5f77", title: "Zuneigung & Ruhe", note: "Für das Brautpaar", alt: "Kalligrafie zum Thema Zuneigung, warme Farbwelt" },
   { src: "/gallery/namen-quadrate.jpg", w: 1004, h: 1200, accent: "#3f7d7f", title: "Zwei Namen, ein Paar", note: "Doppel-Leinwand in Petrol", alt: "Zwei Namens-Quadrate in Petrol auf einer Wiese" },
-  { src: "/atelier/relief.jpg", w: 1500, h: 1174, accent: "#a9744f", title: "Nach jeder Härte", note: "Ruhige Töne, Ton in Ton", alt: "Kalligrafie in ruhigen, beigen Tönen" },
+  { src: "/atelier/relief.jpg", w: 1500, h: 1174, accent: "#a9744f", title: "Nach jeder Härte", note: "Ton in Ton", verse: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", verseRef: "Quran 94:5", alt: "Kalligrafie des Koranverses 94:5 in ruhigen, beigen Tönen" },
   { src: "/gallery/herz-eid.jpg", w: 675, h: 675, accent: "#cf8a63", title: "Eid Mubarak", note: "Herz zum Fest", alt: "Herz-Leinwand mit Eid-Kalligrafie" },
   { src: "/gallery/quds-staffelei.jpg", w: 1050, h: 1400, accent: "#a9823b", title: "Auf der Staffelei", note: "Auf Wunsch: eigene Motive", alt: "Gemaltes Motiv auf einer Staffelei im Atelier" },
 ];
@@ -65,7 +68,14 @@ export function Gallery() {
             >
               <figure className="group">
               <FloatingFrame interactive glare float={false} shadow={false} maxTilt={8}>
-                <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow duration-500 group-hover:shadow-lift">
+                <div
+                  className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow duration-500 group-hover:shadow-lift"
+                  style={{
+                    // Werkfarbe blutet als Pastell in die Karte (entsättigt, edel).
+                    background: `linear-gradient(180deg, color-mix(in srgb, ${item.accent} 16%, #fbf7ee), #fbf7ee)`,
+                    borderColor: `color-mix(in srgb, ${item.accent} 22%, var(--color-line))`,
+                  }}
+                >
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -83,6 +93,15 @@ export function Gallery() {
                   />
                   <figcaption className="flex items-start justify-between gap-3 px-5 pb-5 pt-4">
                     <div>
+                      {item.verse ? (
+                        <div
+                          className="mb-2 font-arabic text-lg leading-snug text-ink"
+                          dir="rtl"
+                          lang="ar"
+                        >
+                          {item.verse}
+                        </div>
+                      ) : null}
                       <div className="flex items-center gap-2">
                         <span
                           className="h-2.5 w-2.5 shrink-0 rounded-full"
@@ -93,7 +112,10 @@ export function Gallery() {
                           {item.title}
                         </span>
                       </div>
-                      <div className="mt-1 text-[13px] text-ink-soft">{item.note}</div>
+                      <div className="mt-1 text-[13px] text-ink-soft">
+                        {item.note}
+                        {item.verseRef ? ` · ${item.verseRef}` : ""}
+                      </div>
                     </div>
                     <Link
                       href="/gestalten"
