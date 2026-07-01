@@ -7,7 +7,15 @@ export function WordsBand() {
     <section className="overflow-hidden bg-canvas py-20 md:py-28">
       <div className="container-page text-center">
         <Reveal>
-          <p className="eyebrow">In jeder Sprache</p>
+          <div
+            className="font-arabic text-6xl leading-none text-gold/35 sm:text-7xl md:text-8xl"
+            dir="rtl"
+            lang="ar"
+            aria-hidden
+          >
+            مَوَدَّة
+          </div>
+          <p className="eyebrow mt-6 justify-center">In jeder Sprache</p>
           <div className="mt-6 text-5xl text-ink sm:text-6xl md:text-7xl">
             <WritingWord />
           </div>

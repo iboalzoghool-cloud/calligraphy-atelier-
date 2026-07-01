@@ -101,18 +101,22 @@ export const FAQ = [
 export const OCCASIONS = [
   {
     title: "Eid",
+    ar: "عيد مبارك",
     text: "Ein persönliches Geschenk zum Fest – Name und Segenswunsch in einem.",
   },
   {
     title: "Muttertag",
+    ar: "أمي",
     text: "„Liebste Mutter“ auf Tinte und Gold. Ein Bild, das bleibt.",
   },
   {
     title: "Hochzeit",
+    ar: "مودة",
     text: "Zwei Namen, ein Kunstwerk. Auch als Geschenk für das Brautpaar.",
   },
   {
     title: "Geburt",
+    ar: "مولود",
     text: "Der erste Name des neuen Lebens – handgemalt zum Willkommen.",
   },
 ] as const;

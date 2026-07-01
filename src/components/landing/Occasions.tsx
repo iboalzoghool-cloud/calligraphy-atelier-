@@ -22,10 +22,17 @@ export function Occasions() {
             <Reveal key={o.title} delay={i * 0.06}>
               <Link
                 href="/gestalten"
-                className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-6 transition hover:border-line-strong hover:shadow-soft"
+                className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-lift"
               >
                 <div>
-                  <h3 className="text-xl">{o.title}</h3>
+                  <div
+                    className={`font-arabic text-2xl leading-none ${ACCENTS[i % ACCENTS.length]}`}
+                    dir="rtl"
+                    lang="ar"
+                  >
+                    {o.ar}
+                  </div>
+                  <h3 className="mt-4 font-display text-xl">{o.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                     {o.text}
                   </p>
