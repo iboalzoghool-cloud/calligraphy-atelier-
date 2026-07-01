@@ -14,7 +14,8 @@ export default function AgbPage() {
       <p>
         Diese AGB gelten für alle über diese Website angebahnten Bestellungen
         handgemalter Kalligrafie-Unikate bei{" "}
-        <PH>PLATZHALTER: Anbietername &amp; Anschrift</PH> (nachfolgend „Anbieter“).
+        Ibrahim Al Zoghool, Bismarckstraße 37, 63065 Offenbach am Main,
+        Deutschland (nachfolgend „Anbieter“).
       </p>
 
       <h2>§ 2 Vertragsgegenstand</h2>

@@ -17,9 +17,7 @@ export function LegalShell({
       <div className="mx-auto max-w-[var(--container-prose)]">
         <p className="eyebrow">Rechtliches</p>
         <h1 className="mt-2 text-3xl md:text-4xl">{title}</h1>
-        <p className="mt-3 text-sm text-ink-faint">
-          Stand: <PH>PLATZHALTER: Datum</PH>
-        </p>
+        <p className="mt-3 text-sm text-ink-faint">Stand: Juli 2026</p>
 
         <div className="mt-6 rounded-xl border border-gold-soft bg-gold/[0.06] px-4 py-3 text-sm text-ink-soft">
           <strong className="text-ink">Hinweis:</strong> Dies ist ein

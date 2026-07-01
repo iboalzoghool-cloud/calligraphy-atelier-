@@ -9,33 +9,36 @@ export const metadata: Metadata = {
 export default function ImpressumPage() {
   return (
     <LegalShell title="Impressum">
-      <h2>Angaben gemäß § 5 TMG</h2>
+      <h2>Angaben gemäß § 5 DDG</h2>
       <p>
-        <PH>PLATZHALTER: Vor- und Nachname / Firmenname</PH>
+        Ibrahim Al Zoghool
         <br />
-        <PH>PLATZHALTER: Straße &amp; Hausnummer</PH>
+        Bismarckstraße 37
         <br />
-        <PH>PLATZHALTER: PLZ Ort</PH>
+        63065 Offenbach am Main
         <br />
-        <PH>PLATZHALTER: Land</PH>
+        Deutschland
       </p>
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: <PH>PLATZHALTER: Telefonnummer</PH>
+        Telefon: 0163 1707860
         <br />
-        E-Mail: <PH>PLATZHALTER: E-Mail-Adresse</PH>
+        E-Mail: <PH>PLATZHALTER: E-Mail-Adresse (rechtlich erforderlich)</PH>
+        <br />
+        Instagram: @iboverse
       </p>
 
       <h2>Umsatzsteuer</h2>
       <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:{" "}
-        <PH>PLATZHALTER: USt-IdNr. oder „Kleinunternehmer gemäß § 19 UStG“</PH>
+        <PH>PLATZHALTER: bitte bestätigen</PH> Kleinunternehmer gemäß § 19 UStG –
+        es wird keine Umsatzsteuer ausgewiesen. (Falls umsatzsteuerpflichtig:
+        USt-IdNr. gemäß § 27 a UStG hier eintragen.)
       </p>
 
-      <h2>Redaktionell verantwortlich</h2>
+      <h2>Redaktionell verantwortlich (§ 18 Abs. 2 MStV)</h2>
       <p>
-        <PH>PLATZHALTER: Name</PH>
+        Ibrahim Al Zoghool
         <br />
         Anschrift wie oben.
       </p>

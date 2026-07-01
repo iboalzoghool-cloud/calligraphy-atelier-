@@ -13,7 +13,9 @@ export default function DatenschutzPage() {
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:
         <br />
-        <PH>PLATZHALTER: Name, Anschrift, E-Mail</PH>
+        Ibrahim Al Zoghool, Bismarckstraße 37, 63065 Offenbach am Main,
+        Deutschland · Telefon 0163 1707860 · E-Mail:{" "}
+        <PH>PLATZHALTER: E-Mail-Adresse</PH>
       </p>
 
       <h2>2. Welche Daten wir verarbeiten</h2>

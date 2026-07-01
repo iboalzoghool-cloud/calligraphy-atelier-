@@ -3,6 +3,13 @@ import { Logo } from "./Logo";
 import { BRAND } from "@/lib/content";
 
 export function Footer() {
+  const igHandle = BRAND.instagram.replace(/^@/, "");
+  const igUrl =
+    igHandle && !igHandle.startsWith("[")
+      ? `https://instagram.com/${igHandle}`
+      : undefined;
+  const showEmail = Boolean(BRAND.email) && !BRAND.email.startsWith("[");
+
   return (
     <footer className="mt-24 border-t border-line bg-canvas">
       <div className="container-page py-14">
@@ -68,8 +75,30 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            {/* PLATZHALTER: Kontakt-E-Mail */}
-            <p className="mt-6 text-sm text-ink-faint">{BRAND.email}</p>
+            <div className="mt-6 space-y-2 text-sm">
+              {igUrl ? (
+                <a
+                  href={igUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-ink"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.7" />
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7" />
+                    <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" />
+                  </svg>
+                  {BRAND.instagram}
+                </a>
+              ) : null}
+              {showEmail ? (
+                <p className="text-ink-faint">
+                  <a href={`mailto:${BRAND.email}`} className="hover:text-ink">
+                    {BRAND.email}
+                  </a>
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
 

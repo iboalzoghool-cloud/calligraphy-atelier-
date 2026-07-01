@@ -160,33 +160,28 @@ export default function AtelierPage() {
               <h2 className="mt-3 text-balance text-3xl leading-tight md:text-[2.4rem]">
                 Der Mensch hinter der Tinte
               </h2>
-              <p className="mt-2 text-sm text-ink-faint">
-                {/* PLATZHALTER: Dies ist ein Entwurf – bitte an deine echte Geschichte anpassen. */}
-                Entwurf · bitte anpassen
-              </p>
             </Reveal>
 
             <Reveal delay={0.08}>
               <div className="mt-6 space-y-4 text-pretty text-[1.05rem] leading-relaxed text-ink-soft">
                 <p>
-                  Hinter {BRAND.name} steht ein junger muslimischer Künstler,
-                  Anfang zwanzig, der schon als Kind zum Stift griff – erst
-                  Skizzen, dann Farbe, irgendwann die arabische Schrift, die ihn
-                  nie wieder losließ.
+                  Hinter {BRAND.name} steht Ibrahim. Schon als Kind griff er zum
+                  Stift – aufgewachsen in einem muslimischen Haushalt, in einer
+                  Familie mit Migrationsgeschichte, war das Zeichnen früh sein
+                  stiller Rückzugsort.
                 </p>
                 <p>
-                  Seit einigen Jahren widmet er sich der Kalligrafie: dem
-                  langsamen, ruhigen Setzen jedes Strichs, dem Fließen der Tinte,
-                  der Schönheit eines einzelnen Namens. Neben dem Studium wird das
-                  Atelier zum Rückzugsort – ein Ort, an dem aus Buchstaben Liebe
-                  wird.
+                  Später schlug er den akademischen Weg ein – doch das Malen ließ
+                  ihn nie los. Es kam zu ihm zurück, ruhiger und tiefer: das
+                  langsame Setzen jedes Strichs, das Fließen der Alkohol-Tinte,
+                  die Schönheit eines einzelnen Namens in arabischer Schrift.
                 </p>
                 <p>
-                  Seine Werke erzählen von Glauben, Familie und Zuneigung: ein
-                  Vers für das Brautpaar, der Name einer Mutter, ein Segenswunsch
-                  zum Fest. Jedes Stück entsteht von Hand, mit Hingabe und der
-                  Überzeugung, dass etwas Selbstgemaltes mehr sagt als alles
-                  Gekaufte.
+                  Irgendwann fiel eine Entscheidung: aus dieser Gabe etwas Gutes
+                  machen. Menschen beschenken mit etwas, das bleibt – ein Name,
+                  ein Vers, eine Liebesbotschaft – und mit jedem Werk ein Stück
+                  Nähe zum Glauben weitergeben. Jedes Stück entsteht von Hand, mit
+                  Geduld und Hingabe: kein Nachdruck, keine Maschine.
                 </p>
               </div>
             </Reveal>

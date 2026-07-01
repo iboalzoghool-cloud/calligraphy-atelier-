@@ -13,12 +13,12 @@ export const BRAND = {
   /** Ein Satz, der die Marke trägt. */
   promise:
     "Jedes Stück wird von Hand gemalt – mit Tinte, Geduld und deinem Namen im Mittelpunkt.",
-  // PLATZHALTER: Ort, an dem gemalt wird (für „Handgemalt in …")
-  city: "[DEIN ORT]",
-  // PLATZHALTER: Kontakt für Kundenanfragen
+  // Ort, an dem gemalt wird (für „Handgemalt in …")
+  city: "Offenbach",
+  // PLATZHALTER: Kontakt-E-Mail für Kundenanfragen (rechtlich nötig für Impressum!)
   email: "[deine@email.de]",
+  instagram: "@iboverse",
   // PLATZHALTER: optional, z. B. für TikTok-Funnel
-  instagram: "[@deinhandle]",
   tiktok: "[@deinhandle]",
 };
 
