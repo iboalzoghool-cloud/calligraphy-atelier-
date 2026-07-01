@@ -2,21 +2,19 @@
 
 /*
   Herz-Fächer: das handgemalte Herz als Hauptprodukt, drei Farbwelten
-  aufgefächert wie Karten. Das aktive Herz steht aufrecht vorn, die anderen
-  fächern nach links/rechts. Weiche, langsame Tinten-Übergänge – nichts blinkt.
+  aufgefächert wie Karten. Aktives Herz aufrecht vorn, die anderen ±22°.
+  Weiche, langsame Tinten-Übergänge – nichts blinkt.
 
-  Robust: die Herzform kommt aus einem inline-SVG `clipPath` (kein CSS-mask,
-  der auf mobilem Safari kippen und ein Rechteck zeigen kann). Echte Ink-Welt-
-  Texturen; sobald freigestellte heart-<welt>.png in /public liegen, einfach
-  das <image href> tauschen.
+  Premium-Look statt flachem „Sticker": jedes Herz bekommt Tiefe (Vignette),
+  Glanz und eine feine Gold-Kante – wie eine echte 3D-Leinwand. Form kommt aus
+  einem inline-SVG `clipPath` (robust, kein Rechteck-Artefakt auf mobilem Safari).
+  Dahinter driftende Farbkleckser der aktiven Welt.
 */
 
 export interface HeartSet {
   key: string;
   tex: string;
-  /** passende Konfigurator-Farbwelt (wird beim „Weiter" übernommen). */
   bgId: string;
-  /** Tintenfarbe des Namens auf diesem Herz. */
   ink: string;
   glow: string;
 }
@@ -27,21 +25,21 @@ export const HEART_SETS: HeartSet[] = [
     tex: "/backgrounds/worlds/rose.jpg",
     bgId: "rose",
     ink: "#7A3247",
-    glow: "radial-gradient(circle, rgba(178,94,119,.24), rgba(169,130,59,.10) 55%, transparent 72%)",
+    glow: "radial-gradient(circle, rgba(178,94,119,.26), rgba(169,130,59,.10) 55%, transparent 72%)",
   },
   {
     key: "Petrol",
     tex: "/backgrounds/worlds/petrol-gold.jpg",
     bgId: "petrol-gold",
     ink: "#234E50",
-    glow: "radial-gradient(circle, rgba(63,107,110,.24), rgba(169,130,59,.12) 55%, transparent 72%)",
+    glow: "radial-gradient(circle, rgba(63,107,110,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
   },
   {
     key: "Blau",
     tex: "/backgrounds/worlds/navy-gold.jpg",
     bgId: "navy-gold",
     ink: "#1E2E52",
-    glow: "radial-gradient(circle, rgba(40,60,100,.24), rgba(169,130,59,.12) 55%, transparent 72%)",
+    glow: "radial-gradient(circle, rgba(40,60,100,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
   },
 ];
 
@@ -63,9 +61,7 @@ const SLOTS: Record<Slot, { transform: string; z: number; opacity: number; name:
 interface HeartFanProps {
   active: string;
   onSelect: (key: string) => void;
-  /** Arabischer Name, der auf dem vorderen Herz eingeblendet wird. */
   name: string;
-  /** Größenangabe, z. B. „29 × 29 cm". */
   sizeLabel: string;
 }
 
@@ -76,21 +72,61 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
     key === active ? "center" : others[0]?.key === key ? "left" : "right";
 
   return (
-    <div className="mx-auto w-full max-w-md">
-      <div className="relative" style={{ height: "min(80vw, 460px)" }}>
-        {/* weicher, mitwandernder Glow */}
+    <div className="mx-auto w-full max-w-lg">
+      <div
+        className="animate-heartfloat relative"
+        style={{ height: "min(90vw, 500px)" }}
+      >
+        {/* driftende Farbkleckser + Glow der aktiven Welt */}
+        <div
+          aria-hidden
+          className="animate-drift"
+          style={{
+            position: "absolute",
+            left: "16%",
+            top: "26%",
+            width: "46%",
+            aspectRatio: "1 / 1",
+            transform: "translate(-50%,-50%)",
+            borderRadius: "50%",
+            background: activeSet.glow,
+            filter: "blur(14px)",
+            opacity: 0.7,
+            transition: "background 1.1s ease",
+            zIndex: 0,
+          }}
+        />
+        <div
+          aria-hidden
+          className="animate-drift"
+          style={{
+            position: "absolute",
+            right: "14%",
+            bottom: "20%",
+            width: "40%",
+            aspectRatio: "1 / 1",
+            transform: "translate(50%,50%)",
+            borderRadius: "50%",
+            background: activeSet.glow,
+            filter: "blur(16px)",
+            opacity: 0.55,
+            animationDelay: "-4.5s",
+            transition: "background 1.1s ease",
+            zIndex: 0,
+          }}
+        />
         <div
           aria-hidden
           style={{
             position: "absolute",
             left: "50%",
             top: "46%",
-            width: "min(440px, 96%)",
+            width: "min(460px, 96%)",
             aspectRatio: "1 / 1",
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             background: activeSet.glow,
-            filter: "blur(6px)",
+            filter: "blur(4px)",
             transition: "background 1.1s ease",
             zIndex: 0,
           }}
@@ -98,7 +134,6 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
 
         {HEART_SETS.map((set, idx) => {
           const slot = SLOTS[slotFor(set.key)];
-          const clipId = `heartclip-${idx}`;
           return (
             <button
               key={set.key}
@@ -108,10 +143,10 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
               aria-pressed={set.key === active}
               style={{
                 position: "absolute",
-                bottom: "6%",
+                bottom: "5%",
                 left: "50%",
-                marginLeft: "-32%",
-                width: "min(300px, 64%)",
+                marginLeft: "-36%",
+                width: "min(340px, 72%)",
                 transformOrigin: "50% 96%",
                 transform: slot.transform,
                 zIndex: slot.z,
@@ -124,21 +159,31 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                 cursor: "pointer",
               }}
             >
-              {/* Herz = echte Ink-Textur, sauber per SVG-clipPath in Herzform */}
+              {/* Herz mit Tiefe, Glanz & Gold-Kante – wie eine echte Leinwand */}
               <svg
                 viewBox="0 0 100 92"
                 style={{
                   display: "block",
                   width: "100%",
                   height: "auto",
-                  filter: "drop-shadow(0 16px 24px rgba(45,22,30,.30))",
+                  overflow: "visible",
+                  filter: "drop-shadow(0 22px 30px rgba(45,22,30,.36))",
                 }}
                 aria-hidden
               >
                 <defs>
-                  <clipPath id={clipId}>
+                  <clipPath id={`hc-${idx}`}>
                     <path d={HEART_PATH} />
                   </clipPath>
+                  <radialGradient id={`hd-${idx}`} cx="50%" cy="40%" r="62%">
+                    <stop offset="52%" stopColor="rgba(45,22,30,0)" />
+                    <stop offset="100%" stopColor="rgba(38,20,26,0.42)" />
+                  </radialGradient>
+                  <linearGradient id={`hs-${idx}`} x1="14%" y1="6%" x2="72%" y2="82%">
+                    <stop offset="0%" stopColor="rgba(255,255,255,0.32)" />
+                    <stop offset="34%" stopColor="rgba(255,255,255,0.05)" />
+                    <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                  </linearGradient>
                 </defs>
                 <image
                   href={set.tex}
@@ -147,7 +192,18 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   width="100"
                   height="92"
                   preserveAspectRatio="xMidYMid slice"
-                  clipPath={`url(#${clipId})`}
+                  clipPath={`url(#hc-${idx})`}
+                />
+                {/* Tiefe (dunklere Ränder = Rundung) */}
+                <path d={HEART_PATH} fill={`url(#hd-${idx})`} />
+                {/* Glanz oben links */}
+                <path d={HEART_PATH} fill={`url(#hs-${idx})`} />
+                {/* feine Gold-Kante */}
+                <path
+                  d={HEART_PATH}
+                  fill="none"
+                  stroke="rgba(198,162,90,0.55)"
+                  strokeWidth="0.9"
                 />
               </svg>
               {/* Name-Overlay (arabische Kalligrafie) – nur auf dem vorderen Herz */}
@@ -171,8 +227,9 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   style={{
                     fontFamily: "var(--font-aref)",
                     color: set.ink,
-                    fontSize: "clamp(30px, 7vw, 52px)",
+                    fontSize: "clamp(34px, 8vw, 58px)",
                     lineHeight: 1,
+                    textShadow: "0 1px 10px rgba(255,255,255,0.35)",
                   }}
                 >
                   {name}
@@ -184,7 +241,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
       </div>
 
       {/* Swatches (zweite Bedienung) + Größe */}
-      <div className="mt-4 flex items-center justify-center gap-3">
+      <div className="mt-5 flex items-center justify-center gap-3">
         {HEART_SETS.map((s) => (
           <button
             key={s.key}
@@ -192,7 +249,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
             onClick={() => onSelect(s.key)}
             aria-label={`Farbwelt ${s.key}`}
             aria-pressed={s.key === active}
-            className="h-8 w-8 rounded-full bg-cover bg-center transition"
+            className="h-9 w-9 rounded-full bg-cover bg-center transition"
             style={{
               backgroundImage: `url(${s.tex})`,
               outline:
