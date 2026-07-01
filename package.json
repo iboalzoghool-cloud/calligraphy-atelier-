@@ -9,10 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/three": "^0.169.0",
     "framer-motion": "^12.42.2",
     "next": "15.5.19",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "three": "^0.169.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

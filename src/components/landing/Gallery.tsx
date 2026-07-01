@@ -12,21 +12,25 @@ interface GalleryItem {
   h: number;
   title: string;
   note: string;
+  /** Signaturfarbe des Werks (aus dem Bild gezogen) – Charakter in der UI. */
+  accent: string;
 }
 
 // Echte handgemalte Stücke in ihren echten Proportionen (kein Beschnitt).
+// `accent` = aus dem jeweiligen Werk gezogene Signaturfarbe (künstlerisch
+// kuratiert, wo der Foto-Hintergrund dominierte).
 // TODO (Founder): nach Belieben ergänzen (Dateien in /public/gallery bzw.
 // /public/atelier). Reihenfolge steuert das Masonry-Layout.
 const ITEMS: GalleryItem[] = [
-  { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold", alt: "Kalligrafie „Allah“ und „Muhammad“ in Türkis und Gold" },
-  { src: "/gallery/muttertag-herz.jpg", w: 1052, h: 1400, title: "Salwa · Für Mama", note: "Muttertag · Herzform", alt: "Herz-Leinwand mit dem Namen Salwa zum Muttertag" },
-  { src: "/atelier/makkah.jpg", w: 1125, h: 1500, title: "Wo immer du bist", note: "Makka-Motiv in warmen Tönen", alt: "Handgemaltes Werk mit Makka-Motiv auf der Staffelei" },
-  { src: "/gallery/salwa-quadrat.jpg", w: 1400, h: 1126, title: "Namens-Quadrat", note: "Name in Rosé & Flieder", alt: "Quadratisches Stück mit arabischem Namen in Rosé" },
-  { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, title: "Zuneigung & Ruhe", note: "Für das Brautpaar", alt: "Kalligrafie zum Thema Zuneigung, warme Farbwelt" },
-  { src: "/gallery/namen-quadrate.jpg", w: 1004, h: 1200, title: "Zwei Namen, ein Paar", note: "Doppel-Leinwand in Petrol", alt: "Zwei Namens-Quadrate in Petrol auf einer Wiese" },
-  { src: "/atelier/relief.jpg", w: 1500, h: 1174, title: "Nach jeder Härte", note: "Ruhige Töne, Ton in Ton", alt: "Kalligrafie in ruhigen, beigen Tönen" },
-  { src: "/gallery/herz-eid.jpg", w: 675, h: 675, title: "Eid Mubarak", note: "Herz zum Fest", alt: "Herz-Leinwand mit Eid-Kalligrafie" },
-  { src: "/gallery/quds-staffelei.jpg", w: 1050, h: 1400, title: "Auf der Staffelei", note: "Auf Wunsch: eigene Motive", alt: "Gemaltes Motiv auf einer Staffelei im Atelier" },
+  { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, accent: "#2f8f96", title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold", alt: "Kalligrafie „Allah“ und „Muhammad“ in Türkis und Gold" },
+  { src: "/gallery/muttertag-herz.jpg", w: 1052, h: 1400, accent: "#c85f86", title: "Salwa · Für Mama", note: "Muttertag · Herzform", alt: "Herz-Leinwand mit dem Namen Salwa zum Muttertag" },
+  { src: "/atelier/makkah.jpg", w: 1125, h: 1500, accent: "#b0863f", title: "Wo immer du bist", note: "Makka-Motiv in warmen Tönen", alt: "Handgemaltes Werk mit Makka-Motiv auf der Staffelei" },
+  { src: "/gallery/salwa-quadrat.jpg", w: 1400, h: 1126, accent: "#cf5f97", title: "Namens-Quadrat", note: "Name in Rosé & Flieder", alt: "Quadratisches Stück mit arabischem Namen in Rosé" },
+  { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, accent: "#8a5f77", title: "Zuneigung & Ruhe", note: "Für das Brautpaar", alt: "Kalligrafie zum Thema Zuneigung, warme Farbwelt" },
+  { src: "/gallery/namen-quadrate.jpg", w: 1004, h: 1200, accent: "#3f7d7f", title: "Zwei Namen, ein Paar", note: "Doppel-Leinwand in Petrol", alt: "Zwei Namens-Quadrate in Petrol auf einer Wiese" },
+  { src: "/atelier/relief.jpg", w: 1500, h: 1174, accent: "#a9744f", title: "Nach jeder Härte", note: "Ruhige Töne, Ton in Ton", alt: "Kalligrafie in ruhigen, beigen Tönen" },
+  { src: "/gallery/herz-eid.jpg", w: 675, h: 675, accent: "#cf8a63", title: "Eid Mubarak", note: "Herz zum Fest", alt: "Herz-Leinwand mit Eid-Kalligrafie" },
+  { src: "/gallery/quds-staffelei.jpg", w: 1050, h: 1400, accent: "#a9823b", title: "Auf der Staffelei", note: "Auf Wunsch: eigene Motive", alt: "Gemaltes Motiv auf einer Staffelei im Atelier" },
 ];
 
 export function Gallery() {
@@ -71,16 +75,30 @@ export function Gallery() {
                     className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     priority={i < 3}
                   />
+                  {/* Signaturfarbe des Werks als feine Kante */}
+                  <div
+                    className="h-[3px] w-full"
+                    style={{ backgroundColor: item.accent }}
+                    aria-hidden
+                  />
                   <figcaption className="flex items-start justify-between gap-3 px-5 pb-5 pt-4">
                     <div>
-                      <div className="font-display text-xl leading-tight text-ink">
-                        {item.title}
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="h-2.5 w-2.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: item.accent }}
+                          aria-hidden
+                        />
+                        <span className="font-display text-xl leading-tight text-ink">
+                          {item.title}
+                        </span>
                       </div>
                       <div className="mt-1 text-[13px] text-ink-soft">{item.note}</div>
                     </div>
                     <Link
                       href="/gestalten"
-                      className="mt-0.5 whitespace-nowrap text-[13px] font-medium text-rose-deep transition-colors hover:text-rose"
+                      className="mt-0.5 whitespace-nowrap text-[13px] font-medium transition-opacity hover:opacity-70"
+                      style={{ color: item.accent }}
                     >
                       Anfragen →
                     </Link>

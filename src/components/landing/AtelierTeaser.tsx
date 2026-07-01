@@ -3,10 +3,22 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { InkStroke } from "@/components/ui/InkStroke";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
+import { AtelierAmbience } from "@/components/landing/AtelierAmbience";
 
 export function AtelierTeaser() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="relative overflow-hidden py-16 md:py-24">
+      {/* Fließender Alkohol-Tinten-Hintergrund (Three.js) – Atelier-Atmosphäre */}
+      <AtelierAmbience className="pointer-events-none absolute inset-0 -z-10 opacity-80" />
+      {/* Papier-Schleier: links (hinter dem Text) ruhig & lesbar, rechts blüht die Farbe ums Werk */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(243,236,220,0.66) 0%, rgba(243,236,220,0.34) 44%, rgba(243,236,220,0.08) 100%)",
+        }}
+      />
       <div className="container-page">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal className="order-2 lg:order-1">
