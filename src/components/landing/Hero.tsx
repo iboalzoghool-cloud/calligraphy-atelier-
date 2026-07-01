@@ -3,42 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { PreviewCanvas } from "@/components/configurator/PreviewCanvas";
 import { Reveal } from "@/components/ui/Reveal";
+import { HeartFan, bgIdForWorld } from "@/components/landing/HeartFan";
 import { useConfigurator } from "@/lib/configurator/context";
 import { toArabicName } from "@/lib/configurator/translit";
-import type { ConfiguratorState } from "@/lib/configurator/types";
-
-// Schöner Ausgangs-Look für die Live-Vorschau (Name wird interaktiv gesetzt).
-const HERO_LOOK: Omit<ConfiguratorState, "name"> = {
-  shape: "heart",
-  sizeId: "heart-29",
-  backgroundId: "magenta-gold",
-  fontId: "arefInk",
-  sayingId: "eid",
-  sayingPosition: "bottom",
-  gold: true,
-  addons: { gift: false, card: false, express: false, date: false },
-};
 
 export function Hero() {
   const router = useRouter();
   const { update } = useConfigurator();
   const [name, setName] = useState("");
+  const [active, setActive] = useState("Rosé");
 
   // Latein → arabische Kalligrafie („Miriam" → „مريم"). Leeres Feld zeigt einen
   // schönen arabischen Beispielnamen (Arabisch sofort präsent).
   const translit = toArabicName(name);
   const previewName = translit.arabic ?? (name.trim() || "سلوى");
-  const previewState: ConfiguratorState = { ...HERO_LOOK, name: previewName };
 
   function handleContinue() {
-    // Arabische Form (falls vorhanden) + schönen Herz-Look in den Konfigurator tragen.
+    // Name (arabische Form) + gewählte Farbwelt in den Konfigurator tragen.
     update({
       name: translit.arabic ?? name.trim(),
       shape: "heart",
       sizeId: "heart-29",
-      backgroundId: "magenta-gold",
+      backgroundId: bgIdForWorld(active),
       fontId: "arefInk",
     });
     router.push("/gestalten");
@@ -47,45 +34,17 @@ export function Hero() {
   return (
     <section className="bg-paper">
       <div className="container-page grid items-center gap-8 pb-12 pt-8 md:gap-14 md:pb-20 md:pt-14 lg:grid-cols-2">
-        {/* ── Das Herz als lebendiges Ausstellungsstück (mobil zuerst) ── */}
+        {/* ── Herz-Fächer: das Hauptprodukt (mobil zuerst) ── */}
         <Reveal className="order-1 lg:order-2">
-          <div className="relative mx-auto w-full max-w-[22rem] sm:max-w-sm lg:max-w-md">
-            <div className="relative">
-              {/* Spotlight + driftender Rosé-Gold-Schein */}
-              <div
-                className="animate-drift pointer-events-none absolute inset-0 -z-10 scale-125"
-                aria-hidden
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 42%, rgba(255,251,244,0.85), rgba(178,94,119,0.16) 46%, rgba(169,130,59,0.10) 62%, transparent 74%)",
-                  filter: "blur(10px)",
-                }}
-              />
-              {/* Live-Herz – aktualisiert sich beim Tippen */}
-              <PreviewCanvas
-                state={previewState}
-                interactive
-                shadow={false}
-                className="relative z-10"
-              />
-              {/* Atmender Boden-Schatten */}
-              <div
-                className="animate-breathe pointer-events-none absolute bottom-1 left-1/2 z-0 h-6 w-3/5 -translate-x-1/2 rounded-[50%]"
-                aria-hidden
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(45,22,30,0.5), rgba(45,22,30,0) 70%)",
-                  filter: "blur(10px)",
-                }}
-              />
-            </div>
-            <p className="mt-6 text-center text-xs uppercase tracking-[0.2em] text-ink-faint">
-              Live-Vorschau · von Hand gemalt
-            </p>
-          </div>
+          <HeartFan
+            active={active}
+            onSelect={setActive}
+            name={previewName}
+            sizeLabel="29 × 29 cm"
+          />
         </Reveal>
 
-        {/* ── Der Catch: tippe deinen Namen ── */}
+        {/* ── Der Catch: Farbwelt wählen & Namen tippen ── */}
         <Reveal className="order-2 lg:order-1">
           <p className="eyebrow eyebrow-rule">Handgemalte Kalligrafie · Unikate</p>
           <h1 className="mt-4 text-balance text-[2.5rem] leading-[1.02] sm:text-5xl md:text-[3.3rem]">
@@ -112,8 +71,8 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-5 max-w-md text-pretty text-[1.05rem] leading-relaxed text-ink-soft">
-            Von Hand gemalt, kein Druck, keine Kopie. Schreib einen Namen und
-            sieh ihn live in Tinte entstehen.
+            Von Hand gemalt, kein Druck, keine Kopie. Wähle eine Farbwelt, schreib
+            einen Namen – und sieh ihn live auf dem Herz erscheinen.
           </p>
 
           {/* Live-Namensfeld – der interaktive Catch */}
@@ -167,7 +126,7 @@ export function Hero() {
               </p>
             ) : (
               <p className="mt-2 pl-1 text-sm text-ink-soft">
-                Arabisch oder lateinisch · live in der Vorschau · ab 29 €,
+                Arabisch oder lateinisch · live auf dem Herz · ab 29 €,
                 unverbindlich.
               </p>
             )}
