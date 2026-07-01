@@ -1,4 +1,5 @@
 import { Hero } from "@/components/landing/Hero";
+import { NameShowcase } from "@/components/landing/NameShowcase";
 import { Gallery } from "@/components/landing/Gallery";
 import { WordsBand } from "@/components/landing/WordsBand";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <NameShowcase />
       <Gallery />
       <WordsBand />
       <HowItWorks />

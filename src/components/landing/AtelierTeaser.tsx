@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { InkStroke } from "@/components/ui/InkStroke";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
+import { VideoLoop } from "@/components/ui/VideoLoop";
 import { AtelierAmbience } from "@/components/landing/AtelierAmbience";
 
 export function AtelierTeaser() {
@@ -53,13 +53,11 @@ export function AtelierTeaser() {
           <Reveal delay={0.1} className="order-1 lg:order-2">
             <div className="relative mx-auto w-full max-w-md">
               <FloatingFrame interactive glare float={false} shadow={false} maxTilt={7}>
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] border border-line shadow-lift">
-                  <Image
-                    src="/atelier/makkah.jpg"
-                    alt="Ein handgemaltes Werk auf der Staffelei im Atelier"
-                    fill
-                    sizes="(max-width: 1024px) 90vw, 28rem"
-                    className="object-cover"
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-line shadow-lift">
+                  <VideoLoop
+                    src="/videos/atelier-herzen.mp4"
+                    poster="/videos/atelier-herzen.jpg"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
               </FloatingFrame>
