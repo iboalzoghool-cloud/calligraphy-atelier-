@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FloatingFrame } from "@/components/ui/FloatingFrame";
 import { Reveal } from "@/components/ui/Reveal";
 
 interface GalleryItem {
@@ -22,8 +21,6 @@ interface GalleryItem {
 // Echte handgemalte Stücke in ihren echten Proportionen (kein Beschnitt).
 // `accent` = aus dem jeweiligen Werk gezogene Signaturfarbe (künstlerisch
 // kuratiert, wo der Foto-Hintergrund dominierte).
-// TODO (Founder): nach Belieben ergänzen (Dateien in /public/gallery bzw.
-// /public/atelier). Reihenfolge steuert das Masonry-Layout.
 const ITEMS: GalleryItem[] = [
   { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, accent: "#2f8f96", title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold", alt: "Kalligrafie „Allah“ und „Muhammad“ in Türkis und Gold" },
   { src: "/gallery/muttertag-herz.jpg", w: 1052, h: 1400, accent: "#c85f86", title: "Salwa · Für Mama", note: "Muttertag · Herzform", alt: "Herz-Leinwand mit dem Namen Salwa zum Muttertag" },
@@ -52,86 +49,81 @@ export function Gallery() {
             }
           />
           <p className="max-w-[34ch] text-[15px] leading-relaxed text-ink-soft">
-            Jedes Werk ist einzigartig entstanden – hier in seinem echten Format.
-            Jedes Motiv lässt sich als Auftrag neu anfragen.
+            Wisch dich durch die Sammlung – jedes Werk in seinem echten Format,
+            in seiner eigenen Farbwelt. Jedes Motiv lässt sich neu anfragen.
           </p>
         </div>
+      </div>
 
-        {/* Masonry: echte Proportionen, kein object-cover-Beschnitt. */}
-        <div className="mt-12 gap-5 [column-gap:1.25rem] columns-1 sm:columns-2 lg:columns-3">
+      {/* Wischbare Slideshow – jedes Werk „gerahmt" auf dem Pastell-Feld seiner Farbe */}
+      <Reveal>
+        <div className="no-scrollbar mt-10 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 md:mt-12 md:gap-6 md:px-[max(2rem,calc((100vw-78rem)/2+2rem))]">
           {ITEMS.map((item, i) => (
-            <Reveal
+            <figure
               key={item.src}
-              scale
-              delay={(i % 3) * 0.08}
-              className="mb-5 break-inside-avoid"
+              className="group w-[80vw] max-w-[19rem] shrink-0 snap-center sm:w-72"
             >
-              <figure className="group">
-              <FloatingFrame interactive glare float={false} shadow={false} maxTilt={8}>
-                <div
-                  className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow duration-500 group-hover:shadow-lift"
-                  style={{
-                    // Werkfarbe blutet als Pastell in die Karte (entsättigt, edel).
-                    background: `linear-gradient(180deg, color-mix(in srgb, ${item.accent} 16%, #fbf7ee), #fbf7ee)`,
-                    borderColor: `color-mix(in srgb, ${item.accent} 22%, var(--color-line))`,
-                  }}
-                >
+              <div
+                className="rounded-[1.4rem] border p-3 shadow-soft transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-lift"
+                style={{
+                  // Werkfarbe als Pastell-Feld RUND UM das Bild (nicht nur unter der Karte).
+                  background: `linear-gradient(160deg, color-mix(in srgb, ${item.accent} 26%, #fbf7ee), color-mix(in srgb, ${item.accent} 9%, #fbf7ee))`,
+                  borderColor: `color-mix(in srgb, ${item.accent} 30%, var(--color-line))`,
+                }}
+              >
+                {/* Werk – unbeschnitten, sitzt wie gerahmt auf dem Farbfeld */}
+                <div className="overflow-hidden rounded-lg bg-canvas shadow-[inset_0_1px_2px_rgba(45,22,30,0.14)]">
                   <Image
                     src={item.src}
                     alt={item.alt}
                     width={item.w}
                     height={item.h}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 80vw, 19rem"
                     className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    priority={i < 3}
+                    priority={i < 2}
                   />
-                  {/* Signaturfarbe des Werks als feine Kante */}
-                  <div
-                    className="h-[3px] w-full"
-                    style={{ backgroundColor: item.accent }}
-                    aria-hidden
-                  />
-                  <figcaption className="flex items-start justify-between gap-3 px-5 pb-5 pt-4">
-                    <div>
-                      {item.verse ? (
-                        <div
-                          className="mb-2 font-arabic text-lg leading-snug text-ink"
-                          dir="rtl"
-                          lang="ar"
-                        >
-                          {item.verse}
-                        </div>
-                      ) : null}
+                </div>
+                <figcaption className="px-1.5 pb-1 pt-3">
+                  {item.verse ? (
+                    <div
+                      className="mb-1.5 font-arabic text-lg leading-snug text-ink"
+                      dir="rtl"
+                      lang="ar"
+                    >
+                      {item.verse}
+                    </div>
+                  ) : null}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span
                           className="h-2.5 w-2.5 shrink-0 rounded-full"
                           style={{ backgroundColor: item.accent }}
                           aria-hidden
                         />
-                        <span className="font-display text-xl leading-tight text-ink">
+                        <span className="truncate font-display text-lg text-ink">
                           {item.title}
                         </span>
                       </div>
-                      <div className="mt-1 text-[13px] text-ink-soft">
+                      <div className="mt-0.5 truncate text-[13px] text-ink-soft">
                         {item.note}
                         {item.verseRef ? ` · ${item.verseRef}` : ""}
                       </div>
                     </div>
                     <Link
                       href="/gestalten"
-                      className="mt-0.5 whitespace-nowrap text-[13px] font-medium transition-opacity hover:opacity-70"
+                      className="mt-0.5 shrink-0 whitespace-nowrap text-[13px] font-medium transition-opacity hover:opacity-70"
                       style={{ color: item.accent }}
                     >
                       Anfragen →
                     </Link>
-                  </figcaption>
-                </div>
-              </FloatingFrame>
-              </figure>
-            </Reveal>
+                  </div>
+                </figcaption>
+              </div>
+            </figure>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
