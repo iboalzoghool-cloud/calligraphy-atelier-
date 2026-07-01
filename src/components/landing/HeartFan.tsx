@@ -167,7 +167,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   width: "100%",
                   height: "auto",
                   overflow: "visible",
-                  filter: "drop-shadow(0 22px 30px rgba(45,22,30,.36))",
+                  filter: "drop-shadow(0 14px 22px rgba(45,22,30,.28))",
                 }}
                 aria-hidden
               >
@@ -175,13 +175,9 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   <clipPath id={`hc-${idx}`}>
                     <path d={HEART_PATH} />
                   </clipPath>
-                  <radialGradient id={`hd-${idx}`} cx="50%" cy="40%" r="62%">
-                    <stop offset="52%" stopColor="rgba(45,22,30,0)" />
-                    <stop offset="100%" stopColor="rgba(38,20,26,0.42)" />
-                  </radialGradient>
-                  <linearGradient id={`hs-${idx}`} x1="14%" y1="6%" x2="72%" y2="82%">
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.32)" />
-                    <stop offset="34%" stopColor="rgba(255,255,255,0.05)" />
+                  <linearGradient id={`hs-${idx}`} x1="16%" y1="8%" x2="70%" y2="84%">
+                    <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
+                    <stop offset="30%" stopColor="rgba(255,255,255,0.03)" />
                     <stop offset="100%" stopColor="rgba(255,255,255,0)" />
                   </linearGradient>
                 </defs>
@@ -194,17 +190,8 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   preserveAspectRatio="xMidYMid slice"
                   clipPath={`url(#hc-${idx})`}
                 />
-                {/* Tiefe (dunklere Ränder = Rundung) */}
-                <path d={HEART_PATH} fill={`url(#hd-${idx})`} />
-                {/* Glanz oben links */}
+                {/* nur zarter Glanz (versiegelte Leinwand) – KEIN Gold-Rahmen */}
                 <path d={HEART_PATH} fill={`url(#hs-${idx})`} />
-                {/* feine Gold-Kante */}
-                <path
-                  d={HEART_PATH}
-                  fill="none"
-                  stroke="rgba(198,162,90,0.55)"
-                  strokeWidth="0.9"
-                />
               </svg>
               {/* Name-Overlay (arabische Kalligrafie) – nur auf dem vorderen Herz */}
               <div
@@ -225,8 +212,9 @@ export function HeartFan({ active, onSelect, name, sizeLabel }: HeartFanProps) {
                   dir="rtl"
                   lang="ar"
                   style={{
+                    // Kalligrafie immer in Schwarz (wie auf dem echten Werk).
                     fontFamily: "var(--font-aref)",
-                    color: set.ink,
+                    color: "#1b1714",
                     fontSize: "clamp(34px, 8vw, 58px)",
                     lineHeight: 1,
                     textShadow: "0 1px 10px rgba(255,255,255,0.35)",
