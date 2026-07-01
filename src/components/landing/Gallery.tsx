@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
+import { Reveal } from "@/components/ui/Reveal";
 
 interface GalleryItem {
   src: string;
@@ -52,7 +53,13 @@ export function Gallery() {
         {/* Masonry: echte Proportionen, kein object-cover-Beschnitt. */}
         <div className="mt-12 gap-5 [column-gap:1.25rem] columns-1 sm:columns-2 lg:columns-3">
           {ITEMS.map((item, i) => (
-            <figure key={item.src} className="group mb-5 break-inside-avoid">
+            <Reveal
+              key={item.src}
+              scale
+              delay={(i % 3) * 0.08}
+              className="mb-5 break-inside-avoid"
+            >
+              <figure className="group">
               <FloatingFrame interactive glare float={false} shadow={false} maxTilt={8}>
                 <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow duration-500 group-hover:shadow-lift">
                   <Image
@@ -80,7 +87,8 @@ export function Gallery() {
                   </figcaption>
                 </div>
               </FloatingFrame>
-            </figure>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>

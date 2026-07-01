@@ -4,6 +4,7 @@ import { fontVariables } from "@/lib/fonts";
 import { ConfiguratorProvider } from "@/lib/configurator/context";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { PaperTexture } from "@/components/ui/PaperTexture";
 import { BRAND } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <PaperTexture />
         </ConfiguratorProvider>
       </body>
     </html>

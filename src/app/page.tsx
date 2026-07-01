@@ -3,6 +3,7 @@ import { Gallery } from "@/components/landing/Gallery";
 import { WordsBand } from "@/components/landing/WordsBand";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Occasions } from "@/components/landing/Occasions";
+import { FullBleedMoment } from "@/components/landing/FullBleedMoment";
 import { AtelierTeaser } from "@/components/landing/AtelierTeaser";
 import { Voices } from "@/components/landing/Voices";
 import { ValuesStatement } from "@/components/landing/ValuesStatement";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <WordsBand />
       <HowItWorks />
       <Occasions />
+      <FullBleedMoment />
       <AtelierTeaser />
       <Voices />
       {/* TEIL E – standardmäßig ausgeblendet (Flag in der Komponente) */}
