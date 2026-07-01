@@ -15,6 +15,18 @@ export const metadata: Metadata = {
   },
   description:
     "Handgemalte Kalligrafie-Kunst als Unikat. Gestalte Name, Form, Farbwelt und Spruch in der Live-Vorschau – jedes Stück wird von Hand gemalt.",
+  keywords: [
+    "arabische Kalligrafie",
+    "handgemalt",
+    "Namen in Tinte",
+    "Alkohol-Tinte",
+    "personalisiertes Geschenk",
+    "Eid Geschenk",
+    "Muttertag",
+    "Hochzeit",
+    "Leinwand",
+    "Unikat",
+  ],
   openGraph: {
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description:

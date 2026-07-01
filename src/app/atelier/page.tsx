@@ -100,28 +100,36 @@ export default function AtelierPage() {
               Jedes Motiv lässt sich als Auftrag anfragen.
             </p>
           </Reveal>
+        </div>
 
-          <div className="mt-10 gap-5 [column-fill:_balance] sm:columns-2 lg:columns-3">
-            {WORKS.map((work, i) => (
-              <Reveal key={work.src} delay={(i % 3) * 0.06}>
-                <figure
-                  className="mb-5 break-inside-avoid overflow-hidden rounded-2xl border"
+        {/* Wischbare Slideshow – jedes Werk gerahmt auf dem Pastell-Feld seiner Farbe */}
+        <Reveal>
+          <div className="no-scrollbar mt-10 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 md:gap-6 md:px-[max(2rem,calc((100vw-78rem)/2+2rem))]">
+            {WORKS.map((work) => (
+              <figure
+                key={work.src}
+                className="group w-[80vw] max-w-[19rem] shrink-0 snap-center sm:w-72"
+              >
+                <div
+                  className="rounded-[1.4rem] border p-3 shadow-soft transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-lift"
                   style={{
-                    background: `linear-gradient(180deg, color-mix(in srgb, ${work.accent} 14%, #fbf7ee), #fbf7ee)`,
-                    borderColor: `color-mix(in srgb, ${work.accent} 22%, var(--color-line))`,
+                    background: `linear-gradient(160deg, color-mix(in srgb, ${work.accent} 26%, #fbf7ee), color-mix(in srgb, ${work.accent} 9%, #fbf7ee))`,
+                    borderColor: `color-mix(in srgb, ${work.accent} 30%, var(--color-line))`,
                   }}
                 >
-                  <Image
-                    src={work.src}
-                    alt={work.title}
-                    width={work.w}
-                    height={work.h}
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                    className="h-auto w-full"
-                  />
-                  <figcaption className="flex items-center justify-between gap-3 px-4 py-3">
+                  <div className="overflow-hidden rounded-lg bg-canvas shadow-[inset_0_1px_2px_rgba(45,22,30,0.14)]">
+                    <Image
+                      src={work.src}
+                      alt={work.title}
+                      width={work.w}
+                      height={work.h}
+                      sizes="(max-width: 640px) 80vw, 19rem"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  <figcaption className="flex items-center justify-between gap-3 px-1.5 pb-1 pt-3">
                     <span className="min-w-0">
-                      <span className="block truncate text-sm font-medium text-ink">
+                      <span className="block truncate font-display text-lg text-ink">
                         {work.title}
                       </span>
                       <span className="block truncate text-xs text-ink-faint">
@@ -130,16 +138,17 @@ export default function AtelierPage() {
                     </span>
                     <Link
                       href="/gestalten"
-                      className="shrink-0 text-xs font-medium text-rose-deep underline-offset-4 hover:underline"
+                      className="shrink-0 text-xs font-medium underline-offset-4 hover:underline"
+                      style={{ color: work.accent }}
                     >
-                      Ähnliches anfragen →
+                      Anfragen →
                     </Link>
                   </figcaption>
-                </figure>
-              </Reveal>
+                </div>
+              </figure>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Die Geschichte */}

@@ -1,5 +1,14 @@
 import { Reveal } from "@/components/ui/Reveal";
+import { InkSplashes } from "@/components/ui/InkSplashes";
 import { BRAND } from "@/lib/content";
+
+// Wärmere Kleckser für die dunkle Sektion (höhere Deckkraft, damit sie tragen).
+const DARK_SPLASH = [
+  "rgba(198,162,90,0.16)", // Gold-soft
+  "rgba(178,94,119,0.15)", // Rosé
+  "rgba(93,63,87,0.16)", // Plum
+  "rgba(63,107,110,0.13)", // Petrol
+];
 
 /*
   TODO (Founder): Sobald echte Bestellungen da sind, hier echte
@@ -14,7 +23,8 @@ export function Voices() {
   const hasReal = TESTIMONIALS.length > 0;
 
   return (
-    <section className="bg-ink py-20 text-paper-2 md:py-28">
+    <section className="relative overflow-hidden bg-ink py-20 text-paper-2 md:py-28">
+      <InkSplashes colors={DARK_SPLASH} />
       <div className="container-page">
         {/* Ehrliches Marken-Versprechen (eigene Stimme, kein Fake-Review). */}
         <Reveal>
