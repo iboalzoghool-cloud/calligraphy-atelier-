@@ -17,18 +17,23 @@ export function FullBleedMoment() {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-9%", "9%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
 
   return (
     <section
       ref={ref}
+      id="warum"
       aria-label="Warum handgemalt"
       className="relative flex min-h-[68vh] items-center justify-center overflow-hidden"
+      // Grundfarbe (dunkles Pflaume) – der Rahmen bleibt IMMER ein Farbfeld,
+      // nie blitzt Creme durch.
+      style={{ backgroundColor: "#3a2530" }}
     >
-      {/* Echte Ink-Textur, leicht übergroß für den Parallax-Spielraum */}
+      {/* Echte Ink-Textur: leicht gezoomt (croppt die Leinwand-Kanten weg) und
+          großzügig überstehend, damit der Parallax keine Ränder freilegt. */}
       <motion.div
         aria-hidden
-        className="absolute inset-x-0 -inset-y-[12%]"
+        className="absolute inset-x-0 -inset-y-[22%]"
         style={reduce ? undefined : { y }}
       >
         <Image
@@ -36,17 +41,17 @@ export function FullBleedMoment() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover"
+          className="scale-[1.3] object-cover"
         />
       </motion.div>
 
-      {/* warmer Schleier für Lesbarkeit */}
+      {/* warmer Farb-Wash – vereinheitlicht das Feld & hält den Text lesbar */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(36,29,21,0.52), rgba(36,29,21,0.4) 50%, rgba(36,29,21,0.58))",
+            "linear-gradient(180deg, rgba(58,37,48,0.55), rgba(58,37,48,0.32) 48%, rgba(40,29,33,0.66))",
         }}
       />
 
