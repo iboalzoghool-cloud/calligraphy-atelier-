@@ -1,4 +1,5 @@
 import { Hero } from "@/components/landing/Hero";
+import { TrustStrip } from "@/components/landing/TrustStrip";
 import { NameShowcase } from "@/components/landing/NameShowcase";
 import { Gallery } from "@/components/landing/Gallery";
 import { OnRequest } from "@/components/landing/OnRequest";
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TrustStrip />
       <NameShowcase />
       <Gallery />
       <OnRequest />
