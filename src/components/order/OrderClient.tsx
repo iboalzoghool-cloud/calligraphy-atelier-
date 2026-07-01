@@ -147,7 +147,7 @@ export function OrderClient() {
   return (
     <div className="container-page py-10 md:py-14">
       <div className="mb-8">
-        <p className="eyebrow">Letzter Schritt</p>
+        <p className="eyebrow eyebrow-rule">Letzter Schritt</p>
         <h1 className="mt-2 text-3xl md:text-4xl">Deine Anfrage</h1>
         <p className="mt-2 max-w-xl text-pretty text-ink-soft">
           Unverbindlich und ohne Konto. Wir bestätigen alles persönlich, bevor
@@ -324,6 +324,10 @@ export function OrderClient() {
             >
               {submitting ? "Wird gesendet …" : "Anfrage absenden"}
             </button>
+            <p className="text-xs leading-relaxed text-ink-faint">
+              100 % von Hand gemalt · unverbindlich, ohne Konto · wir bestätigen
+              Preis &amp; Versand persönlich, bevor gemalt wird.
+            </p>
           </fieldset>
         </form>
       </div>
