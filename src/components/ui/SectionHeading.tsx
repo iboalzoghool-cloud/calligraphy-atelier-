@@ -19,7 +19,17 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      {eyebrow ? (
+        <p
+          className={`eyebrow flex items-center gap-3 ${
+            center ? "justify-center" : ""
+          }`}
+        >
+          <span className="h-px w-8 bg-gold" aria-hidden />
+          {eyebrow}
+          {center ? <span className="h-px w-8 bg-gold" aria-hidden /> : null}
+        </p>
+      ) : null}
       <h2 className="mt-3 text-balance text-3xl leading-[1.1] md:text-[2.6rem]">
         {title}
       </h2>

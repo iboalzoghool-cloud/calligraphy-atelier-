@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FloatingFrame } from "@/components/ui/FloatingFrame";
 
 interface GalleryItem {
   src: string;
@@ -57,20 +58,22 @@ export function Gallery() {
             key={item.src}
             className="group relative w-[68vw] max-w-[17rem] shrink-0 snap-start sm:w-64"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-line">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 68vw, 17rem"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                priority={i < 2}
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
-              <figcaption className="absolute bottom-3 left-3 text-sm font-medium text-canvas drop-shadow">
-                {item.caption}
-              </figcaption>
-            </div>
+            <FloatingFrame interactive glare float={false} shadow={false} maxTilt={9}>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-line shadow-soft transition-shadow duration-500 group-hover:shadow-lift">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 68vw, 17rem"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  priority={i < 2}
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
+                <figcaption className="absolute bottom-3 left-3 text-sm font-medium text-paper-2 drop-shadow">
+                  {item.caption}
+                </figcaption>
+              </div>
+            </FloatingFrame>
           </figure>
         ))}
       </div>
