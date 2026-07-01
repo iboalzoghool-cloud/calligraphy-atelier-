@@ -76,19 +76,37 @@ export function Hero() {
 
         <Reveal delay={0.1}>
           <div className="relative mx-auto w-full max-w-md">
-            {/* sanft driftender Rosé-Gold-Lichtschein hinter der Vorschau */}
-            <div
-              className="animate-drift pointer-events-none absolute inset-0 -z-10 scale-110"
-              aria-hidden
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(178,94,119,0.20), rgba(169,130,59,0.10) 55%, transparent 72%)",
-                filter: "blur(6px)",
-              }}
-            />
-            <PreviewCanvas state={HERO_DEMO} interactive={false} />
-            <p className="mt-3 text-center text-xs uppercase tracking-[0.18em] text-ink-faint">
-              Live-Vorschau im Konfigurator
+            <div className="relative">
+              {/* Spotlight + driftender Rosé-Gold-Schein – das Werk „ausgestellt" */}
+              <div
+                className="animate-drift pointer-events-none absolute inset-0 -z-10 scale-125"
+                aria-hidden
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 42%, rgba(255,251,244,0.85), rgba(178,94,119,0.16) 46%, rgba(169,130,59,0.10) 62%, transparent 74%)",
+                  filter: "blur(10px)",
+                }}
+              />
+              {/* Das Herz als schwebendes, drehbares Ausstellungsstück */}
+              <PreviewCanvas
+                state={HERO_DEMO}
+                interactive
+                shadow={false}
+                className="relative z-10"
+              />
+              {/* Atmender Boden-Schatten (schwebt mit) */}
+              <div
+                className="animate-breathe pointer-events-none absolute bottom-1 left-1/2 z-0 h-6 w-3/5 -translate-x-1/2 rounded-[50%]"
+                aria-hidden
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(45,22,30,0.5), rgba(45,22,30,0) 70%)",
+                  filter: "blur(10px)",
+                }}
+              />
+            </div>
+            <p className="mt-8 text-center text-xs uppercase tracking-[0.2em] text-ink-faint">
+              Ein echtes Unikat · von Hand gemalt
             </p>
           </div>
         </Reveal>

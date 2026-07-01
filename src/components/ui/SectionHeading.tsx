@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { InkStroke } from "@/components/ui/InkStroke";
+import { InkReveal } from "@/components/ui/InkReveal";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -30,9 +31,11 @@ export function SectionHeading({
           {center ? <span className="h-px w-8 bg-gold" aria-hidden /> : null}
         </p>
       ) : null}
-      <h2 className="mt-3 text-balance text-3xl leading-[1.1] md:text-[2.6rem]">
-        {title}
-      </h2>
+      <InkReveal>
+        <h2 className="mt-3 text-balance text-3xl leading-[1.1] md:text-[2.6rem]">
+          {title}
+        </h2>
+      </InkReveal>
       {stroke ? (
         <InkStroke
           variant="underline"

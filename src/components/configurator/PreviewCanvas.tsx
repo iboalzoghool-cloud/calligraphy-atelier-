@@ -14,12 +14,19 @@ interface PreviewCanvasProps {
   state: ConfiguratorState;
   /** Pointer-Tilt (Konfigurator) vs. sanftes Eigen-Drehen (Hero). */
   interactive?: boolean;
+  /** An FloatingFrame durchgereicht – für die Hero-Inszenierung. */
+  glare?: boolean;
+  float?: boolean;
+  shadow?: boolean;
   className?: string;
 }
 
 export function PreviewCanvas({
   state,
   interactive = true,
+  glare = true,
+  float = true,
+  shadow = true,
   className = "",
 }: PreviewCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -107,7 +114,13 @@ export function PreviewCanvas({
   }, [state, fontsReady, imgTick]);
 
   return (
-    <FloatingFrame interactive={interactive} className={className}>
+    <FloatingFrame
+      interactive={interactive}
+      glare={glare}
+      float={float}
+      shadow={shadow}
+      className={className}
+    >
       <canvas
         ref={canvasRef}
         role="img"
