@@ -21,7 +21,8 @@ export function NameShowcase() {
             <p className="mt-6 max-w-md text-pretty leading-relaxed text-ink-soft">
               Dein Name – oder der eines geliebten Menschen – von Hand in weiche
               Alkohol-Tinte geschrieben. Kein Druck, keine Kopie: ein Wort, das
-              bleibt und ein Gefühl schenkt.
+              bleibt und ein Gefühl schenkt. In deiner Farbwelt – Rosé, Lavendel,
+              Türkis oder Gold.
             </p>
             <Link href="/gestalten" className="btn btn-primary mt-8">
               Deinen Namen gestalten
@@ -29,22 +30,39 @@ export function NameShowcase() {
           </Reveal>
 
           <Reveal delay={0.1} className="order-1 lg:order-2">
-            <FloatingFrame
-              interactive
-              glare
-              float={false}
-              shadow={false}
-              maxTilt={8}
-              className="mx-auto w-full max-w-[19rem]"
-            >
-              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[1.5rem] border border-line shadow-lift">
-                <VideoLoop
-                  src="/videos/name-liebe.mp4"
-                  poster="/videos/name-liebe.jpg"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-            </FloatingFrame>
+            {/* Zwei echte Werke, zwei Farbwelten (Hochformat, handyfreundlich) */}
+            <div className="mx-auto grid max-w-md grid-cols-2 gap-4">
+              {[
+                {
+                  src: "/videos/name-liebe.mp4",
+                  poster: "/videos/name-liebe.jpg",
+                  offset: "",
+                },
+                {
+                  src: "/videos/name-lavendel.mp4",
+                  poster: "/videos/name-lavendel.jpg",
+                  offset: "sm:mt-10",
+                },
+              ].map((v) => (
+                <FloatingFrame
+                  key={v.src}
+                  interactive
+                  glare
+                  float={false}
+                  shadow={false}
+                  maxTilt={7}
+                  className={v.offset}
+                >
+                  <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[1.25rem] border border-line shadow-lift">
+                    <VideoLoop
+                      src={v.src}
+                      poster={v.poster}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
+                </FloatingFrame>
+              ))}
+            </div>
           </Reveal>
         </div>
       </div>
