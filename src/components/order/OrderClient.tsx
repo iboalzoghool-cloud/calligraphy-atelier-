@@ -26,7 +26,7 @@ const EMPTY: CustomerInfo = {
 };
 
 export function OrderClient() {
-  const { order } = useConfigurator();
+  const { order, ready } = useConfigurator();
   const [customer, setCustomer] = useState<CustomerInfo>(EMPTY);
   const [agbOk, setAgbOk] = useState(false);
   const [dsgvoOk, setDsgvoOk] = useState(false);
@@ -34,7 +34,12 @@ export function OrderClient() {
   const [delivered, setDelivered] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Kein Entwurf vorhanden (z. B. direkter Aufruf / Reload).
+  // Gespeicherter Zustand wird noch geladen – kein „leer“-Flackern zeigen.
+  if (!ready) {
+    return <div className="min-h-[60vh]" aria-hidden />;
+  }
+
+  // Kein Entwurf vorhanden (z. B. direkter Aufruf).
   if (!order) {
     return (
       <div className="container-page flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">

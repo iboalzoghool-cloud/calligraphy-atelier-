@@ -7,7 +7,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
 - [x] **P1 · Anfrage-Flow rettungssicher**: Erfolgsseite ohne Dev-Jargon;
       `delivered:false` → vorbefüllter Mailto an Founder-Mail + Insta-DM-Link +
       Entwurf-Download. `BRAND.email` echt. `.env.example`-Doku bleibt.
-- [ ] **P2 · Entwurf überlebt Reload**: Konfigurator-State + Order-Snapshot in
+- [x] **P2 · Entwurf überlebt Reload**: Konfigurator-State + Order-Snapshot in
       sessionStorage (TikTok-In-App-Browser-sicher), Hydration-sauber.
 - [ ] **P3 · Sticky-CTA-Neubau**: kompakt, safe-area, nach Hero ein-/am Footer
       ausblenden, Body-Scroll-Padding — verdeckt nirgends Content.
