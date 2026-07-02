@@ -44,3 +44,20 @@ Autonome Entscheidungen (Brahim schläft). Jede Zeile: Entscheidung + Warum.
     am Font-Swap des immer sichtbaren Logos unter simuliertem 4G (Hero ist
     wegen Fade-Animation kein LCP-Kandidat). TBT 0 ms, CLS 0, SI 1,4 s, alle
     übrigen Kategorien 100. Auf Vercel (CDN, AVIF, HTTP/2) real schneller.
+
+## Rebrand HDIA Atelier (2026-07-02)
+
+14. **Lockup-Reihenfolge:** هدية (gold) vor „HDIA Atelier“ — das Kalligrafische
+    führt, die Wortmarke erklärt. „ATELIER“ als Kapitälchen-Zusatz statt
+    gleichwertigem Namensteil (mobil kompakt).
+15. **هدية-Wortbild:** Aref Ruqaa (Website-Kalligrafiefont) via Chrome-Rendering
+    vektorisiert (potrace) → public/brand/hadiyya.svg mit currentColor;
+    fontkit-Shaping war fehlerhaft. Tausch gegen Brahims handgemalte Version =
+    eine Datei.
+16. **Markenstory an exakt 2 Stellen:** Hero-Subline („ein Geschenk, das es nur
+    einmal gibt“) + Warum-handgemalt („هدية heißt Geschenk …“). Bedeutungszeile
+    dezent im Footer statt Hero (Hero bleibt fokussiert auf den Namens-Catch).
+17. **JSON-LD ehrlich minimal:** LocalBusiness + Offer ab 29 € — kein
+    aggregateRating (keine Reviews vorhanden), keine erfundenen Öffnungszeiten.
+18. **Anlässe-Heading** ins Geschenk-Framing gedreht („Für die Momente, in denen
+    man schenkt“) — Karten-Texte unverändert (kein Geschenk-Overkill).
