@@ -65,24 +65,27 @@ export function Gallery() {
               key={item.src}
               className="group w-[80vw] max-w-[19rem] shrink-0 snap-center sm:w-72"
             >
-              <div
-                className="rounded-[1.4rem] border p-3 shadow-soft transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-lift"
+              {/* Ganze Karte = Tap-Ziel (mobil zählt der Daumen, nicht der Textlink) */}
+              <Link
+                href="/gestalten"
+                aria-label={`${item.title} anfragen`}
+                className="block rounded-[1.4rem] border p-3 shadow-soft transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-lift"
                 style={{
                   // Werkfarbe als Pastell-Feld RUND UM das Bild (nicht nur unter der Karte).
                   background: `linear-gradient(160deg, color-mix(in srgb, ${item.accent} 26%, #fbf7ee), color-mix(in srgb, ${item.accent} 9%, #fbf7ee))`,
                   borderColor: `color-mix(in srgb, ${item.accent} 30%, var(--color-line))`,
                 }}
               >
-                {/* Werk – unbeschnitten, sitzt wie gerahmt auf dem Farbfeld */}
-                <div className="overflow-hidden rounded-lg bg-canvas shadow-[inset_0_1px_2px_rgba(45,22,30,0.14)]">
+                {/* Einheitliche Bühne: jedes Werk unbeschnitten (contain) auf dem
+                    Pastell-Mat – gleiche Höhe für alle Karten, keine Löcher im Rail. */}
+                <div className="relative h-72 overflow-hidden rounded-lg">
                   <Image
                     src={item.src}
                     alt={item.alt}
-                    width={item.w}
-                    height={item.h}
+                    fill
                     sizes="(max-width: 640px) 80vw, 19rem"
                     quality={70}
-                    className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] [filter:drop-shadow(0_10px_18px_rgba(45,22,30,0.22))]"
                   />
                 </div>
                 <figcaption className="px-1.5 pb-1 pt-3">
@@ -112,16 +115,15 @@ export function Gallery() {
                         {item.verseRef ? ` · ${item.verseRef}` : ""}
                       </div>
                     </div>
-                    <Link
-                      href="/gestalten"
-                      className="mt-0.5 shrink-0 whitespace-nowrap text-[13px] font-medium transition-opacity hover:opacity-70"
+                    <span
+                      className="mt-0.5 shrink-0 whitespace-nowrap text-[13px] font-medium transition-opacity group-hover:opacity-70"
                       style={{ color: item.accent }}
                     >
                       Anfragen →
-                    </Link>
+                    </span>
                   </div>
                 </figcaption>
-              </div>
+              </Link>
             </figure>
           ))}
         </div>

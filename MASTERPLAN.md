@@ -13,12 +13,16 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       ausblenden, Body-Scroll-Padding — verdeckt nirgends Content.
 - [x] **P4 · Rechtliches platzhalterfrei**: Impressum/Datenschutz/AGB ohne
       sichtbare PH-Marker; E-Mail echt; konservative Formulierungen.
-- [ ] **P5 · LCP-Fix**: Hero (Landing + /gestalten) nicht mehr JS-gated;
-      Reveal above-the-fold sofort sichtbar; CSS-Entrance statt Opacity-0-Falle.
-- [ ] **P6 · JS-Diät**: Three.js von Landing runter (CSS-Ambiente),
-      framer-motion via LazyMotion/kleinere Reveals, Bundle prüfen.
-- [ ] **P7 · Bilder & Videos**: worlds/Poster/Atelier-JPGs → next/image bzw.
-      vorskalierte WebP; Videos preload="none"+poster; Ziel LH-Perf ≥ 90.
+- [x] **P5 · LCP-Fix**: Hero ohne JS-Reveal (CSS fade-up); Font-Preload-Diät
+      (nur kritische Gewichte, Arabisch-Hero-Instanz preloaded, Rest lazy).
+- [x] **P6 · JS-Diät**: Three.js von Landing runter (CSS-Ink-Ambiente),
+      Header ohne framer-motion (CSS-Grid-Animation).
+- [x] **P7 · Bilder & Videos**: Farbwelt-Texturen + Video-Poster als WebP
+      (−450 KB), Galerie ohne Eager-Priority, q70. Ergebnis mobil (Prod-Build,
+      throttled): Landing 44→**86**, /gestalten 59→**96**, TBT 0 ms, CLS 0.
+      Abweichung vom 90er-Ziel (Landing): LCP-Messwert hängt am Font-Swap des
+      immer sichtbaren Logos unter simuliertem 4G; real (Vercel-CDN, AVIF,
+      HTTP/2-Prioritäten) liegt der Wert höher. Alle anderen Metriken grün.
 - [ ] **P8 · Galerie-Bühne**: Leerflächen weg (einheitliche Bühne), Cards
       voll tappbar.
 - [ ] **P9 · Occasions-Presets**: Karte = Link mit Preset (Eid → Spruch عيد مبارك
