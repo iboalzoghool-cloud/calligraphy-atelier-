@@ -109,3 +109,37 @@ Warum-handgemalt („هدية heißt Geschenk …“), Bedeutungszeile im Footer
 **Technik:** PWA-Manifest, Icons, JSON-LD (LocalBusiness/Offer ab 29 €),
 OG-Bild mit Gold-هدية, Keywords (Namensbild, Geschenk personalisiert
 handgemalt). Alle Gates grün (lint/tsc/build, E2E-Flow, mobil+desktop).
+
+---
+
+## Nachtrag · Shop-Loop (2026-07-02): echte Bestellung + Editionen
+
+**Was neu ist:** Der Konfigurator mündet jetzt in einen echten Kauf
+(Stripe-Checkout, NUR Testmodus): „Jetzt kaufen“ → Stripe sammelt Zahlung +
+Lieferadresse → Danke-Seite → zwei Mails (Bestätigung an die Kundin,
+vollständiger Produktionsauftrag an dich; bei Editionen mit „→ bei Gelato
+aufgeben“). Bestell-Archiv = Stripe-Dashboard (Session-Metadata trägt alle
+Produktionsdaten — keine eigene Datenbank nötig). Die unverbindliche Anfrage
+bleibt als aufklappbarer Sekundärweg. Dazu die neue Editionen-Sektion:
+5 echte Motive als Kunstdruck in 3 Größen (19–39 €), überall klar
+gekennzeichnet (Kunstdruck·Edition vs. Original·Unikat), Copy-Wahrheit
+wiederhergestellt (kein „kein Druck, keine Kopie“ mehr — grep-sauber),
+Widerrufsseite + AGB im Zwei-Linien-Modell (ENTWÜRFE!), Stripe im Datenschutz.
+
+**E2E-Beweis (Mock, da keine Keys in der Env):** Original 49 € (Eid-Preset +
+Spruch) und Edition A3 29 € — beide bis zur Danke-Seite durchgespielt, beide
+Mails korrekt komponiert (Log, da Resend-Key fehlt). Ohne Keys in Produktion
+antwortet der Kauf sauber mit Fallback auf die Anfrage.
+
+**Was du vor dem Verkaufen tun musst:** BLOCKERS #0 (Stripe-Test-Keys +
+Webhook, 10 Min; Live erst nach Rechtsprüfung), #1 (Resend — sonst kommen
+Bestell-Mails nicht an, Zahlungen liefen trotzdem in Stripe auf!), Gelato-
+Probedrucke der 5 Motive.
+
+**Würde ich hier selbst bestellen?** Beim Original: ja — Live-Vorschau,
+ehrliche Produktfotos, klarer Preis, sichere Zahlung, transparente
+Lieferzeit; das fühlt sich vertrauenswürdig an. Bei den Editionen: fast —
+mir fehlen echte Fotos der gedruckten Drucke (aktuell zeigen die Karten die
+Original-Werkfotos) und eine Angabe zu Papier/Grammatur. Vor dem ersten
+Editionen-Marketing: einen Gelato-Probedruck fotografieren und die Karten
+damit bestücken — dann wäre auch das ein klares Ja.

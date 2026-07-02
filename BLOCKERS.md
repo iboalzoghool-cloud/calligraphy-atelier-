@@ -1,5 +1,14 @@
 # BLOCKERS · braucht Brahim (kann die Session nicht selbst lösen)
 
+0. **Shop scharf schalten (Stripe-TESTMODUS, ~10 Min):**
+   - stripe.com → Testmodus → `STRIPE_SECRET_KEY` (sk_test_…) als Vercel-Env.
+   - Webhook-Endpoint anlegen: `https://<domain>/api/stripe-webhook`,
+     Event `checkout.session.completed` → `STRIPE_WEBHOOK_SECRET` setzen.
+   - Testkauf mit Karte 4242 4242 4242 4242 durchspielen.
+   - **Live-Schaltung erst nach juristischer Prüfung der Rechtstexte
+     (AGB/Widerruf sind ENTWÜRFE) + eigener Entscheidung** — der Code
+     akzeptiert bewusst nur Test-Keys; für Live einmal melden.
+   - Für Editionen: Gelato-Konto + ein Probedruck pro Motiv (Farbtreue!).
 1. **E-Mail-Zustellung der Anfragen scharf schalten (5 Min):**
    - resend.com-Konto anlegen (kostenlos), API-Key erzeugen.
    - Auf Vercel (Projekt calligraphy-atelier) Env-Vars setzen:

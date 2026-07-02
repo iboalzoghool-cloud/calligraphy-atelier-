@@ -61,3 +61,25 @@ Autonome Entscheidungen (Brahim schläft). Jede Zeile: Entscheidung + Warum.
     aggregateRating (keine Reviews vorhanden), keine erfundenen Öffnungszeiten.
 18. **Anlässe-Heading** ins Geschenk-Framing gedreht („Für die Momente, in denen
     man schenkt“) — Karten-Texte unverändert (kein Geschenk-Overkill).
+
+## Shop-Loop (2026-07-02, nachmittags)
+
+19. **Stripe via REST statt SDK:** Checkout-Session = ein form-encoded POST,
+    Webhook-Signatur = HMAC-SHA256 (Web Crypto). Null neue Dependencies.
+    Live-Keys werden im Code aktiv verweigert (nur sk_test_ akzeptiert).
+20. **Persistenz = Stripe-Session-Metadata:** Die Session trägt alle
+    Produktionsdaten (name_auf_bild, farbwelt, schrift, spruch …) — das
+    Stripe-Dashboard IST die Bestellliste; keine eigene Datenbank. Mails
+    (Kundin + Produktionsauftrag an Brahim) sind die Arbeitsauslöser.
+21. **Mock-Modus ohne Keys:** identischer Datenpfad wie der Webhook
+    (sendOrderMails mit Fixture-Session) → E2E lokal beweisbar; in
+    Produktion ohne Keys antwortet /api/checkout mit 503 und die UI fällt
+    auf die unverbindliche Anfrage zurück (Feature-Flag-Verhalten).
+22. **Kein Warenkorb in v1:** Ein-Produkt-Checkout (Original ODER Edition)
+    — weniger Reibung, deutlich weniger Code; Mehrfachkauf = mehrfacher
+    Checkout. Mockup-PNG geht NICHT in die Kauf-Mail (Stripe-Metadata-Limit);
+    alle Textdaten reichen für die Produktion, Anfrage-Weg behält den Anhang.
+23. **Editionen = 5 Motive × A4/A3/50×70 (19/29/39 €)** aus echten
+    Galerie-Werken; „Kunstdruck · Edition“-Badge an jeder Karte, Galerie-
+    Originale tragen das Gegen-Label. Versand pauschal inklusive
+    (Endpreis-Logik, § 19 UStG ohne USt-Ausweis).
