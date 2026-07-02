@@ -9,7 +9,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       Entwurf-Download. `BRAND.email` echt. `.env.example`-Doku bleibt.
 - [x] **P2 · Entwurf überlebt Reload**: Konfigurator-State + Order-Snapshot in
       sessionStorage (TikTok-In-App-Browser-sicher), Hydration-sauber.
-- [ ] **P3 · Sticky-CTA-Neubau**: kompakt, safe-area, nach Hero ein-/am Footer
+- [x] **P3 · Sticky-CTA-Neubau**: kompakt, safe-area, nach Hero ein-/am Footer
       ausblenden, Body-Scroll-Padding — verdeckt nirgends Content.
 - [ ] **P4 · Rechtliches platzhalterfrei**: Impressum/Datenschutz/AGB ohne
       sichtbare PH-Marker; E-Mail echt; konservative Formulierungen.
