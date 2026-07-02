@@ -73,15 +73,17 @@ export function Configurator() {
 
   return (
     <div className="container-page py-8 md:py-12">
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-        {/* ── Live-Vorschau ── */}
-        <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-16">
+        {/* ── Live-Vorschau ──
+            Mobil: klein & sticky unter dem Header, damit jede Wahl (Farbwelt,
+            Stil, Spruch) sofort sichtbar bleibt. Desktop: groß in der Spalte. */}
+        <div className="sticky top-16 z-20 -mx-5 bg-paper px-5 pb-2 shadow-[0_14px_14px_-14px_rgba(36,29,21,0.14)] lg:top-24 lg:mx-0 lg:self-start lg:bg-transparent lg:px-0 lg:pb-0 lg:shadow-none">
           <PreviewCanvas
             state={state}
             interactive
-            className="mx-auto w-full max-w-[15rem] py-4 sm:max-w-xs lg:max-w-md"
+            className="mx-auto w-full max-w-[10.5rem] py-2 sm:max-w-[13rem] lg:max-w-md lg:py-4"
           />
-          <PreviewNote className="mt-2" />
+          <PreviewNote className="mt-2 hidden lg:block" />
         </div>
 
         {/* ── Schritte ── */}

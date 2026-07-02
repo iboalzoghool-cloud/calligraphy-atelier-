@@ -41,13 +41,18 @@ export function StepName() {
           <button
             type="button"
             onClick={() => update({ name: translit.arabic ?? state.name })}
-            className="mt-3 inline-flex items-center gap-2 rounded-full border border-gold-soft bg-rose-soft/40 px-3.5 py-1.5 text-sm text-ink transition hover:border-gold"
+            className="mt-3 flex w-full items-center justify-between gap-3 rounded-xl border border-line-strong bg-surface px-4 py-3 text-left text-sm text-ink shadow-soft transition hover:border-ink"
           >
-            {translit.source === "mapped"
-              ? "In arabischer Kalligrafie:"
-              : "In Arabisch (ungefähr):"}
-            <span dir="rtl" className="font-arabic text-lg leading-none">
-              {translit.arabic}
+            <span className="flex items-center gap-2">
+              {translit.source === "mapped"
+                ? "Auf Arabisch:"
+                : "Auf Arabisch (ungefähr):"}
+              <span dir="rtl" className="font-arabic text-xl leading-none">
+                {translit.arabic}
+              </span>
+            </span>
+            <span className="shrink-0 font-medium text-rose-deep">
+              Übernehmen →
             </span>
           </button>
         ) : null}

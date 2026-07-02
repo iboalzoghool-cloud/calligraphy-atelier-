@@ -161,7 +161,9 @@ export const CALLIGRAPHY_FONTS: CalligraphyFont[] = [
   },
 ];
 
-export const DEFAULT_FONT_ID: CalligraphyFontId = "arefInk";
+/* Default = klassisches Schwarz (wie die Hero-Herzen & die meisten echten
+   Werke). Der rot-orange „Ink“-Color-Font bleibt bewusste Option. */
+export const DEFAULT_FONT_ID: CalligraphyFontId = "aref";
 
 export function getCalligraphyFont(id: CalligraphyFontId): CalligraphyFont {
   return CALLIGRAPHY_FONTS.find((f) => f.id === id) ?? CALLIGRAPHY_FONTS[0];

@@ -28,7 +28,7 @@ export function Hero() {
       shape: "heart",
       sizeId: "heart-29",
       backgroundId: bgIdForWorld(active),
-      fontId: "arefInk",
+      fontId: "aref",
     });
     router.push("/gestalten");
   }

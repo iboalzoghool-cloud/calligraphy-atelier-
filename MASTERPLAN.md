@@ -25,7 +25,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       HTTP/2-Prioritäten) liegt der Wert höher. Alle anderen Metriken grün.
 - [x] **P8 · Galerie-Bühne**: Leerflächen weg (einheitliche Bühne), Cards
       voll tappbar.
-- [ ] **P9 · Occasions-Presets**: Karte = Link mit Preset (Eid → Spruch عيد مبارك
+- [x] **P9 · Occasions-Presets**: Karte = Link mit Preset (Eid → Spruch عيد مبارك
       + Farbwelt), ganze Karte Tap-Ziel ≥ 52 px.
 - [ ] **P10 · Konfigurator-Polish**: Default-Font schwarz (aref), Arabisch-Badge
       als echter Button erkennbar, Sticky-Mini-Preview auf Mobile.
