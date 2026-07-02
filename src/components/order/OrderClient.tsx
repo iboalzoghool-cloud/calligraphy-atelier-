@@ -159,7 +159,7 @@ export function OrderClient() {
             />
             <a
               href={order.mockupDataUrl}
-              download="kalligraphie-entwurf.png"
+              download="hdia-entwurf.png"
               className="btn btn-secondary mt-6"
             >
               Entwurf als Bild speichern

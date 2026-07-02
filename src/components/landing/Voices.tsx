@@ -43,7 +43,7 @@ export function Voices() {
               Aufmerksamkeit für deinen Namen. Kein Druck, keine Maschine.
             </blockquote>
             <figcaption className="mt-6 text-sm tracking-wide text-paper-2/70">
-              Ibrahim · das Atelier hinter {BRAND.name}
+              Ibrahim · {BRAND.name}
             </figcaption>
           </figure>
         </Reveal>

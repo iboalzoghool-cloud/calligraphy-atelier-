@@ -75,9 +75,11 @@ export function Hero() {
               </svg>
             </span>
           </h1>
+          {/* Markenstory-Anker 2: das Geschenk im ersten Satz */}
           <p className="mt-5 max-w-md text-pretty text-[1.05rem] leading-relaxed text-ink-soft">
-            Von Hand gemalt, kein Druck, keine Kopie. Wähle eine Farbwelt, schreib
-            einen Namen – und sieh ihn live auf dem Herz erscheinen.
+            Von Hand gemalt, kein Druck, keine Kopie – ein Geschenk, das es nur
+            einmal gibt. Wähle eine Farbwelt, schreib einen Namen und sieh ihn
+            live auf dem Herz erscheinen.
           </p>
 
           {/* Live-Namensfeld – der interaktive Catch */}

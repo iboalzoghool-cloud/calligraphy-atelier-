@@ -121,7 +121,7 @@ export async function POST(req: Request) {
   const attachments = [];
   const match = /^data:image\/png;base64,(.+)$/.exec(mockupDataUrl ?? "");
   if (match) {
-    attachments.push({ filename: "kalligraphie-mockup.png", content: match[1] });
+    attachments.push({ filename: "hdia-entwurf.png", content: match[1] });
   }
 
   try {
@@ -132,7 +132,7 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.ORDER_FROM || "Kalligraphie <onboarding@resend.dev>",
+        from: process.env.ORDER_FROM || "HDIA Atelier <onboarding@resend.dev>",
         to: [to],
         reply_to: customer.email,
         subject: `Neue Anfrage – ${customer.name}`,

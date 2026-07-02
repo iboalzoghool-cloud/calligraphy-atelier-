@@ -1,4 +1,4 @@
-# Kalligraphie
+# HDIA Atelier
 
 Hochwertiger Vorschau-Konfigurator + Bestellsystem für handgemalte
 Kalligrafie-Unikate. Die Komposition entsteht **clientseitig** im Browser
@@ -134,10 +134,10 @@ cp .env.example .env.local
 ```
 RESEND_API_KEY=re_xxx
 ORDER_TO=deine@email.de
-ORDER_FROM="Kalligraphie <bestellung@deine-domain.de>"   # Domain bei Resend verifizieren
+ORDER_FROM="HDIA Atelier <bestellung@deine-domain.de>"   # Domain bei Resend verifizieren
 ```
 
-Zum reinen Testen funktioniert `ORDER_FROM="Kalligraphie <onboarding@resend.dev>"`.
+Zum reinen Testen funktioniert `ORDER_FROM="HDIA Atelier <onboarding@resend.dev>"`.
 
 Die Bestell-E-Mail enthält die komplette Konfiguration **und das PNG-Mockup als
 Anhang**.

@@ -58,9 +58,10 @@ export function FullBleedMoment() {
       <div className="container-page relative py-24 text-center md:py-32">
         <InkReveal>
           <p className="eyebrow justify-center text-gold-soft">Warum handgemalt</p>
+          {/* Markenstory-Anker 1: hdia = هدية = Geschenk */}
           <p className="mx-auto mt-6 max-w-3xl text-balance font-display text-[1.7rem] italic leading-[1.32] text-paper-2 md:text-[2.6rem]">
-            Kein Produkt aus dem Regal — ein Stück Zuneigung, das vor deinen
-            Augen entsteht.
+            هدية heißt Geschenk. Und ein Name, von Hand gemalt, ist das
+            persönlichste, das du machen kannst.
           </p>
         </InkReveal>
       </div>

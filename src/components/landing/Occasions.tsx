@@ -21,8 +21,8 @@ export function Occasions() {
       <div className="container-page">
         <SectionHeading
           eyebrow="Anlässe"
-          title="Für die Momente, die zählen"
-          intro="Ob Fest, Familie oder großer Tag – ein Name in Tinte sagt mehr als ein gekauftes Geschenk."
+          title="Für die Momente, in denen man schenkt"
+          intro="Eid, Muttertag, Hochzeit, Geburt – ein Name in Tinte sagt mehr als alles Gekaufte."
           stroke
         />
 

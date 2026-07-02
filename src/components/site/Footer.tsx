@@ -16,6 +16,10 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Logo />
+            {/* Bedeutungszeile – die Marke in einem Atemzug erklärt */}
+            <p className="mt-3 text-sm tracking-wide text-ink-faint">
+              {BRAND.meaning}
+            </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
               {BRAND.promise}
             </p>

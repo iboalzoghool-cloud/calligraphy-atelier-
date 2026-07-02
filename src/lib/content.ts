@@ -7,7 +7,13 @@
 */
 
 export const BRAND = {
-  name: "Kalligraphie",
+  name: "HDIA Atelier",
+  /** Kurzform der Wortmarke. */
+  short: "HDIA",
+  /** Arabisches Wortbild der Marke (هدية = das Geschenk). */
+  arabic: "هدية",
+  /** Bedeutungszeile – dezent erzählt (Hero/Footer). */
+  meaning: "hdia — هدية — das Geschenk",
   /** Kurzer Markenclaim (Hero/Meta). */
   tagline: "Handgemalte Namenskunst",
   /** Ein Satz, der die Marke trägt. */
