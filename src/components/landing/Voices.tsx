@@ -42,9 +42,8 @@ export function Voices() {
               Ich male jedes Stück selbst – langsam, mit echter Tinte und voller
               Aufmerksamkeit für deinen Namen. Kein Druck, keine Maschine.
             </blockquote>
-            <figcaption className="mt-6 text-sm tracking-wide text-paper-2/55">
-              {/* PLATZHALTER: Name der Künstlerin / des Künstlers */}
-              Das Atelier hinter {BRAND.name}
+            <figcaption className="mt-6 text-sm tracking-wide text-paper-2/70">
+              Ibrahim · das Atelier hinter {BRAND.name}
             </figcaption>
           </figure>
         </Reveal>
@@ -71,9 +70,22 @@ export function Voices() {
             ))}
           </div>
         ) : (
-          <p className="mx-auto mt-14 text-center text-xs uppercase tracking-[0.2em] text-paper-2/45">
-            Echte Kundenstimmen folgen in Kürze
-          </p>
+          /* Ehrliche Fakten statt Fake-Reviews oder „folgt in Kürze“-Schild. */
+          <div className="mx-auto mt-14 flex max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-4 text-center">
+            {[
+              "Seit dem 16. Lebensjahr an der Feder",
+              "Jedes Stück einzeln von Hand gemalt",
+              `Atelier in ${BRAND.city}`,
+            ].map((fact) => (
+              <span
+                key={fact}
+                className="inline-flex items-center gap-2.5 text-sm tracking-wide text-paper-2/80"
+              >
+                <span className="h-1 w-1 rounded-full bg-gold-soft" aria-hidden />
+                {fact}
+              </span>
+            ))}
+          </div>
         )}
       </div>
     </section>

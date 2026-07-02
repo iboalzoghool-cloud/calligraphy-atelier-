@@ -8,7 +8,8 @@ import { PaperTexture } from "@/components/ui/PaperTexture";
 import { BRAND } from "@/lib/content";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kalligraphie.example"), // PLATZHALTER: echte Domain (Phase 2)
+  // Vercel-Prod-URL; bei eigener Domain hier tauschen.
+  metadataBase: new URL("https://calligraphy-atelier.vercel.app"),
   title: {
     default: `${BRAND.name} — ${BRAND.tagline}`,
     template: `%s · ${BRAND.name}`,
@@ -33,6 +34,10 @@ export const metadata: Metadata = {
       "Handgemalte Kalligrafie-Kunst als Unikat. Gestalte dein Stück in der Live-Vorschau.",
     type: "website",
     locale: "de_DE",
+  },
+  // OG-Bild kommt aus src/app/opengraph-image.jpg (File-Convention).
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

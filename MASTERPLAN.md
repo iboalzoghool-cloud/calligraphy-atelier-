@@ -27,7 +27,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       voll tappbar.
 - [x] **P9 · Occasions-Presets**: Karte = Link mit Preset (Eid → Spruch عيد مبارك
       + Farbwelt), ganze Karte Tap-Ziel ≥ 52 px.
-- [ ] **P10 · Konfigurator-Polish**: Default-Font schwarz (aref), Arabisch-Badge
+- [x] **P10 · Konfigurator-Polish**: Default-Font schwarz (aref), Arabisch-Badge
       als echter Button erkennbar, Sticky-Mini-Preview auf Mobile.
 - [ ] **P11 · Voices ehrlich**: Platzhalterzeile raus → echte Fakten-Zeile +
       Founder-Name am Zitat.
