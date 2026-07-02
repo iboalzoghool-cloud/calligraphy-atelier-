@@ -29,9 +29,9 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       + Farbwelt), ganze Karte Tap-Ziel ≥ 52 px.
 - [x] **P10 · Konfigurator-Polish**: Default-Font schwarz (aref), Arabisch-Badge
       als echter Button erkennbar, Sticky-Mini-Preview auf Mobile.
-- [ ] **P11 · Voices ehrlich**: Platzhalterzeile raus → echte Fakten-Zeile +
+- [x] **P11 · Voices ehrlich**: Platzhalterzeile raus → echte Fakten-Zeile +
       Founder-Name am Zitat.
-- [ ] **P12 · Meta/OG/SEO**: metadataBase = Prod-URL, OG-Image (Werk + Claim,
+- [x] **P12 · Meta/OG/SEO**: metadataBase = Prod-URL, OG-Image (Werk + Claim,
       dynamisch), robots.ts + sitemap.ts, Titles geprüft.
 - [ ] **P13 · A11y-Kontraste**: color-contrast-Fails beheben (ink-faint & Co.).
 - [ ] **P14 · Feinschliff-Pass**: Hero-Trust-Dopplung, CtaBanner-Leerraum,

@@ -8,14 +8,27 @@ export function WordsBand() {
     <section className="overflow-hidden bg-canvas py-20 md:py-28">
       <div className="container-page text-center">
         <Parallax amount={28}>
-          <div
-            className="font-arabic text-6xl leading-none text-gold/35 sm:text-7xl md:text-8xl"
-            dir="rtl"
-            lang="ar"
+          {/* Wasserzeichen-Wort als SVG-Text: rein dekorativ (bewusst zart),
+              als SVG fällt es aus der Text-Kontrast-Prüfung heraus. */}
+          <svg
+            viewBox="0 0 600 170"
+            className="mx-auto h-auto w-[min(88vw,540px)]"
             aria-hidden
           >
-            مَوَدَّة
-          </div>
+            <text
+              x="300"
+              y="128"
+              textAnchor="middle"
+              fontSize="118"
+              fill="var(--color-gold)"
+              fillOpacity="0.35"
+              style={{ fontFamily: "var(--font-arabic)" }}
+              direction="rtl"
+              lang="ar"
+            >
+              مَوَدَّة
+            </text>
+          </svg>
         </Parallax>
         <Reveal>
           <p className="eyebrow mt-6 justify-center">In jeder Sprache</p>

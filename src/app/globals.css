@@ -17,7 +17,7 @@
   --color-paper-2: #fbf6ea; /* helle Fläche / Text auf Dunkel */
   --color-ink: #241d15; /* Primärtext (warmes Braun-Schwarz) */
   --color-ink-soft: #6a6053; /* Sekundärtext */
-  --color-ink-faint: #9a8d7d; /* tertiär / Captions */
+  --color-ink-faint: #716757; /* tertiär / Captions */
   --color-line: #ded6c6; /* Hairlines / Rahmen */
   --color-line-strong: #cfc4b0;
 
@@ -190,7 +190,8 @@
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    /* dunkleres Text-Gold: 5:1 auf Papier (A11y); Deko-Gold bleibt --color-gold */
+    color: #7d5f28;
   }
   /* Eyebrow mit Gold-Hairline davor (── Label) */
   .eyebrow-rule {
