@@ -109,19 +109,19 @@ export type Background = GradientBackground | PhotoBackground;
   Scans (≥ 1400 px) nach /public/backgrounds/worlds/ legen (gleiche Dateinamen).
 */
 export const BACKGROUNDS: Background[] = [
-  { id: "rose", kind: "photo", label: "Rosé & Gold", src: "/backgrounds/worlds/rose.jpg" },
-  { id: "blush-gold", kind: "photo", label: "Blush & Gold", src: "/backgrounds/worlds/blush-gold.jpg" },
-  { id: "magenta-gold", kind: "photo", label: "Magenta & Gold", src: "/backgrounds/worlds/magenta-gold.jpg" },
-  { id: "mauve", kind: "photo", label: "Altrosa & Gold", src: "/backgrounds/worlds/mauve.jpg" },
-  { id: "lavendel-gold", kind: "photo", label: "Lavendel & Gold", src: "/backgrounds/worlds/lavendel-gold.jpg" },
-  { id: "koralle", kind: "photo", label: "Koralle & Gold", src: "/backgrounds/worlds/koralle.jpg" },
-  { id: "sand-gold", kind: "photo", label: "Sand & Gold", src: "/backgrounds/worlds/sand-gold.jpg" },
-  { id: "petrol-gold", kind: "photo", label: "Petrol & Gold", src: "/backgrounds/worlds/petrol-gold.jpg" },
+  { id: "rose", kind: "photo", label: "Rosé & Gold", src: "/backgrounds/worlds/rose.webp" },
+  { id: "blush-gold", kind: "photo", label: "Blush & Gold", src: "/backgrounds/worlds/blush-gold.webp" },
+  { id: "magenta-gold", kind: "photo", label: "Magenta & Gold", src: "/backgrounds/worlds/magenta-gold.webp" },
+  { id: "mauve", kind: "photo", label: "Altrosa & Gold", src: "/backgrounds/worlds/mauve.webp" },
+  { id: "lavendel-gold", kind: "photo", label: "Lavendel & Gold", src: "/backgrounds/worlds/lavendel-gold.webp" },
+  { id: "koralle", kind: "photo", label: "Koralle & Gold", src: "/backgrounds/worlds/koralle.webp" },
+  { id: "sand-gold", kind: "photo", label: "Sand & Gold", src: "/backgrounds/worlds/sand-gold.webp" },
+  { id: "petrol-gold", kind: "photo", label: "Petrol & Gold", src: "/backgrounds/worlds/petrol-gold.webp" },
   {
     id: "navy-gold",
     kind: "photo",
     label: "Marine & Gold",
-    src: "/backgrounds/worlds/navy-gold.jpg",
+    src: "/backgrounds/worlds/navy-gold.webp",
     // Freigestelltes Herz dieser Farbwelt (echtes Motiv). TODO (Founder):
     // weitere Farbwelten analog ergänzen: /backgrounds/hearts/<id>.png
     heartSrc: "/backgrounds/hearts/navy-gold.png",

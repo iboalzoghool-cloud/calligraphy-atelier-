@@ -37,12 +37,12 @@ export function NameShowcase() {
               {[
                 {
                   src: "/videos/name-liebe.mp4",
-                  poster: "/videos/name-liebe.jpg",
+                  poster: "/videos/name-liebe.webp",
                   offset: "-rotate-2",
                 },
                 {
                   src: "/videos/name-lavendel.mp4",
-                  poster: "/videos/name-lavendel.jpg",
+                  poster: "/videos/name-lavendel.webp",
                   offset: "rotate-2 sm:mt-10",
                 },
               ].map((v) => (

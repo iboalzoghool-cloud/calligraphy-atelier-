@@ -22,21 +22,21 @@ export interface HeartSet {
 export const HEART_SETS: HeartSet[] = [
   {
     key: "Rosé",
-    tex: "/backgrounds/worlds/rose.jpg",
+    tex: "/backgrounds/worlds/rose.webp",
     bgId: "rose",
     ink: "#7A3247",
     glow: "radial-gradient(circle, rgba(178,94,119,.26), rgba(169,130,59,.10) 55%, transparent 72%)",
   },
   {
     key: "Petrol",
-    tex: "/backgrounds/worlds/petrol-gold.jpg",
+    tex: "/backgrounds/worlds/petrol-gold.webp",
     bgId: "petrol-gold",
     ink: "#234E50",
     glow: "radial-gradient(circle, rgba(63,107,110,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
   },
   {
     key: "Blau",
-    tex: "/backgrounds/worlds/navy-gold.jpg",
+    tex: "/backgrounds/worlds/navy-gold.webp",
     bgId: "navy-gold",
     ink: "#1E2E52",
     glow: "radial-gradient(circle, rgba(40,60,100,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
@@ -241,7 +241,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel, latin = false }: H
             onClick={() => onSelect(s.key)}
             aria-label={`Farbwelt ${s.key}`}
             aria-pressed={s.key === active}
-            className="h-9 w-9 rounded-full bg-cover bg-center transition"
+            className="h-11 w-11 rounded-full bg-cover bg-center transition"
             style={{
               backgroundImage: `url(${s.tex})`,
               outline:

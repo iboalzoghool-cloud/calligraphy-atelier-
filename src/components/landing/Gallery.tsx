@@ -60,7 +60,7 @@ export function Gallery() {
       {/* Wischbare Slideshow – jedes Werk „gerahmt" auf dem Pastell-Feld seiner Farbe */}
       <Reveal>
         <div className="no-scrollbar mt-10 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 md:mt-12 md:gap-6 md:px-[max(2rem,calc((100vw-78rem)/2+2rem))]">
-          {ITEMS.map((item, i) => (
+          {ITEMS.map((item) => (
             <figure
               key={item.src}
               className="group w-[80vw] max-w-[19rem] shrink-0 snap-center sm:w-72"
@@ -81,8 +81,8 @@ export function Gallery() {
                     width={item.w}
                     height={item.h}
                     sizes="(max-width: 640px) 80vw, 19rem"
+                    quality={70}
                     className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    priority={i < 2}
                   />
                 </div>
                 <figcaption className="px-1.5 pb-1 pt-3">
