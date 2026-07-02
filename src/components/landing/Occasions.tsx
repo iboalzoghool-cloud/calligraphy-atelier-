@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { InkSplashes } from "@/components/ui/InkSplashes";
+import { InkBloom } from "@/components/ui/InkBloom";
 import { OCCASIONS } from "@/lib/content";
 
 // Jede Anlass-Karte trägt eine eigene Farbwelt (Rosé · Teal · Gold · Terra) –
@@ -39,13 +40,16 @@ export function Occasions() {
                 }}
               >
                 <div>
-                  <div
-                    className={`font-arabic text-2xl leading-none ${a.text}`}
-                    dir="rtl"
-                    lang="ar"
-                  >
-                    {o.ar}
-                  </div>
+                  {/* Farbklecks + Kalligrafie erscheinen beim Scrollen (Werkfarbe der Karte) */}
+                  <InkBloom color={a.hex} delay={i * 0.08} strength={0.2}>
+                    <div
+                      className={`font-arabic text-2xl leading-none ${a.text}`}
+                      dir="rtl"
+                      lang="ar"
+                    >
+                      {o.ar}
+                    </div>
+                  </InkBloom>
                   <h3 className="mt-4 font-display text-xl">{o.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                     {o.text}

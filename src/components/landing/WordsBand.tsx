@@ -1,5 +1,6 @@
 import { WritingWord } from "@/components/ui/WritingWord";
 import { InkStroke } from "@/components/ui/InkStroke";
+import { InkBloom } from "@/components/ui/InkBloom";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
 
@@ -32,9 +33,12 @@ export function WordsBand() {
         </Parallax>
         <Reveal>
           <p className="eyebrow mt-6 justify-center">In jeder Sprache</p>
-          <div className="mt-6 text-5xl text-ink sm:text-6xl md:text-7xl">
-            <WritingWord />
-          </div>
+          {/* Tinten-Klecks blüht auf, während die Worte sich schreiben */}
+          <InkBloom color="#b25e77" strength={0.14} className="mt-6 w-full">
+            <div className="text-5xl text-ink sm:text-6xl md:text-7xl">
+              <WritingWord />
+            </div>
+          </InkBloom>
           <p className="mx-auto mt-8 max-w-md text-pretty leading-relaxed text-ink-soft">
             Ein Name, ein Wort, ein Segen – von Hand geschrieben. Kalligrafie ist
             die Sprache der Zuneigung, auf Arabisch wie in deiner.

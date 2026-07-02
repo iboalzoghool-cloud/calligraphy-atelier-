@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { InkBloom } from "@/components/ui/InkBloom";
 
 export function CtaBanner() {
   return (
@@ -19,13 +20,15 @@ export function CtaBanner() {
               className="pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-gold/25 blur-3xl"
               aria-hidden
             />
-            <p
-              className="relative font-arabic text-3xl text-gold-soft md:text-4xl"
-              dir="rtl"
-              lang="ar"
-            >
-              اسمٌ في حبر
-            </p>
+            <InkBloom color="#c6a25a" strength={0.22} className="relative">
+              <p
+                className="font-arabic text-3xl text-gold-soft md:text-4xl"
+                dir="rtl"
+                lang="ar"
+              >
+                اسمٌ في حبر
+              </p>
+            </InkBloom>
             <h2 className="relative mx-auto mt-5 max-w-2xl text-balance text-3xl text-paper-2 md:text-[2.7rem] md:leading-[1.1]">
               Verschenke einen Namen, der bleibt.
             </h2>
