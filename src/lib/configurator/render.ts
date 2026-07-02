@@ -246,6 +246,7 @@ function applyGold(
   y: number,
   w: number,
   h: number,
+  outline = true,
 ) {
   ctx.save();
   ctx.clip(path);
@@ -259,6 +260,9 @@ function applyGold(
   ctx.fillRect(x, y, w, h);
   ctx.restore();
 
+  // Kontur nur für die prozedurale Form – beim echten Herz-Asset läge die
+  // Linie neben der tatsächlichen Kante.
+  if (!outline) return;
   ctx.save();
   ctx.clip(path);
   ctx.globalCompositeOperation = "overlay";
@@ -362,7 +366,7 @@ export function drawArtwork(ctx: CanvasRenderingContext2D, input: DrawInput) {
   ctx.restore();
 
   // 4) Goldakzente
-  if (gold) applyGold(ctx, path, x, y, boxW, boxH);
+  if (gold) applyGold(ctx, path, x, y, boxW, boxH, !useAsset);
 
   // 5) feine Kantenlinie (nur bei prozeduraler Form; das Asset bringt eigene Kante mit)
   if (!useAsset) {

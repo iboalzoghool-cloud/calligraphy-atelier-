@@ -5,15 +5,18 @@
   aufgefächert wie Karten. Aktives Herz aufrecht vorn, die anderen ±22°.
   Weiche, langsame Tinten-Übergänge – nichts blinkt.
 
-  Premium-Look statt flachem „Sticker": jedes Herz bekommt Tiefe (Vignette),
-  Glanz und eine feine Gold-Kante – wie eine echte 3D-Leinwand. Form kommt aus
-  einem inline-SVG `clipPath` (robust, kein Rechteck-Artefakt auf mobilem Safari).
-  Dahinter driftende Farbkleckser der aktiven Welt.
+  Realismus statt SVG-Fake: jedes Herz ist ein freigestelltes Leinwand-Herz
+  (Form, Licht & Kante aus dem echten Master-Foto gebacken); der Schatten
+  folgt per CSS drop-shadow der echten Silhouette. Dahinter driftende
+  Farbkleckser der aktiven Welt.
 */
 
 export interface HeartSet {
   key: string;
+  /** Textur der Farbwelt (Swatches). */
   tex: string;
+  /** Freigestelltes realistisches Leinwand-Herz. */
+  heart: string;
   bgId: string;
   ink: string;
   glow: string;
@@ -23,6 +26,7 @@ export const HEART_SETS: HeartSet[] = [
   {
     key: "Rosé",
     tex: "/backgrounds/worlds/rose.webp",
+    heart: "/backgrounds/hearts/rose.webp",
     bgId: "rose",
     ink: "#7A3247",
     glow: "radial-gradient(circle, rgba(178,94,119,.26), rgba(169,130,59,.10) 55%, transparent 72%)",
@@ -30,6 +34,7 @@ export const HEART_SETS: HeartSet[] = [
   {
     key: "Petrol",
     tex: "/backgrounds/worlds/petrol-gold.webp",
+    heart: "/backgrounds/hearts/petrol-gold.webp",
     bgId: "petrol-gold",
     ink: "#234E50",
     glow: "radial-gradient(circle, rgba(63,107,110,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
@@ -37,6 +42,7 @@ export const HEART_SETS: HeartSet[] = [
   {
     key: "Blau",
     tex: "/backgrounds/worlds/navy-gold.webp",
+    heart: "/backgrounds/hearts/navy-gold.webp",
     bgId: "navy-gold",
     ink: "#1E2E52",
     glow: "radial-gradient(circle, rgba(40,60,100,.26), rgba(169,130,59,.12) 55%, transparent 72%)",
@@ -46,9 +52,6 @@ export const HEART_SETS: HeartSet[] = [
 export function bgIdForWorld(key: string): string {
   return (HEART_SETS.find((s) => s.key === key) ?? HEART_SETS[0]).bgId;
 }
-
-const HEART_PATH =
-  "M50 88 C 20 66 4 46 4 28 C 4 14 15 5 27 5 C 37 5 45 11 50 21 C 55 11 63 5 73 5 C 85 5 96 14 96 28 C 96 46 80 66 50 88 Z";
 
 type Slot = "center" | "left" | "right";
 
@@ -135,7 +138,7 @@ export function HeartFan({ active, onSelect, name, sizeLabel, latin = false }: H
           }}
         />
 
-        {HEART_SETS.map((set, idx) => {
+        {HEART_SETS.map((set) => {
           const slot = SLOTS[slotFor(set.key)];
           return (
             <button
@@ -162,40 +165,21 @@ export function HeartFan({ active, onSelect, name, sizeLabel, latin = false }: H
                 cursor: "pointer",
               }}
             >
-              {/* Herz mit Tiefe, Glanz & Gold-Kante – wie eine echte Leinwand */}
-              <svg
-                viewBox="0 0 100 92"
+              {/* Echtes Leinwand-Herz (freigestellt) – Schatten folgt der
+                  echten Silhouette, kein künstlicher Glanz. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={set.heart}
+                alt=""
+                draggable={false}
                 style={{
                   display: "block",
                   width: "100%",
                   height: "auto",
-                  overflow: "visible",
-                  filter: "drop-shadow(0 14px 22px rgba(45,22,30,.28))",
+                  filter: "drop-shadow(0 18px 26px rgba(45,22,30,.30))",
                 }}
                 aria-hidden
-              >
-                <defs>
-                  <clipPath id={`hc-${idx}`}>
-                    <path d={HEART_PATH} />
-                  </clipPath>
-                  <linearGradient id={`hs-${idx}`} x1="16%" y1="8%" x2="70%" y2="84%">
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.18)" />
-                    <stop offset="30%" stopColor="rgba(255,255,255,0.03)" />
-                    <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-                  </linearGradient>
-                </defs>
-                <image
-                  href={set.tex}
-                  x="0"
-                  y="0"
-                  width="100"
-                  height="92"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath={`url(#hc-${idx})`}
-                />
-                {/* nur zarter Glanz (versiegelte Leinwand) – KEIN Gold-Rahmen */}
-                <path d={HEART_PATH} fill={`url(#hs-${idx})`} />
-              </svg>
+              />
               {/* Name-Overlay (arabische Kalligrafie) – nur auf dem vorderen Herz */}
               <div
                 aria-hidden

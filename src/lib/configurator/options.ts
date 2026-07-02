@@ -108,24 +108,26 @@ export type Background = GradientBackground | PhotoBackground;
   Für gestochen scharfe PNG-Mockups bitte hochauflösende, quadratische, textfreie
   Scans (≥ 1400 px) nach /public/backgrounds/worlds/ legen (gleiche Dateinamen).
 */
+/* Jede Farbwelt hat ein realistisches, freigestelltes Leinwand-Herz
+   (Form/Licht aus dem echten Master-Foto gebacken, s. Scratchpad-Pipeline). */
+const world = (id: string, label: string): PhotoBackground => ({
+  id,
+  kind: "photo",
+  label,
+  src: `/backgrounds/worlds/${id}.webp`,
+  heartSrc: `/backgrounds/hearts/${id}.webp`,
+});
+
 export const BACKGROUNDS: Background[] = [
-  { id: "rose", kind: "photo", label: "Rosé & Gold", src: "/backgrounds/worlds/rose.webp" },
-  { id: "blush-gold", kind: "photo", label: "Blush & Gold", src: "/backgrounds/worlds/blush-gold.webp" },
-  { id: "magenta-gold", kind: "photo", label: "Magenta & Gold", src: "/backgrounds/worlds/magenta-gold.webp" },
-  { id: "mauve", kind: "photo", label: "Altrosa & Gold", src: "/backgrounds/worlds/mauve.webp" },
-  { id: "lavendel-gold", kind: "photo", label: "Lavendel & Gold", src: "/backgrounds/worlds/lavendel-gold.webp" },
-  { id: "koralle", kind: "photo", label: "Koralle & Gold", src: "/backgrounds/worlds/koralle.webp" },
-  { id: "sand-gold", kind: "photo", label: "Sand & Gold", src: "/backgrounds/worlds/sand-gold.webp" },
-  { id: "petrol-gold", kind: "photo", label: "Petrol & Gold", src: "/backgrounds/worlds/petrol-gold.webp" },
-  {
-    id: "navy-gold",
-    kind: "photo",
-    label: "Marine & Gold",
-    src: "/backgrounds/worlds/navy-gold.webp",
-    // Freigestelltes Herz dieser Farbwelt (echtes Motiv). TODO (Founder):
-    // weitere Farbwelten analog ergänzen: /backgrounds/hearts/<id>.png
-    heartSrc: "/backgrounds/hearts/navy-gold.png",
-  },
+  world("rose", "Rosé & Gold"),
+  world("blush-gold", "Blush & Gold"),
+  world("magenta-gold", "Magenta & Gold"),
+  world("mauve", "Altrosa & Gold"),
+  world("lavendel-gold", "Lavendel & Gold"),
+  world("koralle", "Koralle & Gold"),
+  world("sand-gold", "Sand & Gold"),
+  world("petrol-gold", "Petrol & Gold"),
+  world("navy-gold", "Marine & Gold"),
 ];
 
 /** Liefert das transparente Herz-PNG einer Farbwelt (falls vorhanden). */
