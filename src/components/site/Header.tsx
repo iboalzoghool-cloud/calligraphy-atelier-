@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "./Logo";
 
 const NAV = [
@@ -88,39 +87,40 @@ export function Header() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            className="md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="container-page border-t border-line bg-canvas pb-6 pt-2">
-              <nav className="flex flex-col">
-                {NAV.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="border-b border-line py-4 text-lg text-ink"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-              <Link
-                href="/gestalten"
-                onClick={() => setOpen(false)}
-                className="btn btn-primary mt-5 w-full"
-              >
-                Jetzt gestalten
-              </Link>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {/* Mobile-Menü: CSS-Grid-Höhenanimation (0fr→1fr) statt framer-motion –
+          hält die Motion-Library aus dem kritischen JS jeder Seite. */}
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="overflow-hidden">
+          <div className="container-page border-t border-line bg-canvas pb-6 pt-2">
+            <nav className="flex flex-col">
+              {NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  tabIndex={open ? 0 : -1}
+                  className="border-b border-line py-4 text-lg text-ink"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href="/gestalten"
+              onClick={() => setOpen(false)}
+              tabIndex={open ? 0 : -1}
+              className="btn btn-primary mt-5 w-full"
+            >
+              Jetzt gestalten
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

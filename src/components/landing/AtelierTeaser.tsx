@@ -4,13 +4,25 @@ import { InkStroke } from "@/components/ui/InkStroke";
 import { FloatingFrame } from "@/components/ui/FloatingFrame";
 import { VideoLoop } from "@/components/ui/VideoLoop";
 import { Parallax } from "@/components/ui/Parallax";
-import { AtelierAmbience } from "@/components/landing/AtelierAmbience";
 
 export function AtelierTeaser() {
   return (
     <section className="relative overflow-hidden py-16 md:py-24">
-      {/* Fließender Alkohol-Tinten-Hintergrund (Three.js) – Atelier-Atmosphäre */}
-      <AtelierAmbience className="pointer-events-none absolute inset-0 -z-10 opacity-80" />
+      {/* Alkohol-Tinten-Atmosphäre als reines CSS (statt Three.js/WebGL):
+          weiche Ink-Blüten in den Werkfarben – 0 KB JavaScript. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-80"
+        style={{
+          background: [
+            "radial-gradient(42% 38% at 18% 22%, rgba(178,94,119,0.32) 0%, transparent 70%)",
+            "radial-gradient(50% 44% at 85% 30%, rgba(63,107,110,0.26) 0%, transparent 72%)",
+            "radial-gradient(46% 40% at 70% 85%, rgba(198,162,90,0.24) 0%, transparent 70%)",
+            "radial-gradient(38% 34% at 30% 78%, rgba(93,63,87,0.22) 0%, transparent 68%)",
+          ].join(","),
+          filter: "blur(28px)",
+        }}
+      />
       {/* Papier-Schleier: links (hinter dem Text) ruhig & lesbar, rechts blüht die Farbe ums Werk */}
       <div
         aria-hidden
@@ -58,7 +70,7 @@ export function AtelierTeaser() {
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-line shadow-lift">
                   <VideoLoop
                     src="/videos/atelier-herzen.mp4"
-                    poster="/videos/atelier-herzen.jpg"
+                    poster="/videos/atelier-herzen.webp"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
