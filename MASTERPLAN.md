@@ -4,7 +4,7 @@ Reihenfolge = Risiko zuerst. Pro Paket: implementieren → mobil+desktop
 verifizieren → Regression-Gate (Seite fehlerfrei, Flow E2E, Sticky verdeckt
 nichts, lint/build grün) → Commit+Push → ✅ hier.
 
-- [ ] **P1 · Anfrage-Flow rettungssicher**: Erfolgsseite ohne Dev-Jargon;
+- [x] **P1 · Anfrage-Flow rettungssicher**: Erfolgsseite ohne Dev-Jargon;
       `delivered:false` → vorbefüllter Mailto an Founder-Mail + Insta-DM-Link +
       Entwurf-Download. `BRAND.email` echt. `.env.example`-Doku bleibt.
 - [ ] **P2 · Entwurf überlebt Reload**: Konfigurator-State + Order-Snapshot in

@@ -10,7 +10,7 @@ import {
   type OrderPayload,
 } from "@/lib/checkout";
 import { formatPrice } from "@/lib/format";
-import { PRICING, PROCESSING_TIME } from "@/lib/content";
+import { BRAND, PRICING, PROCESSING_TIME } from "@/lib/content";
 
 type Status = "form" | "submitting" | "success" | "error";
 
@@ -52,6 +52,19 @@ export function OrderClient() {
   }
 
   const summary = buildSummary(order.state);
+  const igHandle = BRAND.instagram.replace(/^@/, "");
+
+  /** Vorbefüllte E-Mail an das Atelier – Fallback, falls der automatische
+      Versand (noch) nicht konfiguriert ist oder fehlschlägt. */
+  const mailtoHref = (() => {
+    const subject = `Anfrage – ${customer.name.trim() || order.state.name || "mein Unikat"}`;
+    const body =
+      `Hallo,\n\nich möchte dieses Unikat anfragen:\n\n${summaryText(order.state)}\n\n` +
+      `Mein Name: ${customer.name}\n` +
+      (customer.phone ? `Telefon: ${customer.phone}\n` : "") +
+      `\n(Entwurf-Bild hänge ich gern an – „Entwurf als Bild speichern“.)\n`;
+    return `mailto:${BRAND.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  })();
 
   function set<K extends keyof CustomerInfo>(key: K, value: CustomerInfo[K]) {
     setCustomer((c) => ({ ...c, [key]: value }));
@@ -107,11 +120,28 @@ export function OrderClient() {
           </p>
 
           {!delivered ? (
-            <p className="mx-auto mt-5 max-w-md rounded-xl bg-rose-soft px-4 py-3 text-sm text-rose-deep">
-              Hinweis: Der automatische E-Mail-Versand ist noch nicht
-              konfiguriert. Deine Anfrage wurde erfasst – richte für den echten
-              Versand <code>RESEND_API_KEY</code> ein (siehe README).
-            </p>
+            <div className="mx-auto mt-6 max-w-md rounded-2xl border border-line bg-surface p-5 text-left shadow-soft">
+              <p className="text-sm font-medium text-ink">
+                Damit deine Anfrage uns sicher erreicht:
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
+                Schick sie uns bitte zusätzlich mit einem Tipp – deine
+                Zusammenfassung ist schon vorbereitet.
+              </p>
+              <div className="mt-4 flex flex-col gap-2.5">
+                <a href={mailtoHref} className="btn btn-primary w-full">
+                  Per E-Mail senden
+                </a>
+                <a
+                  href={`https://instagram.com/${igHandle}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-secondary w-full"
+                >
+                  Als DM an {BRAND.instagram}
+                </a>
+              </div>
+            </div>
           ) : null}
 
           <div className="mx-auto mt-8 max-w-xs">
@@ -312,9 +342,25 @@ export function OrderClient() {
             </div>
 
             {errorMsg ? (
-              <p className="rounded-xl bg-rose-soft px-4 py-3 text-sm text-rose-deep">
-                {errorMsg}
-              </p>
+              <div className="rounded-xl bg-rose-soft px-4 py-3 text-sm text-rose-deep">
+                <p>{errorMsg}</p>
+                <p className="mt-2">
+                  Es eilt? Schick uns deine Anfrage direkt{" "}
+                  <a href={mailtoHref} className="font-medium underline underline-offset-2">
+                    per E-Mail
+                  </a>{" "}
+                  oder als DM an{" "}
+                  <a
+                    href={`https://instagram.com/${igHandle}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium underline underline-offset-2"
+                  >
+                    {BRAND.instagram}
+                  </a>
+                  .
+                </p>
+              </div>
             ) : null}
 
             <button

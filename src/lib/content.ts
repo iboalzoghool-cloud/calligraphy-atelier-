@@ -15,11 +15,11 @@ export const BRAND = {
     "Jedes Stück wird von Hand gemalt – mit Tinte, Geduld und deinem Namen im Mittelpunkt.",
   // Ort, an dem gemalt wird (für „Handgemalt in …")
   city: "Offenbach",
-  // PLATZHALTER: Kontakt-E-Mail für Kundenanfragen (rechtlich nötig für Impressum!)
-  email: "[deine@email.de]",
+  // Kontakt-E-Mail für Kundenanfragen (Impressum, Anfrage-Fallback)
+  email: "ibo.alzoghool@gmail.com",
   instagram: "@iboverse",
-  // PLATZHALTER: optional, z. B. für TikTok-Funnel
-  tiktok: "[@deinhandle]",
+  // TikTok folgt – erst eintragen, wenn das Handle existiert (sonst leer lassen)
+  tiktok: "",
 };
 
 /* Preise in Cent – zentral, leicht änderbar.
