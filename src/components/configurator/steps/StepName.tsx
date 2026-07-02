@@ -25,7 +25,7 @@ export function StepName() {
           value={state.name}
           maxLength={MAX}
           onChange={(e) => update({ name: e.target.value })}
-          placeholder="z. B. سلوى oder Salwa"
+          placeholder="z. B. مريم oder Miriam"
           className="mt-2 w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-lg text-ink outline-none transition placeholder:text-ink-faint focus:border-ink"
         />
         <div className="mt-1.5 flex items-center justify-between">

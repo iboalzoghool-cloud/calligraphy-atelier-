@@ -24,9 +24,8 @@ interface GalleryItem {
 // kuratiert, wo der Foto-Hintergrund dominierte).
 const ITEMS: GalleryItem[] = [
   { src: "/atelier/allah-muhammad.jpg", w: 1500, h: 1125, accent: "#2f8f96", title: "Allah · Muhammad", note: "Alkohol-Tinte in Türkis & Gold", alt: "Kalligrafie „Allah“ und „Muhammad“ in Türkis und Gold" },
-  { src: "/gallery/muttertag-herz.jpg", w: 1052, h: 1400, accent: "#c85f86", title: "Salwa · Für Mama", note: "Muttertag · Herzform", alt: "Herz-Leinwand mit dem Namen Salwa zum Muttertag" },
+  { src: "/gallery/muttertag-herz.jpg", w: 1052, h: 1400, accent: "#c85f86", title: "Für Mama", note: "Muttertag · Herzform", alt: "Herz-Leinwand mit arabischem Namen zum Muttertag" },
   { src: "/atelier/makkah.jpg", w: 1125, h: 1500, accent: "#b0863f", title: "Wo immer du bist", note: "Makka-Motiv in warmen Tönen", alt: "Handgemaltes Werk mit Makka-Motiv auf der Staffelei" },
-  { src: "/gallery/salwa-quadrat.jpg", w: 1400, h: 1126, accent: "#cf5f97", title: "Namens-Quadrat", note: "Name in Rosé & Flieder", alt: "Quadratisches Stück mit arabischem Namen in Rosé" },
   { src: "/atelier/mawadda.jpg", w: 1500, h: 1456, accent: "#8a5f77", title: "Zuneigung & Ruhe", note: "Für das Brautpaar", alt: "Kalligrafie zum Thema Zuneigung, warme Farbwelt" },
   { src: "/gallery/namen-quadrate.jpg", w: 1004, h: 1200, accent: "#3f7d7f", title: "Zwei Namen, ein Paar", note: "Doppel-Leinwand in Petrol", alt: "Zwei Namens-Quadrate in Petrol auf einer Wiese" },
   { src: "/atelier/relief.jpg", w: 1500, h: 1174, accent: "#a9744f", title: "Nach jeder Härte", note: "Ton in Ton", verse: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", verseRef: "Quran 94:5", alt: "Kalligrafie des Koranverses 94:5 in ruhigen, beigen Tönen" },

@@ -17,8 +17,8 @@ export function Hero() {
   // Latein → arabische Kalligrafie („Miriam" → „مريم"). Nutzer kann direkt
   // Arabisch tippen (exakt) oder die lateinische Schrift wählen.
   const translit = toArabicName(name);
-  const arabicName = translit.arabic ?? (name.trim() || "سلوى");
-  const latinName = name.trim() || "Salwa";
+  const arabicName = translit.arabic ?? (name.trim() || "مريم");
+  const latinName = name.trim() || "Miriam";
   const previewName = script === "ar" ? arabicName : latinName;
 
   function handleContinue() {

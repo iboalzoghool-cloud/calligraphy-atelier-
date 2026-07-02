@@ -237,4 +237,4 @@ export const DEFAULT_STATE: ConfiguratorState = {
 };
 
 /** Beispielname für die Vorschau, solange noch nichts eingegeben wurde. */
-export const PLACEHOLDER_NAME = "سلوى";
+export const PLACEHOLDER_NAME = "مريم";

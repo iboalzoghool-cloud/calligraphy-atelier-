@@ -44,7 +44,7 @@ function primaryFamily(family: string): string {
   return family.split(",")[0].trim();
 }
 
-const FONT_SAMPLE = "سلوى عيد مبارك أمي الحبيبة Abc";
+const FONT_SAMPLE = "مريم عيد مبارك أمي الحبيبة Abc";
 
 /** Stellt sicher, dass alle Kalligrafie-Fonts (inkl. Arabisch) geladen sind. */
 export async function ensureFontsLoaded(): Promise<void> {
