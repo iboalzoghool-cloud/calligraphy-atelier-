@@ -178,26 +178,18 @@ export function Hero() {
             )}
           </form>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
+          {/* Trust-Claims stehen direkt darunter in der TrustStrip – hier nur
+              der Neben-CTA, keine Dopplung. */}
+          <div className="mt-6 text-sm">
             <Link
               href="#galerie"
               className="font-medium text-ink underline-offset-4 hover:underline"
             >
               Galerie ansehen →
             </Link>
-            <span className="inline-flex items-center gap-2">
-              <Dot className="bg-rose" /> 100 % von Hand gemalt
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Dot className="bg-teal" /> Jedes Stück ein Unikat
-            </span>
           </div>
         </div>
       </div>
     </section>
   );
-}
-
-function Dot({ className = "bg-rose" }: { className?: string }) {
-  return <span className={`h-1.5 w-1.5 rounded-full ${className}`} aria-hidden />;
 }

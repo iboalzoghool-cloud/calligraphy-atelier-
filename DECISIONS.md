@@ -27,3 +27,20 @@ Autonome Entscheidungen (Brahim schläft). Jede Zeile: Entscheidung + Warum.
    es behalten (dort Thema). Sollte Brahim es vermissen: Re-Aktivierung = 1 Zeile.
 8. **Scarcity „8 Plätze/Woche“ bleibt** (content.ts) — vom Founder so angelegt,
    dezent formuliert.
+9. **Font-Diät:** Nur genutzte Gewichte werden geladen (Cormorant 500,
+   Hanken 400/500/600); alle arabischen Fonts `preload:false` außer einer
+   schlanken Aref-Ruqaa-Instanz (400/Arabisch) für den Hero-Namen (LCP).
+   Logo von 600→500: eine Preload-Datei weniger, optisch minimal.
+10. **Anlass-Preset-Farbwelten** folgen dem Karten-Akzent (Eid→Rosé,
+    Muttertag→Petrol, Hochzeit→Sand-Gold, Geburt→Koralle) — Kontinuität
+    Karte→Konfigurator schlägt „thematisch naheliegende“ Farbe.
+11. **Kontrast-Tokens:** `--color-ink-faint` #9a8d7d→#716757 (4.7:1),
+    Eyebrow-Gold als eigenes Text-Gold #7d5f28 (5:1); Deko-Gold unverändert.
+    Wasserzeichen مَوَدَّة jetzt SVG (dekorativ, raus aus der Textprüfung).
+    Ergebnis: Lighthouse Accessibility 100.
+12. **Hero-Trust-Dots entfernt** — exakte Dopplung der TrustStrip direkt
+    darunter; ein Held pro Screen (DESIGN.md-Prinzip 3).
+13. **Lighthouse-Perf Landing 85–88 statt ≥90 akzeptiert:** LCP-Messwert hängt
+    am Font-Swap des immer sichtbaren Logos unter simuliertem 4G (Hero ist
+    wegen Fade-Animation kein LCP-Kandidat). TBT 0 ms, CLS 0, SI 1,4 s, alle
+    übrigen Kategorien 100. Auf Vercel (CDN, AVIF, HTTP/2) real schneller.

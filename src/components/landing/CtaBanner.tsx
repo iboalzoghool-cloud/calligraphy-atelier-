@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function CtaBanner() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="pb-8 pt-16 md:py-24">
       <div className="container-page">
         <Reveal>
           <div

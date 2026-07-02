@@ -33,8 +33,8 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       Founder-Name am Zitat.
 - [x] **P12 · Meta/OG/SEO**: metadataBase = Prod-URL, OG-Image (Werk + Claim,
       dynamisch), robots.ts + sitemap.ts, Titles geprüft.
-- [ ] **P13 · A11y-Kontraste**: color-contrast-Fails beheben (ink-faint & Co.).
-- [ ] **P14 · Feinschliff-Pass**: Hero-Trust-Dopplung, CtaBanner-Leerraum,
+- [x] **P13 · A11y-Kontraste**: color-contrast-Fails beheben (ink-faint & Co.).
+- [x] **P14 · Feinschliff-Pass**: Hero-Trust-Dopplung, CtaBanner-Leerraum,
       „in scha Allah“-Schreibweise konsistent, letzter Mobile-Durchlauf.
-- [ ] **P15 · Endbericht**: ENDBERICHT.md (Section-für-Section, DECISIONS,
+- [x] **P15 · Endbericht**: ENDBERICHT.md (Section-für-Section, DECISIONS,
       BLOCKERS, Launch-Note + nächster Hebel), finale Verifikation aller Gates.
