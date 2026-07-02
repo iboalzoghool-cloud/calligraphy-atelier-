@@ -12,8 +12,9 @@
    umsatzsteuerpflichtig bist: USt-IdNr. eintragen).
 3. **Echte Domain** (aktuell calligraphy-atelier.vercel.app als metadataBase
    gesetzt): sobald eigene Domain existiert, in `src/app/layout.tsx` ändern.
-4. **Markenname:** „Kalligraphie.“ ist generisch — Entscheidung (Midād/Nūn./
-   Mawadda/…) steht aus; bewusst nicht von der Session erfunden.
+4. ~~Markenname~~ ✅ **Gelöst: HDIA Atelier** (هدية). Offen bleibt nur:
+   Brahims handgemalte هدية-Version → ersetzt `public/brand/hadiyya.svg`
+   (Ein-Datei-Tausch).
 5. **Echte Fotos der Veredelungen** (`/public/upsells/`: Geschenkverpackung,
    Grußkarte, Goldakzente) — Upsell-Sektion visualisiert erst dann (KI-Regel:
    echte Kunst > generiert).
