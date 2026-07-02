@@ -11,6 +11,7 @@ import {
 } from "@/lib/checkout";
 import { formatPrice } from "@/lib/format";
 import { BRAND, PRICING, PROCESSING_TIME } from "@/lib/content";
+import { SHOP } from "@/lib/shop/config";
 
 type Status = "form" | "submitting" | "success" | "error";
 
@@ -33,6 +34,8 @@ export function OrderClient() {
   const [status, setStatus] = useState<Status>("form");
   const [delivered, setDelivered] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [buying, setBuying] = useState(false);
+  const [buyError, setBuyError] = useState<string | null>(null);
 
   // Gespeicherter Zustand wird noch geladen – kein „leer“-Flackern zeigen.
   if (!ready) {
@@ -73,6 +76,29 @@ export function OrderClient() {
 
   function set<K extends keyof CustomerInfo>(key: K, value: CustomerInfo[K]) {
     setCustomer((c) => ({ ...c, [key]: value }));
+  }
+
+  /** Kauf: Stripe-Checkout (Testmodus). Adresse sammelt Stripe. */
+  async function handleBuy() {
+    if (!order) return;
+    setBuying(true);
+    setBuyError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind: "original", state: order.state }),
+      });
+      const data = (await res.json()) as { url?: string; message?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setBuyError(data.message ?? "Der Kauf ist gerade nicht verfügbar.");
+    } catch {
+      setBuyError("Verbindung fehlgeschlagen. Bitte erneut versuchen.");
+    }
+    setBuying(false);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -183,10 +209,10 @@ export function OrderClient() {
     <div className="container-page py-10 md:py-14">
       <div className="mb-8">
         <p className="eyebrow eyebrow-rule">Letzter Schritt</p>
-        <h1 className="mt-2 text-3xl md:text-4xl">Deine Anfrage</h1>
+        <h1 className="mt-2 text-3xl md:text-4xl">Deine Bestellung</h1>
         <p className="mt-2 max-w-xl text-pretty text-ink-soft">
-          Unverbindlich und ohne Konto. Wir bestätigen alles persönlich, bevor
-          gemalt wird.
+          Sicher bezahlen und dein Original wird gemalt – oder schick den
+          Entwurf als unverbindliche Anfrage.
         </p>
       </div>
 
@@ -243,8 +269,8 @@ export function OrderClient() {
               />
               <p className="mt-2 text-xs leading-relaxed text-ink-soft">
                 Echte Leinwand auf einem Herz-Keilrahmen aus Holz – von Hand
-                bespannt und rückseitig getackert. Kein Papier, kein Druck:
-                ein Werkstück mit Tiefe, das frei steht oder hängt.
+                bespannt und rückseitig getackert. Dein Original ist ein
+                Werkstück mit Tiefe, das frei steht oder hängt.
               </p>
             </div>
 
@@ -255,10 +281,42 @@ export function OrderClient() {
               Entwurf ändern
             </Link>
           </div>
+
+          {/* ── Kauf (primär): Zahlung + Adresse übernimmt Stripe ── */}
+          <div className="card mt-5 p-5">
+            <div className="flex items-baseline justify-between gap-4">
+              <p className="text-base font-medium text-ink">Jetzt bestellen</p>
+              <p className="text-lg font-semibold text-ink">{formatPrice(order.priceCents)}</p>
+            </div>
+            <button
+              type="button"
+              onClick={handleBuy}
+              disabled={buying}
+              className="btn btn-primary mt-4 min-h-13 w-full text-base"
+            >
+              {buying ? "Einen Moment …" : "Jetzt kaufen"}
+            </button>
+            {buyError ? (
+              <p className="mt-3 rounded-xl bg-rose-soft px-4 py-3 text-sm text-rose-deep">
+                {buyError} Unten kannst du deinen Entwurf als unverbindliche
+                Anfrage schicken.
+              </p>
+            ) : null}
+            <ul className="mt-4 space-y-1.5 text-xs leading-relaxed text-ink-soft">
+              <li>✓ Sichere Zahlung über Stripe · Lieferadresse gibst du dort ein</li>
+              <li>✓ {SHOP.deliveryOriginal} · von Hand in {BRAND.city}</li>
+              <li>✓ {SHOP.shippingNote} · {SHOP.vatNote}</li>
+            </ul>
+          </div>
         </div>
 
-        {/* Formular */}
-        <form onSubmit={handleSubmit} className="lg:order-1" noValidate>
+        {/* Sekundärweg: unverbindliche Anfrage (Sonderwünsche, Großformate) */}
+        <details className="group lg:order-1">
+          <summary className="cursor-pointer list-none rounded-2xl border border-line bg-surface px-5 py-4 text-sm font-medium text-ink transition hover:border-line-strong [&::-webkit-details-marker]:hidden">
+            <span className="mr-2 inline-block transition-transform group-open:rotate-90">→</span>
+            Lieber unverbindlich anfragen? (Sonderwünsche, Großformate, Fragen)
+          </summary>
+          <form onSubmit={handleSubmit} className="mt-6" noValidate>
           <fieldset disabled={submitting} className="space-y-5">
             <Field label="Vollständiger Name" required>
               <input
@@ -401,7 +459,8 @@ export function OrderClient() {
               Preis &amp; Versand persönlich, bevor gemalt wird.
             </p>
           </fieldset>
-        </form>
+          </form>
+        </details>
       </div>
     </div>
   );

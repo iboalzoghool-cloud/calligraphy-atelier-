@@ -40,7 +40,8 @@ export function Voices() {
             </span>
             <blockquote className="mt-2 text-balance font-display text-2xl italic leading-snug text-paper-2 md:text-[2.15rem] md:leading-[1.3]">
               Ich male jedes Stück selbst – langsam, mit echter Tinte und voller
-              Aufmerksamkeit für deinen Namen. Kein Druck, keine Maschine.
+              Aufmerksamkeit für deinen Namen. Jedes ein Unikat, das es nur
+              einmal gibt.
             </blockquote>
             <figcaption className="mt-6 text-sm tracking-wide text-paper-2/70">
               Ibrahim · {BRAND.name}

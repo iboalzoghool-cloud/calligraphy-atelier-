@@ -42,6 +42,18 @@ export default function DatenschutzPage() {
         (Bestandteil der Nutzungsbedingungen des Dienstes).
       </p>
       <p>
+        Für die Bezahlung im Shop nutzen wir <strong>Stripe</strong> (Stripe
+        Payments Europe, Ltd., Irland). Beim Kauf werden die für die
+        Zahlungsabwicklung erforderlichen Daten (Name, E-Mail, Lieferadresse,
+        Zahlungsdaten) direkt von Stripe erhoben und verarbeitet (Art. 6
+        Abs. 1 lit. b DSGVO). Wir selbst erhalten und speichern keine
+        vollständigen Zahlungsdaten. Details:{" "}
+        <a href="https://stripe.com/de/privacy" target="_blank" rel="noreferrer">
+          stripe.com/de/privacy
+        </a>
+        .
+      </p>
+      <p>
         Das Hosting erfolgt über <strong>Vercel</strong> (Vercel Inc., 340 S
         Lemon Ave #4133, Walnut, CA 91789, USA). Beim Aufruf der Website
         verarbeitet Vercel technisch notwendige Server-Logs (z. B. IP-Adresse,

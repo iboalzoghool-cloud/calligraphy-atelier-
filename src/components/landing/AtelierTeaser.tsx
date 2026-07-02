@@ -48,9 +48,10 @@ export function AtelierTeaser() {
               width={2.5}
             />
             <p className="mt-6 max-w-md text-pretty leading-relaxed text-ink-soft">
-              Kein Drucker, kein Algorithmus. Nur Tinte, Papier und Zeit. Jedes
-              Stück entsteht langsam, mit Atem und Aufmerksamkeit – und trägt am
-              Ende eine kleine Unvollkommenheit, die es unverwechselbar macht.
+              Die Originale entstehen nur mit Tinte, Papier und Zeit – langsam,
+              mit Atem und Aufmerksamkeit. Jedes trägt eine kleine
+              Unvollkommenheit, die es unverwechselbar macht. Ausgewählte
+              Motive gibt es zusätzlich als Kunstdrucke unserer Editionen.
             </p>
             <Link
               href="/atelier"

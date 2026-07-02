@@ -180,8 +180,8 @@ export default function AtelierPage() {
                   Irgendwann fiel eine Entscheidung: aus dieser Gabe etwas Gutes
                   machen. Menschen beschenken mit etwas, das bleibt – ein Name,
                   ein Vers, eine Liebesbotschaft – und mit jedem Werk ein Stück
-                  Nähe zum Glauben weitergeben. Jedes Stück entsteht von Hand, mit
-                  Geduld und Hingabe: kein Nachdruck, keine Maschine.
+                  Nähe zum Glauben weitergeben. Jedes Original entsteht von Hand,
+                  mit Geduld und Hingabe – ein Unikat, das es nur einmal gibt.
                 </p>
               </div>
             </Reveal>

@@ -39,8 +39,7 @@ export const PRICING = {
   card: 400, // handgeschriebene Grußkarte
   express: 900, // Express-Anfertigung
   date: 300, // Datum / Jahr ergänzen
-  // PLATZHALTER: Versandkosten – aktuell informativ, in v1 nicht berechnet
-  shippingHint: "Versand innerhalb Deutschlands – Kosten werden bei der Auftragsbestätigung mitgeteilt.",
+  shippingHint: "Versand innerhalb Deutschlands inklusive.",
 };
 
 /** Wöchentliche Verknappung (dezent kommuniziert). false = ausblenden. */
@@ -79,7 +78,7 @@ export const DISCLAIMERS = [
 export const FAQ = [
   {
     q: "Ist jedes Stück wirklich handgemalt?",
-    a: "Ja. Jedes Bild wird einzeln von Hand mit Alkoholtinte gemalt. Die Vorschau im Konfigurator ist eine Annäherung – dein Original entsteht frei und wird nie exakt gleich aussehen. Genau das macht es zum Unikat.",
+    a: "Jedes Original: ja – einzeln von Hand mit Alkoholtinte gemalt, die Vorschau ist eine Annäherung und dein Stück ein Unikat. Daneben gibt es unsere Editionen: klar gekennzeichnete Kunstdrucke ausgewählter Motive, als günstiger Einstieg.",
   },
   {
     q: "Wie lange dauert die Anfertigung?",
@@ -91,11 +90,11 @@ export const FAQ = [
   },
   {
     q: "Gibt es ein Widerrufsrecht?",
-    a: "Da es sich um eine personalisierte Sonderanfertigung handelt, besteht kein gesetzliches Widerrufsrecht (§ 312g Abs. 2 Nr. 1 BGB). Bei beschädigter Lieferung finden wir natürlich eine Lösung.",
+    a: "Bei personalisierten Originalen (dein Name, deine Gestaltung) besteht kein gesetzliches Widerrufsrecht (§ 312g Abs. 2 Nr. 1 BGB). Für Kunstdrucke aus den Editionen gilt das normale 14-tägige Widerrufsrecht. Bei beschädigter Lieferung finden wir immer eine Lösung.",
   },
   {
     q: "Wie läuft die Bezahlung?",
-    a: "Aktuell schickst du deine Gestaltung als unverbindliche Anfrage. Wir bestätigen Verfügbarkeit, Preis und Versand per E-Mail und stimmen die Zahlung persönlich mit dir ab.",
+    a: "Direkt im Shop – sicher per Karte über den Zahlungsdienstleister Stripe. Für Sonderwünsche und Großformate kannst du deine Gestaltung weiterhin als unverbindliche Anfrage schicken; dann stimmen wir alles persönlich ab.",
   },
   {
     q: "Wie pflege ich das Bild?",

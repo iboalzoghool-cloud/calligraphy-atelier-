@@ -88,6 +88,10 @@ export function Gallery() {
                   />
                 </div>
                 <figcaption className="px-1.5 pb-1 pt-3">
+                  {/* Linien-Kennzeichnung: Originale vs. Editionen */}
+                  <span className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/80 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-soft">
+                    Original · Unikat, von Hand gemalt
+                  </span>
                   {item.verse ? (
                     <div
                       className="mb-1.5 font-arabic text-lg leading-snug text-ink"

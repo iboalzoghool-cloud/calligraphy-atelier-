@@ -43,6 +43,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/#editionen" className="transition-colors hover:text-ink">
+                  Editionen
+                </Link>
+              </li>
+              <li>
                 <Link href="/atelier" className="transition-colors hover:text-ink">
                   Atelier
                 </Link>
@@ -71,6 +76,11 @@ export function Footer() {
               <li>
                 <Link href="/agb" className="transition-colors hover:text-ink">
                   AGB
+                </Link>
+              </li>
+              <li>
+                <Link href="/widerruf" className="transition-colors hover:text-ink">
+                  Widerruf
                 </Link>
               </li>
               <li>

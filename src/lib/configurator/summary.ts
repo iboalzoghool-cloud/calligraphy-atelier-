@@ -11,21 +11,9 @@ import { getCalligraphyFont } from "@/lib/fonts";
 import { PRICING } from "@/lib/content";
 import { formatPrice } from "@/lib/format";
 
-/** Gesamtpreis (Cent) für einen Zustand. */
-export function priceForState(s: ConfiguratorState): number {
-  let p = getSize(s.sizeId).price;
-  const hasSaying =
-    s.sayingId === "custom"
-      ? Boolean((s.sayingText ?? "").trim())
-      : Boolean(s.sayingId);
-  if (hasSaying) p += PRICING.saying;
-  if (s.gold) p += PRICING.gold;
-  if (s.addons.gift) p += PRICING.gift;
-  if (s.addons.card) p += PRICING.card;
-  if (s.addons.express) p += PRICING.express;
-  if (s.addons.date) p += PRICING.date;
-  return p;
-}
+/** Gesamtpreis: zentrale Logik in ./pricing (auch serverseitig genutzt). */
+import { priceForState } from "./pricing";
+export { priceForState };
 
 /** Günstigster Preis einer Form (für „ab …" in der Form-Auswahl). */
 export function minPriceForShape(shape: ShapeId): number {

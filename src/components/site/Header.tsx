@@ -6,8 +6,8 @@ import { Logo } from "./Logo";
 
 const NAV = [
   { label: "Galerie", href: "/#galerie" },
+  { label: "Editionen", href: "/#editionen" },
   { label: "Atelier", href: "/atelier" },
-  { label: "So geht's", href: "/#ablauf" },
   { label: "Anlässe", href: "/#anlaesse" },
   { label: "FAQ", href: "/#faq" },
 ];

@@ -10,5 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/impressum`, changeFrequency: "yearly", priority: 0.1 },
     { url: `${BASE}/datenschutz`, changeFrequency: "yearly", priority: 0.1 },
     { url: `${BASE}/agb`, changeFrequency: "yearly", priority: 0.1 },
+    { url: `${BASE}/widerruf`, changeFrequency: "yearly", priority: 0.1 },
   ];
 }

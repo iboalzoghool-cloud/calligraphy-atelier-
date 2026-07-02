@@ -22,7 +22,7 @@ export function NameShowcase() {
             <InkLine />
             <p className="mt-6 max-w-md text-pretty leading-relaxed text-ink-soft">
               Dein Name – oder der eines geliebten Menschen – von Hand in weiche
-              Alkohol-Tinte geschrieben. Kein Druck, keine Kopie: ein Wort, das
+              Alkohol-Tinte geschrieben. Ein Original, keine Kopie: ein Wort, das
               bleibt und ein Gefühl schenkt. In deiner Farbwelt – Rosé, Lavendel,
               Türkis oder Gold.
             </p>

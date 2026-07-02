@@ -2,6 +2,7 @@ import { Hero } from "@/components/landing/Hero";
 import { TrustStrip } from "@/components/landing/TrustStrip";
 import { NameShowcase } from "@/components/landing/NameShowcase";
 import { Gallery } from "@/components/landing/Gallery";
+import { Editions } from "@/components/landing/Editions";
 import { OnRequest } from "@/components/landing/OnRequest";
 import { WordsBand } from "@/components/landing/WordsBand";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <TrustStrip />
       <NameShowcase />
       <Gallery />
+      <Editions />
       <OnRequest />
       <WordsBand />
       <HowItWorks />

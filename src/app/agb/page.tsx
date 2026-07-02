@@ -1,3 +1,4 @@
+/* ENTWURF – vor Live-Schaltung juristisch prüfen lassen (siehe ENDBERICHT). */
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/legal/LegalShell";
 import { PROCESSING_TIME } from "@/lib/content";
@@ -20,18 +21,21 @@ export default function AgbPage() {
 
       <h2>§ 2 Vertragsgegenstand</h2>
       <p>
-        Gegenstand ist die Anfertigung individuell gestalteter, von Hand gemalter
-        Kunstwerke (Format ca. 29 × 29 cm) nach den im Konfigurator gewählten
-        Vorgaben (Form, Farbwelt, Name, Schrift, optional Spruch und
-        Goldakzente).
+        Der Anbieter verkauft zwei Produktlinien: <strong>Originale</strong> –
+        individuell gestaltete, von Hand gemalte Kunstwerke nach den im
+        Konfigurator gewählten Vorgaben (Form, Farbwelt, Name, Schrift,
+        optional Spruch und Goldakzente) – sowie <strong>Editionen</strong> –
+        nicht personalisierte Kunstdrucke ausgewählter Motive, die als solche
+        gekennzeichnet sind.
       </p>
 
       <h2>§ 3 Vertragsschluss</h2>
       <p>
-        Die Darstellung im Konfigurator ist kein verbindliches Angebot. Mit dem
-        Absenden des Formulars gibst du eine <strong>unverbindliche Anfrage</strong>{" "}
-        ab. Ein Vertrag kommt erst zustande, wenn der Anbieter die Anfrage
-        ausdrücklich per E-Mail bestätigt (Annahme).
+        Beim Kauf über den Online-Checkout kommt der Vertrag mit Abschluss des
+        Bezahlvorgangs zustande; du erhältst eine Bestellbestätigung per
+        E-Mail. Bei der <strong>unverbindlichen Anfrage</strong> (Sonderwünsche,
+        Großformate) kommt ein Vertrag erst zustande, wenn der Anbieter die
+        Anfrage ausdrücklich per E-Mail bestätigt (Annahme).
       </p>
 
       <h2>§ 4 Preise &amp; Versand</h2>
@@ -44,10 +48,12 @@ export default function AgbPage() {
 
       <h2>§ 5 Zahlung</h2>
       <p>
-        Die Zahlung wird nach der Auftragsbestätigung persönlich per E-Mail
-        vereinbart (in der Regel Banküberweisung, Vorkasse). Mit dem Malen
-        beginnen wir nach Zahlungseingang; zusätzliche Gebühren entstehen dir
-        nicht.
+        Die Zahlung erfolgt im Online-Checkout über den Zahlungsdienstleister
+        Stripe (u. a. Kartenzahlung). Bei Bestellungen über die unverbindliche
+        Anfrage wird die Zahlung persönlich per E-Mail vereinbart (in der
+        Regel Banküberweisung, Vorkasse). Zusätzliche Gebühren entstehen dir
+        nicht. Alle Preise sind Endpreise; kein Ausweis der Umsatzsteuer
+        gemäß § 19 UStG.
       </p>
 
       <h2>§ 6 Lieferzeit</h2>
@@ -68,9 +74,12 @@ export default function AgbPage() {
 
       <h2>§ 8 Widerrufsrecht</h2>
       <p>
-        Da es sich um Waren handelt, die nach Kundenspezifikation angefertigt
-        werden bzw. eindeutig auf persönliche Bedürfnisse zugeschnitten sind,
-        besteht <strong>kein Widerrufsrecht</strong> gemäß § 312g Abs. 2 Nr. 1 BGB.
+        Für <strong>Originale</strong> (nach Kundenspezifikation angefertigt
+        bzw. eindeutig auf persönliche Bedürfnisse zugeschnitten) besteht{" "}
+        <strong>kein Widerrufsrecht</strong> gemäß § 312g Abs. 2 Nr. 1 BGB.
+        Für <strong>Editionen</strong> (Kunstdrucke) gilt das gesetzliche
+        14-tägige Widerrufsrecht – Details in der{" "}
+        <a href="/widerruf">Widerrufsbelehrung</a>.
       </p>
 
       <h2>§ 9 Gewährleistung</h2>
