@@ -7,7 +7,7 @@ export function Logo({ className = "" }: { className?: string }) {
       className={`group inline-flex items-baseline gap-2 ${className}`}
       aria-label="Kalligraphie – Startseite"
     >
-      <span className="font-display text-2xl font-semibold tracking-tight">
+      <span className="font-display text-2xl font-medium tracking-tight">
         Kalligraphie
       </span>
       <span

@@ -10,39 +10,63 @@ import {
 
 /* ── UI-Schriften ──────────────────────────────────────────── */
 
-// Display-Serife für Headlines (editorial, ruhig, edel)
+// Display-Serife für Headlines (editorial, ruhig, edel).
+// Nur die tatsächlich genutzten Gewichte (500 Headlines, 600 Logo) –
+// jedes Gewicht ist eine eigene preloaded Datei auf dem kritischen Pfad.
 export const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
+/* Hinweis: ein `text:`-Mini-Subset fürs Logo wäre ideal (LCP), wird von
+   Turbopack aber (noch) nicht unterstützt – daher volle 500er-Datei. */
+
 // Warme, charaktervolle Grotesk für Fließtext / UI (Design-Vorlage)
 export const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-hanken",
   display: "swap",
 });
 
 /* ── Arabische Kalligrafie-Fonts ───────────────────────────────
    Werden 1:1 in der <canvas>-Vorschau verwendet. `arabic` + `latin`-
-   Subsets, damit beide Schriftsysteme sauber gerendert werden. */
+   Subsets, damit beide Schriftsysteme sauber gerendert werden.
+
+   `preload: false`: die arabischen Subsets sind groß (Ink ist ein
+   Color-Font) und werden erst im Hero-Herz/Konfigurator gebraucht –
+   sie dürfen den kritischen Pfad (Text, UI) nicht blockieren. */
 
 // Aref Ruqaa Ink – Ruqʿah mit Tinten-Bleed (Signatur, sehr „handgemalt")
 export const arefRuqaaInk = Aref_Ruqaa_Ink({
   subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
+  weight: ["700"],
   variable: "--font-aref-ink",
+  display: "swap",
+  preload: false,
+});
+
+/* Hero-/Deko-Instanz: nur Arabisch 400 – und bewusst PRELOADED. Der
+   arabische Name auf dem Hero-Herz ist das LCP-Element der Landing;
+   er darf nicht sekundenlang auf den Font-Swap warten. */
+export const arefRuqaaDisplay = Aref_Ruqaa({
+  subsets: ["arabic"],
+  weight: ["400"],
+  variable: "--font-aref",
   display: "swap",
 });
 
+/* Voll-Instanz für die Canvas-Vorschau (Latein + Bold 700), lazy.
+   400-Arabisch kommt aus der Display-Instanz – sonst lädt dieselbe
+   Datei doppelt (Preload-URL vs. CSS-URL). */
 export const arefRuqaa = Aref_Ruqaa({
   subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
-  variable: "--font-aref",
+  weight: ["700"],
+  variable: "--font-aref-full",
   display: "swap",
+  preload: false,
 });
 
 export const amiri = Amiri({
@@ -50,12 +74,14 @@ export const amiri = Amiri({
   weight: ["400", "700"],
   variable: "--font-amiri",
   display: "swap",
+  preload: false,
 });
 
 export const reemKufi = Reem_Kufi({
   subsets: ["arabic", "latin"],
   variable: "--font-reem",
   display: "swap",
+  preload: false,
 });
 
 // Gulzar – Nastaliq-Anmutung, sehr verschnörkelt (nur Arabisch)
@@ -64,6 +90,7 @@ export const gulzar = Gulzar({
   weight: ["400"],
   variable: "--font-gulzar",
   display: "swap",
+  preload: false,
 });
 
 /** Alle Font-CSS-Variablen für <body className>. */
@@ -71,6 +98,7 @@ export const fontVariables = [
   cormorant.variable,
   hanken.variable,
   arefRuqaaInk.variable,
+  arefRuqaaDisplay.variable,
   arefRuqaa.variable,
   amiri.variable,
   reemKufi.variable,

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Reveal } from "@/components/ui/Reveal";
 import { HeartFan, bgIdForWorld } from "@/components/landing/HeartFan";
 import { useConfigurator } from "@/lib/configurator/context";
 import { toArabicName } from "@/lib/configurator/translit";
@@ -37,8 +36,10 @@ export function Hero() {
   return (
     <section className="bg-paper">
       <div className="container-page grid items-center gap-8 pb-12 pt-8 md:gap-14 md:pb-20 md:pt-14 lg:grid-cols-2">
-        {/* ── Herz-Fächer: das Hauptprodukt (mobil zuerst) ── */}
-        <Reveal className="order-1 lg:order-2">
+        {/* ── Herz-Fächer: das Hauptprodukt (mobil zuerst) ──
+            Above-the-fold: CSS-Animation statt JS-Reveal, damit der Hero
+            sofort malt (LCP) und nicht auf Hydration wartet. */}
+        <div className="fade-up order-1 lg:order-2">
           <HeartFan
             active={active}
             onSelect={setActive}
@@ -46,10 +47,10 @@ export function Hero() {
             sizeLabel="29 × 29 cm"
             latin={script === "lat"}
           />
-        </Reveal>
+        </div>
 
         {/* ── Der Catch: Farbwelt wählen & Namen tippen ── */}
-        <Reveal className="order-2 lg:order-1">
+        <div className="fade-up order-2 lg:order-1">
           <p className="eyebrow eyebrow-rule">Handgemalte Kalligrafie · Unikate</p>
           <h1 className="mt-4 text-balance text-[2.5rem] leading-[1.02] sm:text-5xl md:text-[3.3rem]">
             Dein Name,
@@ -191,7 +192,7 @@ export function Hero() {
               <Dot className="bg-teal" /> Jedes Stück ein Unikat
             </span>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
