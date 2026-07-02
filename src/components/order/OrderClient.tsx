@@ -227,6 +227,27 @@ export function OrderClient() {
               </div>
             </dl>
             <p className="mt-3 text-xs text-ink-faint">{PRICING.shippingHint}</p>
+
+            {/* Erwartungs-Management: das echte Produkt zeigen (Rückseite),
+                damit niemand von der Realität überrascht wird. */}
+            <div className="mt-5 border-t border-line pt-4">
+              <p className="text-sm font-medium text-ink">
+                So sieht dein Herz in echt aus
+              </p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/produkt/herz-rueckseite.webp"
+                alt="Rückseite der Herz-Leinwand: Holz-Keilrahmen, von Hand bespannt und getackert"
+                loading="lazy"
+                className="mt-3 w-full rounded-xl"
+              />
+              <p className="mt-2 text-xs leading-relaxed text-ink-soft">
+                Echte Leinwand auf einem Herz-Keilrahmen aus Holz – von Hand
+                bespannt und rückseitig getackert. Kein Papier, kein Druck:
+                ein Werkstück mit Tiefe, das frei steht oder hängt.
+              </p>
+            </div>
+
             <Link
               href="/gestalten"
               className="mt-4 inline-block text-sm text-rose-deep underline-offset-4 hover:underline"
