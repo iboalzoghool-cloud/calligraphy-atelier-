@@ -11,7 +11,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       sessionStorage (TikTok-In-App-Browser-sicher), Hydration-sauber.
 - [x] **P3 · Sticky-CTA-Neubau**: kompakt, safe-area, nach Hero ein-/am Footer
       ausblenden, Body-Scroll-Padding — verdeckt nirgends Content.
-- [ ] **P4 · Rechtliches platzhalterfrei**: Impressum/Datenschutz/AGB ohne
+- [x] **P4 · Rechtliches platzhalterfrei**: Impressum/Datenschutz/AGB ohne
       sichtbare PH-Marker; E-Mail echt; konservative Formulierungen.
 - [ ] **P5 · LCP-Fix**: Hero (Landing + /gestalten) nicht mehr JS-gated;
       Reveal above-the-fold sofort sichtbar; CSS-Entrance statt Opacity-0-Falle.

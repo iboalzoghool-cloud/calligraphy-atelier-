@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LegalShell, PH } from "@/components/legal/LegalShell";
+import { LegalShell } from "@/components/legal/LegalShell";
+import { BRAND } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Impressum",
@@ -24,16 +25,15 @@ export default function ImpressumPage() {
       <p>
         Telefon: 0163 1707860
         <br />
-        E-Mail: <PH>PLATZHALTER: E-Mail-Adresse (rechtlich erforderlich)</PH>
+        E-Mail: <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
         <br />
         Instagram: @iboverse
       </p>
 
       <h2>Umsatzsteuer</h2>
       <p>
-        <PH>PLATZHALTER: bitte bestätigen</PH> Kleinunternehmer gemäß § 19 UStG –
-        es wird keine Umsatzsteuer ausgewiesen. (Falls umsatzsteuerpflichtig:
-        USt-IdNr. gemäß § 27 a UStG hier eintragen.)
+        Kleinunternehmer gemäß § 19 UStG – es wird keine Umsatzsteuer
+        ausgewiesen.
       </p>
 
       <h2>Redaktionell verantwortlich (§ 18 Abs. 2 MStV)</h2>
@@ -61,7 +61,7 @@ export default function ImpressumPage() {
 
       <h2>Bildnachweis</h2>
       <p>
-        Alle gezeigten Werke stammen aus eigener Herstellung. <PH>PLATZHALTER: ggf. weitere Bildnachweise</PH>
+        Alle gezeigten Werke, Fotos und Videos stammen aus eigener Herstellung.
       </p>
     </LegalShell>
   );

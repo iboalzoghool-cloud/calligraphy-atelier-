@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LegalShell, PH } from "@/components/legal/LegalShell";
+import { LegalShell } from "@/components/legal/LegalShell";
 import { PROCESSING_TIME } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -36,17 +36,18 @@ export default function AgbPage() {
 
       <h2>§ 4 Preise &amp; Versand</h2>
       <p>
-        Es gelten die zum Zeitpunkt der Bestätigung genannten Preise. Versandkosten
-        werden mit der Auftragsbestätigung mitgeteilt.{" "}
-        <PH>PLATZHALTER: konkrete Versandkosten &amp; Liefergebiete</PH>
+        Es gelten die zum Zeitpunkt der Bestätigung genannten Preise. Der
+        Versand erfolgt derzeit innerhalb Deutschlands; die konkreten
+        Versandkosten werden vor Vertragsschluss mit der Auftragsbestätigung
+        genannt. Ein Vertrag kommt erst zustande, wenn du danach zustimmst.
       </p>
 
       <h2>§ 5 Zahlung</h2>
       <p>
-        Die Zahlungsabwicklung wird derzeit persönlich per E-Mail abgestimmt.{" "}
-        <PH>PLATZHALTER: Zahlungsarten / Zahlungsziel</PH>
-        {" "}
-        <em>(Hinweis: Online-Zahlung via Stripe ist für Phase 2 vorgesehen.)</em>
+        Die Zahlung wird nach der Auftragsbestätigung persönlich per E-Mail
+        vereinbart (in der Regel Banküberweisung, Vorkasse). Mit dem Malen
+        beginnen wir nach Zahlungseingang; zusätzliche Gebühren entstehen dir
+        nicht.
       </p>
 
       <h2>§ 6 Lieferzeit</h2>
@@ -80,9 +81,9 @@ export default function AgbPage() {
 
       <h2>§ 10 Schlussbestimmungen</h2>
       <p>
-        Es gilt das Recht der Bundesrepublik Deutschland. Sollten einzelne
-        Bestimmungen unwirksam sein, bleibt der übrige Vertrag wirksam.{" "}
-        <PH>PLATZHALTER: Gerichtsstand, falls zulässig</PH>
+        Es gilt das Recht der Bundesrepublik Deutschland. Gegenüber
+        Verbraucher:innen gelten die gesetzlichen Gerichtsstände. Sollten
+        einzelne Bestimmungen unwirksam sein, bleibt der übrige Vertrag wirksam.
       </p>
     </LegalShell>
   );

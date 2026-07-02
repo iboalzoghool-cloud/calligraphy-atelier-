@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LegalShell, PH } from "@/components/legal/LegalShell";
+import { LegalShell } from "@/components/legal/LegalShell";
+import { BRAND } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
@@ -15,7 +16,7 @@ export default function DatenschutzPage() {
         <br />
         Ibrahim Al Zoghool, Bismarckstraße 37, 63065 Offenbach am Main,
         Deutschland · Telefon 0163 1707860 · E-Mail:{" "}
-        <PH>PLATZHALTER: E-Mail-Adresse</PH>
+        <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
       </p>
 
       <h2>2. Welche Daten wir verarbeiten</h2>
@@ -36,25 +37,35 @@ export default function DatenschutzPage() {
       <p>
         Zur Zustellung der Anfrage-E-Mail setzen wir ggf. den Dienst{" "}
         <strong>Resend</strong> (Resend, Inc., USA) ein. Dabei können die oben
-        genannten Daten an den Dienstleister übermittelt werden.{" "}
-        <PH>PLATZHALTER: Auftragsverarbeitungsvertrag (AVV) abschließen &amp; verlinken</PH>
+        genannten Daten an den Dienstleister übermittelt werden; mit Resend
+        besteht ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO
+        (Bestandteil der Nutzungsbedingungen des Dienstes).
       </p>
       <p>
-        Das Hosting erfolgt über <strong>Vercel</strong>.{" "}
-        <PH>PLATZHALTER: Vercel-Anbieterangaben &amp; AVV prüfen</PH>
+        Das Hosting erfolgt über <strong>Vercel</strong> (Vercel Inc., 340 S
+        Lemon Ave #4133, Walnut, CA 91789, USA). Beim Aufruf der Website
+        verarbeitet Vercel technisch notwendige Server-Logs (z. B. IP-Adresse,
+        Zeitpunkt des Abrufs) zur Bereitstellung und Absicherung des Betriebs
+        (Art. 6 Abs. 1 lit. f DSGVO); Grundlage ist der
+        Auftragsverarbeitungsvertrag von Vercel.
       </p>
 
       <h2>5. Cookies &amp; Tracking</h2>
       <p>
         Diese Website verwendet <strong>keine</strong> Tracking-Cookies und kein
-        Analyse-Tool. <PH>PLATZHALTER: anpassen, falls später Tools ergänzt werden</PH>
+        Analyse-Tool. Dein Browser speichert lediglich deinen aktuellen Entwurf
+        lokal (sessionStorage), damit er beim Zurückkehren nicht verloren geht –
+        diese Daten verlassen dein Gerät nicht und werden beim Schließen des
+        Browsers automatisch gelöscht.
       </p>
 
       <h2>6. Speicherdauer</h2>
       <p>
         Wir speichern deine Daten nur so lange, wie es für die Bearbeitung deiner
-        Anfrage und die Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich
-        ist. <PH>PLATZHALTER: konkrete Fristen</PH>
+        Anfrage erforderlich ist. Kommt kein Auftrag zustande, löschen wir die
+        Anfrage spätestens nach sechs Monaten. Für Geschäftskorrespondenz und
+        Belege abgeschlossener Aufträge gelten die gesetzlichen
+        Aufbewahrungsfristen (§ 257 HGB, § 147 AO: sechs bzw. zehn Jahre).
       </p>
 
       <h2>7. Deine Rechte</h2>
@@ -75,7 +86,7 @@ export default function DatenschutzPage() {
       <h2>8. Kontakt</h2>
       <p>
         Für Anliegen zum Datenschutz erreichst du uns unter:{" "}
-        <PH>PLATZHALTER: E-Mail-Adresse</PH>
+        <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
       </p>
     </LegalShell>
   );
