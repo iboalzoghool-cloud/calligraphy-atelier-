@@ -88,3 +88,24 @@ Resend-Key (damit Anfragen automatisch ankommen) und mittelfristig die ersten
 echten Kundenstimmen. **Der eine nächste Hebel:** Blocker #1 heute Morgen
 erledigen und dann ein erstes TikTok-Video, das auf `/gestalten?anlass=eid`
 zeigt — der Weg vom Video zur persönlichen Vorschau ist jetzt zwei Taps kurz.
+
+---
+
+## Nachtrag · Rebrand HDIA Atelier (2026-07-02)
+
+Die Seite heißt jetzt **HDIA Atelier** — von هدية (Hadiyya), „das Geschenk“.
+
+**Der neue Header:** links das goldene هدية-Wortbild (kalligrafisch, aus
+Aref Ruqaa vektorisiert), daneben „HDIA“ in der Display-Serife und „ATELIER“
+in kleinen Kapitälchen. Funktioniert auf hellem Header, dunklem Footer-Kontext
+und als Favicon/App-Icon (dort هدية auf Papiergrund). Das Wortbild liegt als
+`public/brand/hadiyya.svg` mit currentColor — Brahims handgemalte Version
+ersetzt später genau diese eine Datei.
+
+**Grep-Beweis:** 0 Treffer für die Alt-Marke „Kalligraphie“ in src/, public/,
+README (das Handwerkswort „arabische Kalligraphie“ bleibt bewusst).
+**Story:** Hero-Subline („ein Geschenk, das es nur einmal gibt“) +
+Warum-handgemalt („هدية heißt Geschenk …“), Bedeutungszeile im Footer.
+**Technik:** PWA-Manifest, Icons, JSON-LD (LocalBusiness/Offer ab 29 €),
+OG-Bild mit Gold-هدية, Keywords (Namensbild, Geschenk personalisiert
+handgemalt). Alle Gates grün (lint/tsc/build, E2E-Flow, mobil+desktop).
