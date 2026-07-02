@@ -211,6 +211,17 @@ export const ADDONS: AddonOption[] = [
   },
 ];
 
+/* ── Anlass-Presets ────────────────────────────────────────────
+   Klick auf eine Anlass-Karte lädt den Konfigurator vorkonfiguriert
+   (?anlass=…). Farbwelt = Akzent der jeweiligen Karte (Kontinuität). */
+
+export const OCCASION_PRESETS: Record<string, Partial<ConfiguratorState>> = {
+  eid: { shape: "heart", sizeId: "heart-29", backgroundId: "rose", sayingId: "eid" },
+  muttertag: { shape: "heart", sizeId: "heart-29", backgroundId: "petrol-gold", sayingId: "mother" },
+  hochzeit: { shape: "heart", sizeId: "heart-29", backgroundId: "sand-gold", sayingId: "forever" },
+  geburt: { shape: "heart", sizeId: "heart-29", backgroundId: "koralle", sayingId: "welcome" },
+};
+
 /* ── Default-Zustand ──────────────────────────────────────────── */
 
 export const DEFAULT_STATE: ConfiguratorState = {

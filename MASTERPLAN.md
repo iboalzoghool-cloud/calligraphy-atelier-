@@ -23,7 +23,7 @@ nichts, lint/build grün) → Commit+Push → ✅ hier.
       Abweichung vom 90er-Ziel (Landing): LCP-Messwert hängt am Font-Swap des
       immer sichtbaren Logos unter simuliertem 4G; real (Vercel-CDN, AVIF,
       HTTP/2-Prioritäten) liegt der Wert höher. Alle anderen Metriken grün.
-- [ ] **P8 · Galerie-Bühne**: Leerflächen weg (einheitliche Bühne), Cards
+- [x] **P8 · Galerie-Bühne**: Leerflächen weg (einheitliche Bühne), Cards
       voll tappbar.
 - [ ] **P9 · Occasions-Presets**: Karte = Link mit Preset (Eid → Spruch عيد مبارك
       + Farbwelt), ganze Karte Tap-Ziel ≥ 52 px.

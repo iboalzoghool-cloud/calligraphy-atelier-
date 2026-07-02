@@ -97,24 +97,28 @@ export const FAQ = [
   },
 ] as const;
 
-/* Anlässe – Einstieg in den Konfigurator. */
+/* Anlässe – Einstieg in den Konfigurator (id = Preset in options.ts). */
 export const OCCASIONS = [
   {
+    id: "eid",
     title: "Eid",
     ar: "عيد مبارك",
     text: "Ein persönliches Geschenk zum Fest – Name und Segenswunsch in einem.",
   },
   {
+    id: "muttertag",
     title: "Muttertag",
     ar: "أمي",
     text: "„Liebste Mutter“ auf Tinte und Gold. Ein Bild, das bleibt.",
   },
   {
+    id: "hochzeit",
     title: "Hochzeit",
     ar: "مودة",
     text: "Zwei Namen, ein Kunstwerk. Auch als Geschenk für das Brautpaar.",
   },
   {
+    id: "geburt",
     title: "Geburt",
     ar: "مولود",
     text: "Der erste Name des neuen Lebens – handgemalt zum Willkommen.",

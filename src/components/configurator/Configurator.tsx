@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/lib/configurator/context";
+import { OCCASION_PRESETS } from "@/lib/configurator/options";
 import { exportMockup } from "@/lib/configurator/compose";
 import { formatPrice } from "@/lib/format";
 import { PreviewCanvas } from "./PreviewCanvas";
@@ -32,12 +33,27 @@ const STEPS: StepDef[] = [
 
 export function Configurator() {
   const router = useRouter();
-  const { state, priceCents, setOrder } = useConfigurator();
+  const { state, update, priceCents, setOrder, ready } = useConfigurator();
 
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Anlass-Preset (?anlass=eid …): nach der Storage-Hydration einmalig
+  // anwenden und direkt zum Namens-Schritt springen – der schnellste Weg
+  // von der Anlass-Karte zum persönlichen Entwurf.
+  const presetApplied = useRef(false);
+  useEffect(() => {
+    if (!ready || presetApplied.current) return;
+    presetApplied.current = true;
+    const key = new URLSearchParams(window.location.search).get("anlass");
+    const preset = key ? OCCASION_PRESETS[key] : undefined;
+    if (preset) {
+      update(preset);
+      setStep(2); // Schritt „Name“
+    }
+  }, [ready, update]);
 
   const isLast = step === STEPS.length - 1;
   const meta = STEPS[step];

@@ -31,7 +31,7 @@ export function Occasions() {
             return (
             <Reveal key={o.title} delay={i * 0.06}>
               <Link
-                href="/gestalten"
+                href={`/gestalten?anlass=${o.id}`}
                 className="group flex h-full flex-col justify-between rounded-2xl border p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lift"
                 style={{
                   background: `linear-gradient(180deg, color-mix(in srgb, ${a.hex} 12%, #fbf7ee), #fbf7ee)`,
