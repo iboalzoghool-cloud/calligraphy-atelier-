@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { EDITIONS, SHOP, type EditionProduct } from "@/lib/shop/config";
+import { EDITIONS, EDITIONS_LIVE, SHOP, type EditionProduct } from "@/lib/shop/config";
 import { formatPrice } from "@/lib/format";
 
 /*
@@ -107,6 +107,8 @@ function EditionCard({ product, delay }: { product: EditionProduct; delay: numbe
 }
 
 export function Editions() {
+  // Pausiert (EDITIONS_LIVE in lib/shop/config.ts) – Idee & Code konserviert.
+  if (!EDITIONS_LIVE) return null;
   return (
     <section id="editionen" className="scroll-mt-24 bg-paper-2 py-16 md:py-24">
       <div className="container-page">

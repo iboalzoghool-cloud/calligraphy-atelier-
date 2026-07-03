@@ -27,6 +27,14 @@ export interface EditionProduct {
   sizes: EditionSize[];
 }
 
+/*
+  EDITIONEN-SCHALTER (Brahim, 2026-07-03): Verkauf der Editionen ist
+  vorerst PAUSIERT – Preise/Kaufen verschwinden von der Seite, die
+  komplette Implementierung (Sektion, Checkout, Mails) bleibt erhalten.
+  Wieder live schalten = dieses Flag auf true.
+*/
+export const EDITIONS_LIVE = false;
+
 /** Druckgrößen + Preisspanne 19–39 € (Endpreise). */
 const PRINT_SIZES: EditionSize[] = [
   { id: "a4", label: "A4 · 21 × 29,7 cm", price: 1900 },

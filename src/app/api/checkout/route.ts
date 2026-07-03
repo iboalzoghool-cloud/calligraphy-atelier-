@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { ConfiguratorState } from "@/lib/configurator/types";
 import { priceForState } from "@/lib/configurator/pricing";
 import { getSize, getBackground, getSaying, ADDONS, SHAPES } from "@/lib/configurator/options";
-import { getEdition, getEditionSize, SHOP, stripeMode } from "@/lib/shop/config";
+import { getEdition, getEditionSize, EDITIONS_LIVE, SHOP, stripeMode } from "@/lib/shop/config";
 import { sendOrderMails, type PaidOrder } from "@/lib/shop/order-mails";
 
 /*
@@ -82,6 +82,12 @@ export async function POST(req: Request) {
     title = `Original: ${meta.form} ${meta.groesse} – „${meta.name_auf_bild}“`;
     description = `Handgemaltes Unikat · ${meta.farbwelt} · ${SHOP.deliveryOriginal}`;
   } else if (body.kind === "edition") {
+    if (!EDITIONS_LIVE) {
+      return NextResponse.json(
+        { message: "Die Editionen sind bald verfügbar." },
+        { status: 503 },
+      );
+    }
     const product = getEdition(body.productId);
     const size = product ? getEditionSize(product, body.sizeId) : null;
     if (!product || !size) {

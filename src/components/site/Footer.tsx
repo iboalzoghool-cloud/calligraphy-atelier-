@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { BRAND } from "@/lib/content";
+import { EDITIONS_LIVE } from "@/lib/shop/config";
 
 export function Footer() {
   const igHandle = BRAND.instagram.replace(/^@/, "");
@@ -42,11 +43,13 @@ export function Footer() {
                   Galerie
                 </Link>
               </li>
-              <li>
-                <Link href="/#editionen" className="transition-colors hover:text-ink">
-                  Editionen
-                </Link>
-              </li>
+              {EDITIONS_LIVE ? (
+                <li>
+                  <Link href="/#editionen" className="transition-colors hover:text-ink">
+                    Editionen
+                  </Link>
+                </li>
+              ) : null}
               <li>
                 <Link href="/atelier" className="transition-colors hover:text-ink">
                   Atelier

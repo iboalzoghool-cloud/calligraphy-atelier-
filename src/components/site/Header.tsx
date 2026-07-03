@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { EDITIONS_LIVE } from "@/lib/shop/config";
 import { Logo } from "./Logo";
 
 const NAV = [
   { label: "Galerie", href: "/#galerie" },
-  { label: "Editionen", href: "/#editionen" },
+  ...(EDITIONS_LIVE ? [{ label: "Editionen", href: "/#editionen" }] : []),
   { label: "Atelier", href: "/atelier" },
   { label: "Anlässe", href: "/#anlaesse" },
   { label: "FAQ", href: "/#faq" },

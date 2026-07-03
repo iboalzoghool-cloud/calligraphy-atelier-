@@ -78,7 +78,7 @@ export const DISCLAIMERS = [
 export const FAQ = [
   {
     q: "Ist jedes Stück wirklich handgemalt?",
-    a: "Jedes Original: ja – einzeln von Hand mit Alkoholtinte gemalt, die Vorschau ist eine Annäherung und dein Stück ein Unikat. Daneben gibt es unsere Editionen: klar gekennzeichnete Kunstdrucke ausgewählter Motive, als günstiger Einstieg.",
+    a: "Ja – jedes Original wird einzeln von Hand mit Alkoholtinte gemalt. Die Vorschau im Konfigurator ist eine Annäherung; dein Stück entsteht frei und ist ein Unikat.",
   },
   {
     q: "Wie lange dauert die Anfertigung?",
@@ -90,7 +90,7 @@ export const FAQ = [
   },
   {
     q: "Gibt es ein Widerrufsrecht?",
-    a: "Bei personalisierten Originalen (dein Name, deine Gestaltung) besteht kein gesetzliches Widerrufsrecht (§ 312g Abs. 2 Nr. 1 BGB). Für Kunstdrucke aus den Editionen gilt das normale 14-tägige Widerrufsrecht. Bei beschädigter Lieferung finden wir immer eine Lösung.",
+    a: "Bei personalisierten Originalen (dein Name, deine Gestaltung) besteht kein gesetzliches Widerrufsrecht (§ 312g Abs. 2 Nr. 1 BGB). Bei beschädigter Lieferung finden wir immer eine Lösung.",
   },
   {
     q: "Wie läuft die Bezahlung?",

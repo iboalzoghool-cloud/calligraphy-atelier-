@@ -83,3 +83,21 @@ Autonome Entscheidungen (Brahim schläft). Jede Zeile: Entscheidung + Warum.
     Galerie-Werken; „Kunstdruck · Edition“-Badge an jeder Karte, Galerie-
     Originale tragen das Gegen-Label. Versand pauschal inklusive
     (Endpreis-Logik, § 19 UStG ohne USt-Ausweis).
+
+## 2026-07-03
+
+24. **Editionen pausiert (EDITIONS_LIVE=false):** Auf Brahims Wunsch („Preise
+    für die Gemälde erstmal weg, Idee speichern“) sind Preise & Kaufen der
+    Editionen von der Seite genommen — Sektion, Checkout-Pfad, Mails und
+    Preis-Config bleiben vollständig erhalten (ein Flag in lib/shop/config.ts
+    schaltet sie wieder live). Kauf-API blockt Editionen serverseitig (503),
+    Copy-Erwähnungen der Editionen (FAQ, Atelier-Teaser) zurückgedreht, damit
+    nichts Unkaufbares versprochen wird. Original-Kauf bleibt aktiv.
+    Interpretation „Gemälde = Editionen“ (das Neueste mit Preisen) — falls
+    Originale gemeint waren: Flag-Logik identisch anwendbar.
+25. **Dreamina-Produktvideo NICHT eingebaut:** Frames zeigen سلوى (Tabu-Name,
+    war überall entfernt) und Nonsens-Arabisch (شوبناولا); textfreie Sequenz
+    < 1,2 s mit KI-Morph. Platz-Entscheidung steht aber: sauberer Clip gehört
+    NICHT in den Hero (interaktiver Fächer = Conversion-Kern), sondern in den
+    Checkout-Produktblock und/oder NameShowcase (ersetzt dort die zwei alten
+    KI-Clips mit kaputtem Text).

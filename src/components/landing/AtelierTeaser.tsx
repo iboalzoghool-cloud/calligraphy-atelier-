@@ -50,8 +50,7 @@ export function AtelierTeaser() {
             <p className="mt-6 max-w-md text-pretty leading-relaxed text-ink-soft">
               Die Originale entstehen nur mit Tinte, Papier und Zeit – langsam,
               mit Atem und Aufmerksamkeit. Jedes trägt eine kleine
-              Unvollkommenheit, die es unverwechselbar macht. Ausgewählte
-              Motive gibt es zusätzlich als Kunstdrucke unserer Editionen.
+              Unvollkommenheit, die es unverwechselbar macht.
             </p>
             <Link
               href="/atelier"
