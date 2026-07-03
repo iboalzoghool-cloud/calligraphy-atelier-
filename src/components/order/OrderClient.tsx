@@ -12,6 +12,7 @@ import {
 import { formatPrice } from "@/lib/format";
 import { BRAND, PRICING, PROCESSING_TIME } from "@/lib/content";
 import { SHOP } from "@/lib/shop/config";
+import { VideoLoop } from "@/components/ui/VideoLoop";
 
 type Status = "form" | "submitting" | "success" | "error";
 
@@ -260,13 +261,23 @@ export function OrderClient() {
               <p className="text-sm font-medium text-ink">
                 So sieht dein Herz in echt aus
               </p>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/produkt/herz-rueckseite.webp"
-                alt="Rückseite der Herz-Leinwand: Holz-Keilrahmen, von Hand bespannt und getackert"
-                loading="lazy"
-                className="mt-3 w-full rounded-xl"
-              />
+              {/* Dynamisch: Leinwand mit Tiefe (Rotation) + echte Rückseite */}
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                <div className="relative overflow-hidden rounded-xl">
+                  <VideoLoop
+                    src="/videos/leinwand-herz.mp4"
+                    poster="/videos/leinwand-herz.webp"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/produkt/herz-rueckseite.webp"
+                  alt="Rückseite der Herz-Leinwand: Holz-Keilrahmen, von Hand bespannt und getackert"
+                  loading="lazy"
+                  className="h-full w-full rounded-xl object-cover"
+                />
+              </div>
               <p className="mt-2 text-xs leading-relaxed text-ink-soft">
                 Echte Leinwand auf einem Herz-Keilrahmen aus Holz – von Hand
                 bespannt und rückseitig getackert. Dein Original ist ein

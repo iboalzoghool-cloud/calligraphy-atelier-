@@ -41,8 +41,10 @@ export function NameShowcase() {
                   offset: "-rotate-2",
                 },
                 {
-                  src: "/videos/name-lavendel.mp4",
-                  poster: "/videos/name-lavendel.webp",
+                  // Produkt-Clip: man sieht dynamisch, dass es eine Leinwand
+                  // ist (Rotation, Kante, Rückseite) – echte Kundenstücke.
+                  src: "/videos/leinwand-herz.mp4",
+                  poster: "/videos/leinwand-herz.webp",
                   offset: "rotate-2 sm:mt-10",
                 },
               ].map((v) => (
